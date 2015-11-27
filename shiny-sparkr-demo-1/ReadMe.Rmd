@@ -41,7 +41,7 @@ Before we start understanding how each piece of such an application would operat
 ![Repository](img/repo.png)
 
 ## Prequisites
-1. Make sure you already have Apache Spark 1.4.1 or later downloaded onto your computer. Instructions for downloading and starting SparkR can be found in this [blog post](http://bit.ly/1kP5Fbm).
+1. Make sure you already have Apache Spark 1.5 or later downloaded onto your computer. Instructions for downloading and starting SparkR can be found in this [blog post](http://bit.ly/1kP5Fbm).
 2. Make sure you have Java 1.7.x installed and the environment variables are set.
 
 ## Launch the App
