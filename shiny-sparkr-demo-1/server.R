@@ -16,11 +16,12 @@ sqlContext <- sparkRSQL.init(sc)
 iris_DF <- createDataFrame(sqlContext, iris)
 cache(iris_DF)
 
+
+
 # Define server logic required to predict the sepal length
 shinyServer(function(input, output) {
 
   # Statistical machine learning
-  
   model_fit <- glm(Sepal_Length ~ Species + Petal_Width + Petal_Length, data = iris_DF, family = "gaussian")
   
   output$summary_model <- renderPrint({summary(model_fit)})
