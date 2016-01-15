@@ -19,9 +19,18 @@ You can also embed plots, for example:
 
 ```{r, echo = TRUE}
 suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(plotly))
 p <- ggplot(data = cars, aes(x = speed, y = dist)) + geom_point(aes(color = "red", cex = 2))
 p
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r eval = FALSE}
+suppressPackageStartupMessages(library(leaflet))
+m <- leaflet() %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)
+m %>% addTiles()
+```
+
+```{r, results='asis'}
+knitr::kable(mtcars)
+```
