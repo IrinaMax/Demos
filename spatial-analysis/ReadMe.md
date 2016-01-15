@@ -18,7 +18,10 @@ chunks within the document. You can embed an R code chunk like this:
 
 You can also embed plots, for example:
 
-    plot(cars)
+    suppressPackageStartupMessages(library(ggplot2))
+    suppressPackageStartupMessages(library(plotly))
+    p <- ggplot(data = cars, aes(x = speed, y = dist)) + geom_point(aes(color = "red", cex = 2))
+    p
 
 ![](ReadMe_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
