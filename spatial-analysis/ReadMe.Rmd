@@ -5,32 +5,307 @@ date: "January 14, 2016"
 output: 
   md_document:
   variant: markdown_github
+  toc: true
+  theme: united
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Applied Spatial Data Science with R
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Introduction
 
-```{r}
-summary(cars)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
 ```
 
-You can also embed plots, for example:
+### Why use R for Spatial Analysis
 
-```{r, echo = TRUE}
+
+
+## Data Preparation
+
+```{r packages2}
+
+## These are the packages needed for data preparation
 suppressPackageStartupMessages(library(ggplot2))
-p <- ggplot(data = cars, aes(x = speed, y = dist)) + geom_point(aes(color = "red", cex = 2))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(rgdal))
+
+theme_set(theme_bw())
+```
+
+### Reading Spatial Data
+
+The raw data is in text format and 12.6 MB in size.
+```{r read_data, echo = FALSE}
+## Read the data into memory
+## cdr <- read_csv("lonlat_sampler.txt", col_names = c("date_time", "hashed_id", "latitude", "longitude"))
+
+cdr_df <- read.csv("lonlat_sampler.txt")
+colnames(cdr_df) = c("date_time", "hashed_id", "latitude", "longitude")
+
+## Convert the hased_id variable into a factor variable
+cdr_df$hashed_id <- as.factor(cdr_df$hashed_id)
+
+## Explore the top rows
+head(cdr_df)
+
+## Explore some summary statistics about our data
+summary(cdr_df)
+str(cdr_df)
+```
+The dataset is made up of 218,136 observations with four columns including date-time, a hased ID, longitude and latitude.
+
+```{r remove_cord_errors, echo =  TRUE}
+## Find out how many rows have latitude and longitude equal to zero respectively
+(filter(cdr_df, latitude == 0)) %>% count()
+(filter(cdr_df, longitude == 0)) %>% count()
+cdr_df2 <- filter(cdr_df, latitude != 0 & longitude != 0)
+summary(cdr_df2)
+```
+There are 499 records with latitude and longitude equal to zero. We shall remove these assuming that they are errors in the data. when these coordinate errors are removed, we remain with 217,636 records.
+
+
+Create new separate columns for the Date and Time. Format the date and time variables into data and time data types respectively. South Africa Time zone is UTC+02:00.
+```{r create_time_cols, echo = FALSE}
+## And then insert a decimal point in the right position for the seconds
+cdr_df3 <- cdr_df %>% 
+  mutate(date_time2 = sub("([0-9]{14})","\\1.", date_time)) %>% 
+  mutate(date_time3 = ymd_hms(date_time2, tz = "Africa/Johannesburg"))
+  
+head(cdr_df3)
+str(cdr_df3)
+
+## Extract the year, month, and day from the "date_time3" variable
+cdr_df3 <- cdr_df3 %>% 
+  mutate(year = year(date_time3),
+         month = month(date_time3),
+         day = day(date_time3))
+```
+
+Write out the processed data into a csv and RDS file.
+``` {r write_data, echo = FALSE}
+## Create a file of the final processed data that will be used for analysis
+write_csv(cdr_df3, path = "cdr_data.csv")
+saveRDS(cdr_df3, "cdr_data.rds")
+```
+
+### Spatial Points Dataframe
+Convert the cdr_df local dataframe into SpatialPointsDataFrame for spatial analysis.
+```{r SpatialPointsDataFrame, echo = TRUE}
+## Convert to SpatialPointsDataFrame with longitude and latitude so as to use spatial packages
+## The CRS is a Geographic CRS called WGS84
+coords <- SpatialPoints(cdr_df3[, c("longitude", "latitude")])
+cdr_spatial_df <- SpatialPointsDataFrame(coords, cdr_df3)
+proj4string(cdr_spatial_df) <- CRS("+proj=longlat +ellps=WGS84")
+
+# Or using the "coordinates" method
+cdr_spatial_df1 <- cdr_df3
+coordinates(cdr_spatial_df1) <- c("longitude", "latitude")
+proj4string(cdr_spatial_df1) <- CRS("+proj=longlat +ellps=WGS84")
+
+# Explore the SpatialPointsDataFrame
+head(cdr_spatial_df@coords, 4)
+head(cdr_spatial_df@bbox)
+
+## Create a file of the final processed spatial points data frame that will be used for analysis
+saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
+
+## Also create a shapefile of this data
+writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
+```
+
+# ## Data Exploration
+# 
+# The purpose of this report is to display the descriptive and graphical statistics of this cdr sample data.
+# 
+# ``` {r DescriptiveStats, echo = FALSE}
+# ## Load the processed SpatialPointsDataFrame
+# cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
+# 
+# ## Create a SpatialPolygonsDataFrame by reading in shapefile data
+# ## Use plot method to plot it
+# shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2")
+# ```
+# 
+# ### Map Overlay or Spatial Join
+# ```{r spatial_join, echo = TRUE}
+# ## Perform a spatial join to join the shapefile data to the point data
+# over()
+# 
+# 
+# ```
+# 
+# ### Question 1: What is the distribution of call made by callers
+# ```{r, echo = FALSE}
+# callers <- group_by(cdr_df, hashed_id) 
+# call_dist <- summarise(callers, calls_made = n()) 
+# arrange(call_dist, desc(calls_made))
+# 
+# ```
+# 
+# ```{r, echo = FALSE }
+# grouped_by_time <- group_by(cdr_df, date_time3)
+# calls_per_day <- summarise(grouped_by_time, count = n())
+# head(arrange(calls_per_day, desc(count)))
+# tail <- tail(arrange(calls_per_day, desc(count)), n = 30)
+# ```
+# 
+# 
+# ### Question 3: What is the duration of the data
+# ```{r , echo = FALSE}
+# time_df <- transmute(cdr_df, 
+#                      start_time = min(as.Date(date_time3)),
+#                      end_time = max (as.Date(date_time3)))
+# 
+# ## Then get the difference between the start time and end time
+# diff <- time_df$end_time - time_df$end_time
+# 
+# 
+# ## Ouestion 2: What is the distributions of calls by day
+# 
+# 
+# ## Question 4: What the distribution of calls by time interval.
+# start <- as.Date("2010/01/01")
+# end <- as.Date("2010/12/31")
+# set.seed(1)
+# datewant <- seq(start, end, by = "days")[sample(15)]
+# tmpTimes <- data.frame(EntryTime = datewant, 
+#                        ExitTime = datewant + sample(100, 15))
+# ## reorder on EntryTime so in random order
+# tmpTimes <- tmpTimes[sample(NROW(tmpTimes)), ]
+# head(tmpTimes)
+# 
+#  max(tmpTimes$EntryTime) - min(tmpTimes$EntryTime)
+# ```
+
+## Data Visualisation
+
+The purpose of this report is conduct spatial analysis of the CDR sample data.
+
+```{r packages3}
+## Install packages required for spatial analysis
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(leaflet))
+suppressPackageStartupMessages(library(ggmap))
+suppressPackageStartupMessages(library(tmap))
+suppressPackageStartupMessages(library(maps))
+suppressPackageStartupMessages(library(RColorBrewer))
+suppressPackageStartupMessages(library(classInt))
+
+```
+
+# Visualizing the Data Using Traditional Plot System
+```{r traditional_system, echo = TRUE}
+cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
+plot(cdr_spatial_df, add = FALSE)
+title("CDR Data in South Africa")
+
+## Create a SpatialPolygonsDataFrame by reading in shapefile data
+## Use plot method to plot it
+shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2")
+plot(shapefile_2)
+
+## Combine both plots INCREMENTALLY
+plot(shapefile_2, col = "grey", axes = TRUE)
+plot(cdr_spatial_df, pch = 21, bg = "red", cex = .5, add = TRUE)
+title("CDR Data in South Africa")
+legend("topleft", title = "Legend", legend = "Call Locations", pch = 21, 
+       pt.bg = "red", bty = "n")
+```
+
+
+# Visualizing the Data Using spplot Using Lattice package
+```{r spplot_lattice, echo = TRUE}
+## spplot provides plotting of spatial data with attributes
+
+```
+
+# Visializing the Data Using External Libraries
+
+## ggplot2
+
+```{r}
+cdr_ggplot_df <- as.data.frame(cdr_spatial_df)
+shapefile_df2 <- fortify(shapefile_2)
+
+p <- ggplot() + 
+  geom_polygon(data = shapefile_df2, aes(x=long, y=lat, group = group)) + coord_equal() +
+  geom_point(data = cdr_ggplot_df, aes(longitude,latitude, color = "red")) +
+  labs(title = "CDR Data in South Africa") +
+  xlab("Longitude") + 
+  ylab("Latitude")
+
 p
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## ggmap
 
-```{r eval = FALSE}
-suppressPackageStartupMessages(library(leaflet))
-m <- leaflet() %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)
-m %>% addTiles()
+```{r BackgroundLayer, echo = TRUE, cache = TRUE}
+## Create the background layer for the city of Cape Town, South Africa. Two Steps using ggmap
+
+## Step 1: Use "get_map" command to download the images and format them for plotting
+southafricaMap <- get_map(location = "Bloemfontein", source = "osm", zoom = 5)
+capetownMap <- get_map(location = "bellville southafrica", source = "osm", zoom = 10)
+
+## Step 2: use "ggmap" command to making the plot
+saMap <- ggmap(southafricaMap, extent = "device", legend = "topleft")
+ctMap <- ggmap(capetownMap, extent = "device", legend = "topleft")
+
+## Load the cdr data for mapping purposes
+cdr_data <- cdr_df3
+cdr_data <- subset(cdr_data, longitude > 0 & latitude < 0)
+
+# Restrict the data to capetown only
+capetown_cdr <- subset(cdr_data, 
+                         18.24325 <= longitude & longitude <= 19.43949 & 
+                         -34.48969 <= latitude & latitude <= -33.33964)
+
+## Geocode the entire cdr data using longitute and latitute variables
+saMap2 <- saMap + geom_point(
+  aes(x = longitude, y = latitude), data = cdr_data, 
+  alpha = 0.5, color="darkred", size = 3
+)
+
+## Geocode only the cape town cdr data using longitute and latitute variables
+ctMap <- ctMap + geom_point(
+  aes(x = longitude, y = latitude), data = capetown_cdr, 
+  alpha = 0.5, color="darkred", size = 3
+)
+
+## Install required packages
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(maptools))
+
+# Read shapefile data into R using maptools package
+shapefile0 <- readShapeSpatial("ZAF_adm/ZAF_adm0.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+shapefile1 <- readShapeSpatial("ZAF_adm/ZAF_adm1.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+shapefile2 <- readShapeSpatial("ZAF_adm/ZAF_adm2.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+
+## Convert the shapefiles to a data.frame for use with ggplot2/ggmap
+shapefile_df0 <- fortify(shapefile0)
+shapefile_df1 <- fortify(shapefile1)
+shapefile_df2 <- fortify(shapefile2)
+
+## Plot the shapefiles
+saMap3 <- saMap2 + geom_polygon(aes(x = long, y = lat, group = group), data = shapefile_df2, colour = "black", alpha = .4, size = .3)
+
+saMap3
 ```
 
-```{r, results='asis'}
-knitr::kable(mtcars)
-```
+
+## Leaflet
+
+## tmap
+
+
+## Geostatistical Analysis
