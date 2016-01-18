@@ -1,3 +1,33 @@
+-   [Applied Spatial Data Science with R](#applied-spatial-data-science-with-r)
+    -   [Introduction](#introduction)
+    -   [Data Preparation](#data-preparation)
+-   [\#\# Data Exploration](#data-exploration)
+-   [](#section)
+-   [The purpose of this report is to display the descriptive and graphical statistics of this cdr sample data.](#the-purpose-of-this-report-is-to-display-the-descriptive-and-graphical-statistics-of-this-cdr-sample-data.)
+-   [](#section-1)
+-   [`{r DescriptiveStats, echo = FALSE} # ## Load the processed SpatialPointsDataFrame # cdr_spatial_df <- readRDS("cdr_spatial_data.rds") #  # ## Create a SpatialPolygonsDataFrame by reading in shapefile data # ## Use plot method to plot it # shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2") #`](#r-descriptivestats-echo-false-load-the-processed-spatialpointsdataframe-cdr_spatial_df---readrdscdr_spatial_data.rds-create-a-spatialpolygonsdataframe-by-reading-in-shapefile-data-use-plot-method-to-plot-it-shapefile_2---readogrdsn-zaf_adm-layer-zaf_adm2)
+-   [](#section-2)
+-   [\#\#\# Map Overlay or Spatial Join](#map-overlay-or-spatial-join)
+-   [`{r spatial_join, echo = TRUE} # ## Perform a spatial join to join the shapefile data to the point data # over() #  #  #`](#r-spatial_join-echo-true-perform-a-spatial-join-to-join-the-shapefile-data-to-the-point-data-over)
+-   [](#section-3)
+-   [\#\#\# Question 1: What is the distribution of call made by callers](#question-1-what-is-the-distribution-of-call-made-by-callers)
+-   [`{r, echo = FALSE} # callers <- group_by(cdr_df, hashed_id)  # call_dist <- summarise(callers, calls_made = n())  # arrange(call_dist, desc(calls_made)) #  #`](#r-echo-false-callers---group_bycdr_df-hashed_id-call_dist---summarisecallers-calls_made-n-arrangecall_dist-desccalls_made)
+-   [](#section-4)
+-   [`{r, echo = FALSE } # grouped_by_time <- group_by(cdr_df, date_time3) # calls_per_day <- summarise(grouped_by_time, count = n()) # head(arrange(calls_per_day, desc(count))) # tail <- tail(arrange(calls_per_day, desc(count)), n = 30) #`](#r-echo-false-grouped_by_time---group_bycdr_df-date_time3-calls_per_day---summarisegrouped_by_time-count-n-headarrangecalls_per_day-desccount-tail---tailarrangecalls_per_day-desccount-n-30)
+-   [](#section-5)
+-   [](#section-6)
+-   [\#\#\# Question 3: What is the duration of the data](#question-3-what-is-the-duration-of-the-data)
+-   [`{r , echo = FALSE} # time_df <- transmute(cdr_df,  #                      start_time = min(as.Date(date_time3)), #                      end_time = max (as.Date(date_time3))) #  # ## Then get the difference between the start time and end time # diff <- time_df$end_time - time_df$end_time #  #  # ## Ouestion 2: What is the distributions of calls by day #  #  # ## Question 4: What the distribution of calls by time interval. # start <- as.Date("2010/01/01") # end <- as.Date("2010/12/31") # set.seed(1) # datewant <- seq(start, end, by = "days")[sample(15)] # tmpTimes <- data.frame(EntryTime = datewant,  #                        ExitTime = datewant + sample(100, 15)) # ## reorder on EntryTime so in random order # tmpTimes <- tmpTimes[sample(NROW(tmpTimes)), ] # head(tmpTimes) #  #  max(tmpTimes$EntryTime) - min(tmpTimes$EntryTime) #`](#r-echo-false-time_df---transmutecdr_df-start_time-minas.datedate_time3-end_time-max-as.datedate_time3-then-get-the-difference-between-the-start-time-and-end-time-diff---time_dfend_time---time_dfend_time-ouestion-2-what-is-the-distributions-of-calls-by-day-question-4-what-the-distribution-of-calls-by-time-interval.-start---as.date20100101-end---as.date20101231-set.seed1-datewant---seqstart-end-by-dayssample15-tmptimes---data.frameentrytime-datewant-exittime-datewant-sample100-15-reorder-on-entrytime-so-in-random-order-tmptimes---tmptimessamplenrowtmptimes-headtmptimes-maxtmptimesentrytime---mintmptimesentrytime)
+    -   [Data Visualisation](#data-visualisation)
+-   [Visualizing the Data Using Traditional Plot System](#visualizing-the-data-using-traditional-plot-system)
+-   [Visualizing the Data Using spplot Using Lattice package](#visualizing-the-data-using-spplot-using-lattice-package)
+-   [Visializing the Data Using External Libraries](#visializing-the-data-using-external-libraries)
+    -   [ggplot2](#ggplot2)
+    -   [ggmap](#ggmap)
+    -   [Leaflet](#leaflet)
+    -   [tmap](#tmap)
+    -   [Geostatistical Analysis](#geostatistical-analysis)
+
 Applied Spatial Data Science with R
 ===================================
 
@@ -9,17 +39,21 @@ Introduction
 Data Preparation
 ----------------
 
-    ## These are the packages needed for data preparation
-    suppressPackageStartupMessages(library(ggplot2))
-    suppressPackageStartupMessages(library(dplyr))
-    suppressPackageStartupMessages(library(tidyr))
-    suppressPackageStartupMessages(library(lubridate))
-    suppressPackageStartupMessages(library(readr))
-    suppressPackageStartupMessages(library(magrittr))
-    suppressPackageStartupMessages(library(sp))
-    suppressPackageStartupMessages(library(rgdal))
+``` r
+## These are the packages needed for data preparation
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(rgdal))
+```
 
-    theme_set(theme_bw())
+### The Data
+
+In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010. This full data is available in the **ggmap** package as the data set "crime".
 
 ### Reading Spatial Data
 
@@ -56,19 +90,12 @@ The raw data is in text format and 12.6 MB in size.
     ##  $ latitude : num  -33.9 -34 -34 -33.8 -33.9 ...
     ##  $ longitude: num  18.6 18.5 18.5 18.5 18.5 ...
 
-The dataset is made up of 218,136 observations with four columns
-including date-time, a hased ID, longitude and latitude.
+The dataset is made up of 218,136 observations with four columns including date-time, a hased ID, longitude and latitude.
 
-    ## Find out how many rows have latitude and longitude equal to zero respectively
-    (filter(cdr_df, latitude == 0)) %>% count()
-
-    ## Source: local data frame [1 x 1]
-    ## 
-    ##       n
-    ##   (int)
-    ## 1   499
-
-    (filter(cdr_df, longitude == 0)) %>% count()
+``` r
+## Find out how many rows have latitude and longitude equal to zero respectively
+(filter(cdr_df, latitude == 0)) %>% count()
+```
 
     ## Source: local data frame [1 x 1]
     ## 
@@ -76,8 +103,20 @@ including date-time, a hased ID, longitude and latitude.
     ##   (int)
     ## 1   499
 
-    cdr_df2 <- filter(cdr_df, latitude != 0 & longitude != 0)
-    summary(cdr_df2)
+``` r
+(filter(cdr_df, longitude == 0)) %>% count()
+```
+
+    ## Source: local data frame [1 x 1]
+    ## 
+    ##       n
+    ##   (int)
+    ## 1   499
+
+``` r
+cdr_df2 <- filter(cdr_df, latitude != 0 & longitude != 0)
+summary(cdr_df2)
+```
 
     ##    date_time                   hashed_id         latitude     
     ##  Min.   :2.015e+16   660577853889743:   152   Min.   :-34.83  
@@ -96,13 +135,9 @@ including date-time, a hased ID, longitude and latitude.
     ##  Max.   :32.29  
     ## 
 
-There are 499 records with latitude and longitude equal to zero. We
-shall remove these assuming that they are errors in the data. when these
-coordinate errors are removed, we remain with 217,636 records.
+There are 499 records with latitude and longitude equal to zero. We shall remove these assuming that they are errors in the data. when these coordinate errors are removed, we remain with 217,636 records.
 
-Create new separate columns for the Date and Time. Format the date and
-time variables into data and time data types respectively. South Africa
-Time zone is UTC+02:00.
+Create new separate columns for the Date and Time. Format the date and time variables into data and time data types respectively. South Africa Time zone is UTC+02:00.
 
     ## Warning: 34 failed to parse.
 
@@ -133,22 +168,23 @@ Write out the processed data into a csv and RDS file.
 
 ### Spatial Points Dataframe
 
-Convert the cdr\_df local dataframe into SpatialPointsDataFrame for
-spatial analysis.
+Convert the cdr\_df local dataframe into SpatialPointsDataFrame for spatial analysis.
 
-    ## Convert to SpatialPointsDataFrame with longitude and latitude so as to use spatial packages
-    ## The CRS is a Geographic CRS called WGS84
-    coords <- SpatialPoints(cdr_df3[, c("longitude", "latitude")])
-    cdr_spatial_df <- SpatialPointsDataFrame(coords, cdr_df3)
-    proj4string(cdr_spatial_df) <- CRS("+proj=longlat +ellps=WGS84")
+``` r
+## Convert to SpatialPointsDataFrame with longitude and latitude so as to use spatial packages
+## The CRS is a Geographic CRS called WGS84
+coords <- SpatialPoints(cdr_df3[, c("longitude", "latitude")])
+cdr_spatial_df <- SpatialPointsDataFrame(coords, cdr_df3)
+proj4string(cdr_spatial_df) <- CRS("+proj=longlat +ellps=WGS84")
 
-    # Or using the "coordinates" method
-    cdr_spatial_df1 <- cdr_df3
-    coordinates(cdr_spatial_df1) <- c("longitude", "latitude")
-    proj4string(cdr_spatial_df1) <- CRS("+proj=longlat +ellps=WGS84")
+# Or using the "coordinates" method
+cdr_spatial_df1 <- cdr_df3
+coordinates(cdr_spatial_df1) <- c("longitude", "latitude")
+proj4string(cdr_spatial_df1) <- CRS("+proj=longlat +ellps=WGS84")
 
-    # Explore the SpatialPointsDataFrame
-    head(cdr_spatial_df@coords, 4)
+# Explore the SpatialPointsDataFrame
+head(cdr_spatial_df@coords, 4)
+```
 
     ##      longitude  latitude
     ## [1,]  18.61418 -33.91114
@@ -156,17 +192,21 @@ spatial analysis.
     ## [3,]  18.49034 -33.98153
     ## [4,]  18.53819 -33.82674
 
-    head(cdr_spatial_df@bbox)
+``` r
+head(cdr_spatial_df@bbox)
+```
 
     ##                 min      max
     ## longitude   0.00000 32.28528
     ## latitude  -34.82607  0.00000
 
-    ## Create a file of the final processed spatial points data frame that will be used for analysis
-    saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
+``` r
+## Create a file of the final processed spatial points data frame that will be used for analysis
+saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
 
-    ## Also create a shapefile of this data
-    writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
+## Also create a shapefile of this data
+## writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
+```
 
 \#\# Data Exploration
 =====================
@@ -201,58 +241,69 @@ The purpose of this report is to display the descriptive and graphical statistic
 Data Visualisation
 ------------------
 
-The purpose of this report is conduct spatial analysis of the CDR sample
-data.
+The purpose of this report is conduct spatial analysis of the CDR sample data.
 
-    ## Install packages required for spatial analysis
-    suppressPackageStartupMessages(library(ggplot2))
-    suppressPackageStartupMessages(library(dplyr))
-    suppressPackageStartupMessages(library(tidyr))
-    suppressPackageStartupMessages(library(lubridate))
-    suppressPackageStartupMessages(library(readr))
-    suppressPackageStartupMessages(library(magrittr))
-    suppressPackageStartupMessages(library(leaflet))
-    suppressPackageStartupMessages(library(ggmap))
-    suppressPackageStartupMessages(library(tmap))
-    suppressPackageStartupMessages(library(maps))
-    suppressPackageStartupMessages(library(RColorBrewer))
-    suppressPackageStartupMessages(library(classInt))
+``` r
+## Install packages required for spatial analysis
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(leaflet))
+suppressPackageStartupMessages(library(ggmap))
+suppressPackageStartupMessages(library(tmap))
+suppressPackageStartupMessages(library(maps))
+suppressPackageStartupMessages(library(RColorBrewer))
+suppressPackageStartupMessages(library(classInt))
+```
 
 Visualizing the Data Using Traditional Plot System
 ==================================================
 
-    cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
-    plot(cdr_spatial_df, add = FALSE)
-    title("CDR Data in South Africa")
+``` r
+cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
+plot(cdr_spatial_df, add = FALSE)
+title("CDR Data in South Africa")
+```
 
-![](ReadMe_files/figure-markdown_strict/traditional_system-1.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/traditional_system-1.png)<!-- -->
 
-    ## Create a SpatialPolygonsDataFrame by reading in shapefile data
-    ## Use plot method to plot it
-    shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2")
+``` r
+## Create a SpatialPolygonsDataFrame by reading in shapefile data
+## Use plot method to plot it
+shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2")
+```
 
     ## OGR data source with driver: ESRI Shapefile 
     ## Source: "ZAF_adm", layer: "ZAF_adm2"
     ## with 354 features
     ## It has 18 fields
 
-    plot(shapefile_2)
+``` r
+plot(shapefile_2)
+```
 
-![](ReadMe_files/figure-markdown_strict/traditional_system-2.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/traditional_system-2.png)<!-- -->
 
-    ## Combine both plots INCREMENTALLY
-    plot(shapefile_2, col = "grey", axes = TRUE)
-    plot(cdr_spatial_df, pch = 21, bg = "red", cex = .5, add = TRUE)
-    title("CDR Data in South Africa")
-    legend("topleft", title = "Legend", legend = "Call Locations", pch = 21, 
-           pt.bg = "red", bty = "n")
+``` r
+## Combine both plots INCREMENTALLY
+plot(shapefile_2, col = "grey", axes = TRUE)
+plot(cdr_spatial_df, pch = 21, bg = "red", cex = .5, add = TRUE)
+title("CDR Data in South Africa")
+legend("topleft", title = "Legend", legend = "Call Locations", pch = 21, 
+       pt.bg = "red", bty = "n")
+```
 
-![](ReadMe_files/figure-markdown_strict/traditional_system-3.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/traditional_system-3.png)<!-- -->
 
 Visualizing the Data Using spplot Using Lattice package
 =======================================================
 
-    ## spplot provides plotting of spatial data with attributes
+``` r
+## spplot provides plotting of spatial data with attributes
+```
 
 Visializing the Data Using External Libraries
 =============================================
@@ -260,93 +311,109 @@ Visializing the Data Using External Libraries
 ggplot2
 -------
 
-    cdr_ggplot_df <- as.data.frame(cdr_spatial_df)
-    shapefile_df2 <- fortify(shapefile_2)
+``` r
+cdr_ggplot_df <- as.data.frame(cdr_spatial_df)
+shapefile_df2 <- fortify(shapefile_2)
+```
 
     ## Regions defined for each Polygons
 
-    p <- ggplot() + 
-      geom_polygon(data = shapefile_df2, aes(x=long, y=lat, group = group)) + coord_equal() +
-      geom_point(data = cdr_ggplot_df, aes(longitude,latitude, color = "red")) +
-      labs(title = "CDR Data in South Africa") +
-      xlab("Longitude") + 
-      ylab("Latitude")
+``` r
+p <- ggplot() + 
+  geom_polygon(data = shapefile_df2, aes(x=long, y=lat, group = group)) + coord_equal() +
+  geom_point(data = cdr_ggplot_df, aes(longitude,latitude, color = "red")) +
+  labs(title = "CDR Data in South Africa") +
+  xlab("Longitude") + 
+  ylab("Latitude")
 
-    p
+p
+```
 
-![](ReadMe_files/figure-markdown_strict/unnamed-chunk-1-1.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/unnamed-chunk-1-1.png)<!-- -->
 
 ggmap
 -----
 
-    ## Create the background layer for the city of Cape Town, South Africa. Two Steps using ggmap
+``` r
+## Create the background layer for the city of Cape Town, South Africa. Two Steps using ggmap
 
-    ## Step 1: Use "get_map" command to download the images and format them for plotting
-    southafricaMap <- get_map(location = "Bloemfontein", source = "osm", zoom = 5)
+## Step 1: Use "get_map" command to download the images and format them for plotting
+southafricaMap <- get_map(location = "Bloemfontein", source = "osm", zoom = 5)
+```
 
     ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=Bloemfontein&zoom=5&size=640x640&scale=2&maptype=terrain&sensor=false
 
     ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Bloemfontein&sensor=false
 
-    capetownMap <- get_map(location = "bellville southafrica", source = "osm", zoom = 10)
+``` r
+capetownMap <- get_map(location = "bellville southafrica", source = "osm", zoom = 10)
+```
 
     ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=bellville+southafrica&zoom=10&size=640x640&scale=2&maptype=terrain&sensor=false
 
     ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=bellville%20southafrica&sensor=false
 
-    ## Step 2: use "ggmap" command to making the plot
-    saMap <- ggmap(southafricaMap, extent = "device", legend = "topleft")
-    ctMap <- ggmap(capetownMap, extent = "device", legend = "topleft")
+``` r
+## Step 2: use "ggmap" command to making the plot
+saMap <- ggmap(southafricaMap, extent = "device", legend = "topleft")
+ctMap <- ggmap(capetownMap, extent = "device", legend = "topleft")
 
-    ## Load the cdr data for mapping purposes
-    cdr_data <- cdr_df3
-    cdr_data <- subset(cdr_data, longitude > 0 & latitude < 0)
+## Load the cdr data for mapping purposes
+cdr_data <- cdr_df3
+cdr_data <- subset(cdr_data, longitude > 0 & latitude < 0)
 
-    # Restrict the data to capetown only
-    capetown_cdr <- subset(cdr_data, 
-                             18.24325 <= longitude & longitude <= 19.43949 & 
-                             -34.48969 <= latitude & latitude <= -33.33964)
+# Restrict the data to capetown only
+capetown_cdr <- subset(cdr_data, 
+                         18.24325 <= longitude & longitude <= 19.43949 & 
+                         -34.48969 <= latitude & latitude <= -33.33964)
 
-    ## Geocode the entire cdr data using longitute and latitute variables
-    saMap2 <- saMap + geom_point(
-      aes(x = longitude, y = latitude), data = cdr_data, 
-      alpha = 0.5, color="darkred", size = 3
-    )
+## Geocode the entire cdr data using longitute and latitute variables
+saMap2 <- saMap + geom_point(
+  aes(x = longitude, y = latitude), data = cdr_data, 
+  alpha = 0.5, color="darkred", size = 3
+)
 
-    ## Geocode only the cape town cdr data using longitute and latitute variables
-    ctMap <- ctMap + geom_point(
-      aes(x = longitude, y = latitude), data = capetown_cdr, 
-      alpha = 0.5, color="darkred", size = 3
-    )
+## Geocode only the cape town cdr data using longitute and latitute variables
+ctMap <- ctMap + geom_point(
+  aes(x = longitude, y = latitude), data = capetown_cdr, 
+  alpha = 0.5, color="darkred", size = 3
+)
 
-    ## Install required packages
-    suppressPackageStartupMessages(library(sp))
-    suppressPackageStartupMessages(library(maptools))
+## Install required packages
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(maptools))
 
-    # Read shapefile data into R using maptools package
-    shapefile0 <- readShapeSpatial("ZAF_adm/ZAF_adm0.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
-    shapefile1 <- readShapeSpatial("ZAF_adm/ZAF_adm1.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
-    shapefile2 <- readShapeSpatial("ZAF_adm/ZAF_adm2.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+# Read shapefile data into R using maptools package
+shapefile0 <- readShapeSpatial("ZAF_adm/ZAF_adm0.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+shapefile1 <- readShapeSpatial("ZAF_adm/ZAF_adm1.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
+shapefile2 <- readShapeSpatial("ZAF_adm/ZAF_adm2.shp", proj4string = CRS("+proj=longlat +datum=WGS84"))
 
-    ## Convert the shapefiles to a data.frame for use with ggplot2/ggmap
-    shapefile_df0 <- fortify(shapefile0)
-
-    ## Regions defined for each Polygons
-
-    shapefile_df1 <- fortify(shapefile1)
+## Convert the shapefiles to a data.frame for use with ggplot2/ggmap
+shapefile_df0 <- fortify(shapefile0)
+```
 
     ## Regions defined for each Polygons
 
-    shapefile_df2 <- fortify(shapefile2)
+``` r
+shapefile_df1 <- fortify(shapefile1)
+```
 
     ## Regions defined for each Polygons
 
-    ## Plot the shapefiles
-    saMap3 <- saMap2 + geom_polygon(aes(x = long, y = lat, group = group), data = shapefile_df2, colour = "black", alpha = .4, size = .3)
+``` r
+shapefile_df2 <- fortify(shapefile2)
+```
 
-    saMap3
+    ## Regions defined for each Polygons
 
-![](ReadMe_files/figure-markdown_strict/BackgroundLayer-1.png)<!-- -->
+``` r
+## Plot the shapefiles
+saMap3 <- saMap2 + geom_polygon(aes(x = long, y = lat, group = group), data = shapefile_df2, colour = "black", alpha = .4, size = .3)
+
+saMap3
+```
+
+![](ReadMe_files/figure-markdown_github/BackgroundLayer-1.png)<!-- -->
 
 Leaflet
 -------

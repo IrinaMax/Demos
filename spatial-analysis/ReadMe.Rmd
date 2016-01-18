@@ -4,9 +4,9 @@ author: "Daniel Emaasit"
 date: "January 14, 2016"
 output: 
   md_document:
-  variant: markdown_github
-  toc: true
-  theme: united
+    variant: markdown_github
+    toc: true
+    toc_depth: 2
 ---
 
 # Applied Spatial Data Science with R
@@ -34,9 +34,10 @@ suppressPackageStartupMessages(library(readr))
 suppressPackageStartupMessages(library(magrittr))
 suppressPackageStartupMessages(library(sp))
 suppressPackageStartupMessages(library(rgdal))
-
-theme_set(theme_bw())
 ```
+
+### The Data
+In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010. This full data is available in the **ggmap** package as the data set "crime".  
 
 ### Reading Spatial Data
 
@@ -116,7 +117,7 @@ head(cdr_spatial_df@bbox)
 saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
 
 ## Also create a shapefile of this data
-writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
+## writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
 ```
 
 # ## Data Exploration
