@@ -5,13 +5,53 @@ date: "January 17, 2016"
 output: html_document
 ---
 
-Some of my favorite packages for spatial data analysis include:
+#### ggplot2
+ggplot2 works with data frames and not objects of class **Spatial***. So we have to convert them using the `fortify()` function in ggplot2.
+```{r}
+crime_df <- data.frame(crime_spatial_df)
+texas_shp_df <- fortify(texas_shp)
+```
 
-* [sp](https://cran.r-project.org/web/packages/sp/index.html): This package provides classes and methods for spatial data; utility functions for plotting maps, working with coordinates, etc.  
-* [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html): This package provides methods for working with importing and exporting different raster and vector geospatial data formats; Coordinate Reference Systems; projections, etc.  
-* [rgeos](https://cran.r-project.org/web/packages/rgeos/index.html):  
-* [ggplot2](http://ggplot2.org/): The most popular package for data visualisation by [Hadely Wickham](http://had.co.nz/)
-* [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html): Provides functions to visualize spatial data ontop of static maps from sources like Google Maps, Open Steet Maps, cloudmade and stamen.
-* [leaflet](http://rstudio.github.io/leaflet/): Leaflet for R provides functions to control and integrate Leaflet, a JavaScript library for interactive maps, within R.
-* [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html): Most of my spatial data have Date-Time measurements. This package provides functions for manipulating dates and times.
+Now we can leverage **gplot2's** powerful plotting capabilities.
+```{r ggplot_option}
+p <- ggplot() + 
+  geom_polygon(data = texas_shp_df, aes(x=long, y=lat, group = group)) + coord_equal() +
+  geom_point(data = crime_df, aes(x = lon, y = lat, color = "red")) +
+  labs(title = "Locations of Offensive Crimes in Houston, Texas") +
+  xlab("Longitude") + 
+  ylab("Latitude")
+
+p
+```
+
+#### ggmap
+
+Create the static background layer for the city of Houston, Texas
+```{r BackgroundLayer, echo = TRUE, cache = TRUE}
+## Use "get_map" command to download the images and format them for plotting
+map_dat <- get_map(location = "houston", source = "osm", zoom = 14)
+```
+
+Use "ggmap" command to make the plot
+```{r}
+houstonMap <- ggmap(map_dat, extent = "device", legend = "topleft")
+houstonMap
+```
+
+Geocode the entire data using longitute and latitute variables
+```{r}
+houstonMap2 <- houstonMap + 
+  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
+
+houstonMap2
+```
+
+Plot the shapefiles
+```{r add_shapefiles}
+houstonMap3 <- houstonMap2 + 
+  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
+               alpha = .4, size = .3)
+
+houstonMap3
+```
 
