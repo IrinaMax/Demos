@@ -193,7 +193,61 @@ downtown_crime <- subset(crime_df,
                           29.73631 <= lat & lat <= 29.78400)
 ```
 
+## Data Visualisation
 
+R has several packages for visualizing spatial data. We shall look at tradition plotting systems in R that come with an R installation, commonly named "base-R" packages. An example is the `plot()` function for spatial data in the **sp** package. We shall also explore "external" packages for doing including ggplot2, ggmap, leaflet, tmap and plotly. The purpose of this report is conduct spatial analysis of the CDR sample data.
+
+### Visualizing the Data Using Traditional Plot System
+
+The **sp* package provides functions for plotting spatial data by adding layers incrementally. Let's start by plotting the shapefiles of Houston Texas.
+```{r plot_polygon}
+plot(texas_shp, col = "grey", axes = TRUE)
+```
+
+Then let's add crime data onto the map. Use the argument `add = TRUE` to add another layer onto the plot.
+```{r add_points}
+plot(texas_shp, col = "grey", axes = TRUE)
+plot(crime_spatial_df, pch = 21, bg = "red", cex = .5, add = TRUE)
+```
+
+Then add a title and a legend.
+```{r add_title_legend}
+plot(texas_shp, col = "grey", axes = TRUE)
+plot(crime_spatial_df, pch = 21, bg = "red", cex = .5, add = TRUE)
+title("Locations of Offensive Crimes in Houston, Texas")
+legend("topleft", title = "Legend", legend = "Crime Locations", pch = 21, pt.bg = "red", bty = "n")
+```
+
+While the base functions for plotting spatial data can do the job, I prefer using external R libraries that provide more capabilities and produce beautiful maps like ggplot2, ggmap, leaflet.
+
+### Visializing the Data Using External Libraries
+
+#### ggplot2
+ggplot2 works with data frames and not objects of class **Spatial***. So we have to convert them using the `fortify()` function in ggplot2.
+```{r fortify}
+crime_df <- data.frame(crime_spatial_df)
+texas_shp_df <- fortify(texas_shp)
+```
+
+Now we can leverage **gplot2's** powerful plotting capabilities.
+```{r ggplot_option}
+p <- ggplot() + 
+  geom_polygon(data = texas_shp_df, aes(x=long, y=lat, group = group)) + coord_equal() +
+  geom_point(data = crime_df, aes(x = lon, y = lat, color = "red")) +
+  labs(title = "Locations of Offensive Crimes in Houston, Texas") +
+  xlab("Longitude") + 
+  ylab("Latitude")
+
+p
+```
+
+#### ggmap
+
+Create the static background layer for the city of Houston, Texas
+```{r BackgroundLayer, echo = TRUE, cache = TRUE}
+## Use "get_map" command to download the images and format them for plotting
+map_dat <- get_map(location = "houston", source = "osm", zoom = 14)
+```
 
 #### Leaflet
 Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.  
@@ -219,10 +273,7 @@ leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
 
 
 ## Geostatistical Analysis
-Geostatistical data are data that could in principle be measured anywhere,
-but that typically come as measurements at a limited number of observation
-locations: think of gold grades in an ore body or particulate matter in air
-samples
+In the next blog post, we shall see how to perform geostatistical analysis on spatial data. Geostatistical data are data that could in principle be measured anywhere, but that typically come as measurements at a limited number of observation locations: think of gold grades in an ore body or particulate matter in air samples.
 
 ## References
 For further reading, refer to the following references.  
