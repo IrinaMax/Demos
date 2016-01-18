@@ -6,38 +6,62 @@ output:
   md_document:
     variant: markdown_github
     toc: true
-    toc_depth: 2
+    toc_depth: 3
 ---
-
-# Applied Spatial Data Science with R
-
-## Introduction
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE)
 ```
 
-### Why use R for Spatial Analysis
+# Applied Spatial Data Science with R
 
+## Introduction
+I recently started working on my Ph.D dissertation which utilizes a vast amount of different spatial data types. During the process, I discovered that there were alot of concepts about using R for spatial data analysis that I was not aware of. The purpose of this report is to document some of those concepts and my favorite packages for spatial data analysis. This includes spatial data preparation, exploration, visualization and geostatistical analysis.
+
+### Why use R for Spatial Data Analysis
+You might be asking yourself; why use R for spatial analysis when there are commercial and open source Geographical Information Systems (GIS) like ESRI ArcMap, QGIS, etc?. These are some of my reasons:
+* R is free and open source
+* Reproducibility: I can repeat my analysis another day
+* Packages: There are a vast amount of R packages for statistical modeling, visualisation like **ggplot2**, **leaflet**. etc.
+
+#### R Packages for Spatial Data Analysis
+Some of my favorite packages for spatial data analysis include:
+* [sp](https://cran.r-project.org/web/packages/sp/index.html): This package provides classes and methods for spatial data; utility functions for plotting maps, working with coordinates, etc.
+* [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html): This package provides methods for working with importing and exporting different raster and vector geospatial data formats; Coordinate Reference Systems; projections, etc.
+* [rgeos](https://cran.r-project.org/web/packages/rgeos/index.html):
+* [ggplot2](http://ggplot2.org/): The most popular package for data visualisation by [Hadely Wickham](http://had.co.nz/)
+* [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html): Provides functions to visualize spatial data ontop of static maps from sources like Google Maps, Open Steet Maps, cloudmade and stamen.
+* [leaflet](http://rstudio.github.io/leaflet/): Leaflet for R provides functions to control and integrate Leaflet, a JavaScript library for interactive maps, within R.
+* [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html): Most of my spatial data have Date-Time measurements. This package provides functions for manipulating dates and times.
 
 
 ## Data Preparation
 
-```{r packages2}
-
-## These are the packages needed for data preparation
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(tidyr))
-suppressPackageStartupMessages(library(lubridate))
-suppressPackageStartupMessages(library(readr))
-suppressPackageStartupMessages(library(magrittr))
-suppressPackageStartupMessages(library(sp))
-suppressPackageStartupMessages(library(rgdal))
-```
-
 ### The Data
 In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010. This full data is available in the **ggmap** package as the data set "crime".  
+
+So let's install **ggmap** and some other packages that we shall need in this tutorial.
+
+```{r install_packages}
+## These are the packages needed for data preparation
+suppressPackageStartupMessages(library(ggmap))
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(rgdal))
+suppressPackageStartupMessages(library(rgeos))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(leaflet))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(lubridate))
+```
+
+Let's look at the structure of this data set.
+
+```{r crime_data}
+data(crime)
+
+```
 
 ### Reading Spatial Data
 
