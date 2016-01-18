@@ -1,31 +1,20 @@
 -   [Applied Spatial Data Science with R](#applied-spatial-data-science-with-r)
     -   [Introduction](#introduction)
+        -   [Why use R for Spatial Data Analysis](#why-use-r-for-spatial-data-analysis)
+            -   [R Packages for Spatial Data Analysis](#r-packages-for-spatial-data-analysis)
     -   [Data Preparation](#data-preparation)
--   [\#\# Data Exploration](#data-exploration)
--   [](#section)
--   [The purpose of this report is to display the descriptive and graphical statistics of this cdr sample data.](#the-purpose-of-this-report-is-to-display-the-descriptive-and-graphical-statistics-of-this-cdr-sample-data.)
--   [](#section-1)
--   [`{r DescriptiveStats, echo = FALSE} # ## Load the processed SpatialPointsDataFrame # cdr_spatial_df <- readRDS("cdr_spatial_data.rds") #  # ## Create a SpatialPolygonsDataFrame by reading in shapefile data # ## Use plot method to plot it # shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2") #`](#r-descriptivestats-echo-false-load-the-processed-spatialpointsdataframe-cdr_spatial_df---readrdscdr_spatial_data.rds-create-a-spatialpolygonsdataframe-by-reading-in-shapefile-data-use-plot-method-to-plot-it-shapefile_2---readogrdsn-zaf_adm-layer-zaf_adm2)
--   [](#section-2)
--   [\#\#\# Map Overlay or Spatial Join](#map-overlay-or-spatial-join)
--   [`{r spatial_join, echo = TRUE} # ## Perform a spatial join to join the shapefile data to the point data # over() #  #  #`](#r-spatial_join-echo-true-perform-a-spatial-join-to-join-the-shapefile-data-to-the-point-data-over)
--   [](#section-3)
--   [\#\#\# Question 1: What is the distribution of call made by callers](#question-1-what-is-the-distribution-of-call-made-by-callers)
--   [`{r, echo = FALSE} # callers <- group_by(cdr_df, hashed_id)  # call_dist <- summarise(callers, calls_made = n())  # arrange(call_dist, desc(calls_made)) #  #`](#r-echo-false-callers---group_bycdr_df-hashed_id-call_dist---summarisecallers-calls_made-n-arrangecall_dist-desccalls_made)
--   [](#section-4)
--   [`{r, echo = FALSE } # grouped_by_time <- group_by(cdr_df, date_time3) # calls_per_day <- summarise(grouped_by_time, count = n()) # head(arrange(calls_per_day, desc(count))) # tail <- tail(arrange(calls_per_day, desc(count)), n = 30) #`](#r-echo-false-grouped_by_time---group_bycdr_df-date_time3-calls_per_day---summarisegrouped_by_time-count-n-headarrangecalls_per_day-desccount-tail---tailarrangecalls_per_day-desccount-n-30)
--   [](#section-5)
--   [](#section-6)
--   [\#\#\# Question 3: What is the duration of the data](#question-3-what-is-the-duration-of-the-data)
--   [`{r , echo = FALSE} # time_df <- transmute(cdr_df,  #                      start_time = min(as.Date(date_time3)), #                      end_time = max (as.Date(date_time3))) #  # ## Then get the difference between the start time and end time # diff <- time_df$end_time - time_df$end_time #  #  # ## Ouestion 2: What is the distributions of calls by day #  #  # ## Question 4: What the distribution of calls by time interval. # start <- as.Date("2010/01/01") # end <- as.Date("2010/12/31") # set.seed(1) # datewant <- seq(start, end, by = "days")[sample(15)] # tmpTimes <- data.frame(EntryTime = datewant,  #                        ExitTime = datewant + sample(100, 15)) # ## reorder on EntryTime so in random order # tmpTimes <- tmpTimes[sample(NROW(tmpTimes)), ] # head(tmpTimes) #  #  max(tmpTimes$EntryTime) - min(tmpTimes$EntryTime) #`](#r-echo-false-time_df---transmutecdr_df-start_time-minas.datedate_time3-end_time-max-as.datedate_time3-then-get-the-difference-between-the-start-time-and-end-time-diff---time_dfend_time---time_dfend_time-ouestion-2-what-is-the-distributions-of-calls-by-day-question-4-what-the-distribution-of-calls-by-time-interval.-start---as.date20100101-end---as.date20101231-set.seed1-datewant---seqstart-end-by-dayssample15-tmptimes---data.frameentrytime-datewant-exittime-datewant-sample100-15-reorder-on-entrytime-so-in-random-order-tmptimes---tmptimessamplenrowtmptimes-headtmptimes-maxtmptimesentrytime---mintmptimesentrytime)
+        -   [The Data](#the-data)
+        -   [Reading Spatial Data](#reading-spatial-data)
+        -   [Spatial Points Dataframe](#spatial-points-dataframe)
+    -   [Data Exploration](#data-exploration)
     -   [Data Visualisation](#data-visualisation)
--   [Visualizing the Data Using Traditional Plot System](#visualizing-the-data-using-traditional-plot-system)
--   [Visualizing the Data Using spplot Using Lattice package](#visualizing-the-data-using-spplot-using-lattice-package)
--   [Visializing the Data Using External Libraries](#visializing-the-data-using-external-libraries)
-    -   [ggplot2](#ggplot2)
-    -   [ggmap](#ggmap)
-    -   [Leaflet](#leaflet)
-    -   [tmap](#tmap)
+        -   [Visualizing the Data Using Traditional Plot System](#visualizing-the-data-using-traditional-plot-system)
+        -   [Visualizing the Data Using spplot Using Lattice package](#visualizing-the-data-using-spplot-using-lattice-package)
+        -   [Visializing the Data Using External Libraries](#visializing-the-data-using-external-libraries)
+            -   [ggplot2](#ggplot2)
+            -   [ggmap](#ggmap)
+            -   [Leaflet](#leaflet)
+            -   [tmap](#tmap)
     -   [Geostatistical Analysis](#geostatistical-analysis)
 
 Applied Spatial Data Science with R
@@ -34,26 +23,44 @@ Applied Spatial Data Science with R
 Introduction
 ------------
 
-### Why use R for Spatial Analysis
+I recently started working on my Ph.D dissertation which utilizes a vast amount of different spatial data types. During the process, I discovered that there were alot of concepts about using R for spatial data analysis that I was not aware of. The purpose of this report is to document some of those concepts and my favorite packages for spatial data analysis. This includes spatial data preparation, exploration, visualization and geostatistical analysis.
+
+### Why use R for Spatial Data Analysis
+
+You might be asking yourself; why use R for spatial analysis when there are commercial and open source Geographical Information Systems (GIS) like ESRI ArcMap, QGIS, etc?. These are some of my reasons: \* R is free and open source \* Reproducibility: I can repeat my analysis another day \* Packages: There are a vast amount of R packages for statistical modeling, visualisation like **ggplot2**, **leaflet**. etc.
+
+#### R Packages for Spatial Data Analysis
+
+Some of my favorite packages for spatial data analysis include: \* [sp](https://cran.r-project.org/web/packages/sp/index.html): This package provides classes and methods for spatial data; utility functions for plotting maps, working with coordinates, etc. \* [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html): This package provides methods for working with importing and exporting different raster and vector geospatial data formats; Coordinate Reference Systems; projections, etc. \* [rgeos](https://cran.r-project.org/web/packages/rgeos/index.html): \* [ggplot2](http://ggplot2.org/): The most popular package for data visualisation by [Hadely Wickham](http://had.co.nz/) \* [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html): Provides functions to visualize spatial data ontop of static maps from sources like Google Maps, Open Steet Maps, cloudmade and stamen. \* [leaflet](http://rstudio.github.io/leaflet/): Leaflet for R provides functions to control and integrate Leaflet, a JavaScript library for interactive maps, within R. \* [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html): Most of my spatial data have Date-Time measurements. This package provides functions for manipulating dates and times.
 
 Data Preparation
 ----------------
 
-``` r
-## These are the packages needed for data preparation
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(tidyr))
-suppressPackageStartupMessages(library(lubridate))
-suppressPackageStartupMessages(library(readr))
-suppressPackageStartupMessages(library(magrittr))
-suppressPackageStartupMessages(library(sp))
-suppressPackageStartupMessages(library(rgdal))
-```
-
 ### The Data
 
 In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010. This full data is available in the **ggmap** package as the data set "crime".
+
+So let's install **ggmap** and some other packages that we shall need in this tutorial.
+
+``` r
+## These are the packages needed for data preparation
+suppressPackageStartupMessages(library(ggmap))
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(rgdal))
+suppressPackageStartupMessages(library(rgeos))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(leaflet))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(lubridate))
+```
+
+Let's look at the structure of this data set.
+
+``` r
+data(crime)
+```
 
 ### Reading Spatial Data
 
@@ -208,35 +215,8 @@ saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
 ## writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
 ```
 
-\#\# Data Exploration
-=====================
-
-The purpose of this report is to display the descriptive and graphical statistics of this cdr sample data.
-==========================================================================================================
-
-`{r DescriptiveStats, echo = FALSE} # ## Load the processed SpatialPointsDataFrame # cdr_spatial_df <- readRDS("cdr_spatial_data.rds") #  # ## Create a SpatialPolygonsDataFrame by reading in shapefile data # ## Use plot method to plot it # shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2") #`
-==============================================================================================================================================================================================================================================================================================================
-
-\#\#\# Map Overlay or Spatial Join
-==================================
-
-`{r spatial_join, echo = TRUE} # ## Perform a spatial join to join the shapefile data to the point data # over() #  #  #`
-=========================================================================================================================
-
-\#\#\# Question 1: What is the distribution of call made by callers
-===================================================================
-
-`{r, echo = FALSE} # callers <- group_by(cdr_df, hashed_id)  # call_dist <- summarise(callers, calls_made = n())  # arrange(call_dist, desc(calls_made)) #  #`
-==============================================================================================================================================================
-
-`{r, echo = FALSE } # grouped_by_time <- group_by(cdr_df, date_time3) # calls_per_day <- summarise(grouped_by_time, count = n()) # head(arrange(calls_per_day, desc(count))) # tail <- tail(arrange(calls_per_day, desc(count)), n = 30) #`
-===========================================================================================================================================================================================================================================
-
-\#\#\# Question 3: What is the duration of the data
-===================================================
-
-`{r , echo = FALSE} # time_df <- transmute(cdr_df,  #                      start_time = min(as.Date(date_time3)), #                      end_time = max (as.Date(date_time3))) #  # ## Then get the difference between the start time and end time # diff <- time_df$end_time - time_df$end_time #  #  # ## Ouestion 2: What is the distributions of calls by day #  #  # ## Question 4: What the distribution of calls by time interval. # start <- as.Date("2010/01/01") # end <- as.Date("2010/12/31") # set.seed(1) # datewant <- seq(start, end, by = "days")[sample(15)] # tmpTimes <- data.frame(EntryTime = datewant,  #                        ExitTime = datewant + sample(100, 15)) # ## reorder on EntryTime so in random order # tmpTimes <- tmpTimes[sample(NROW(tmpTimes)), ] # head(tmpTimes) #  #  max(tmpTimes$EntryTime) - min(tmpTimes$EntryTime) #`
-========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+Data Exploration
+----------------
 
 Data Visualisation
 ------------------
@@ -259,8 +239,7 @@ suppressPackageStartupMessages(library(RColorBrewer))
 suppressPackageStartupMessages(library(classInt))
 ```
 
-Visualizing the Data Using Traditional Plot System
-==================================================
+### Visualizing the Data Using Traditional Plot System
 
 ``` r
 cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
@@ -298,18 +277,15 @@ legend("topleft", title = "Legend", legend = "Call Locations", pch = 21,
 
 ![](ReadMe_files/figure-markdown_github/traditional_system-3.png)<!-- -->
 
-Visualizing the Data Using spplot Using Lattice package
-=======================================================
+### Visualizing the Data Using spplot Using Lattice package
 
 ``` r
 ## spplot provides plotting of spatial data with attributes
 ```
 
-Visializing the Data Using External Libraries
-=============================================
+### Visializing the Data Using External Libraries
 
-ggplot2
--------
+#### ggplot2
 
 ``` r
 cdr_ggplot_df <- as.data.frame(cdr_spatial_df)
@@ -331,8 +307,7 @@ p
 
 ![](ReadMe_files/figure-markdown_github/unnamed-chunk-1-1.png)<!-- -->
 
-ggmap
------
+#### ggmap
 
 ``` r
 ## Create the background layer for the city of Cape Town, South Africa. Two Steps using ggmap
@@ -415,11 +390,35 @@ saMap3
 
 ![](ReadMe_files/figure-markdown_github/BackgroundLayer-1.png)<!-- -->
 
-Leaflet
--------
+#### Leaflet
 
-tmap
-----
+Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.
+
+This R package makes it easy to integrate and control Leaflet maps in R.
+
+``` r
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(leaflet))
+
+m <- leaflet() %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)
+m %>% addTiles() 
+```
+
+You can use addWMSTiles() to add WMS (Web Map Service) tiles. The map below shows the Base Reflectivity (a measure of the intensity of precipitation occurring) using the WMS from the Iowa Environmental Mesonet:
+
+``` r
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    layers = "nexrad-n0r-900913",
+    options = WMSTileOptions(format = "image/png", transparent = TRUE),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  )
+```
+
+#### tmap
 
 Geostatistical Analysis
 -----------------------
+
+Geostatistical data are data that could in principle be measured anywhere, but that typically come as measurements at a limited number of observation locations: think of gold grades in an ore body or particulate matter in air samples

@@ -6,7 +6,7 @@ output:
   md_document:
     variant: markdown_github
     toc: true
-    toc_depth: 3
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
@@ -144,69 +144,7 @@ saveRDS(cdr_spatial_df, "cdr_spatial_data.rds")
 ## writeOGR(cdr_spatial_df, dsn = "shapefiles", layer = "cdr-shapefile", driver = "ESRI Shapefile")
 ```
 
-# ## Data Exploration
-# 
-# The purpose of this report is to display the descriptive and graphical statistics of this cdr sample data.
-# 
-# ``` {r DescriptiveStats, echo = FALSE}
-# ## Load the processed SpatialPointsDataFrame
-# cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
-# 
-# ## Create a SpatialPolygonsDataFrame by reading in shapefile data
-# ## Use plot method to plot it
-# shapefile_2 <- readOGR(dsn = "ZAF_adm", layer = "ZAF_adm2")
-# ```
-# 
-# ### Map Overlay or Spatial Join
-# ```{r spatial_join, echo = TRUE}
-# ## Perform a spatial join to join the shapefile data to the point data
-# over()
-# 
-# 
-# ```
-# 
-# ### Question 1: What is the distribution of call made by callers
-# ```{r, echo = FALSE}
-# callers <- group_by(cdr_df, hashed_id) 
-# call_dist <- summarise(callers, calls_made = n()) 
-# arrange(call_dist, desc(calls_made))
-# 
-# ```
-# 
-# ```{r, echo = FALSE }
-# grouped_by_time <- group_by(cdr_df, date_time3)
-# calls_per_day <- summarise(grouped_by_time, count = n())
-# head(arrange(calls_per_day, desc(count)))
-# tail <- tail(arrange(calls_per_day, desc(count)), n = 30)
-# ```
-# 
-# 
-# ### Question 3: What is the duration of the data
-# ```{r , echo = FALSE}
-# time_df <- transmute(cdr_df, 
-#                      start_time = min(as.Date(date_time3)),
-#                      end_time = max (as.Date(date_time3)))
-# 
-# ## Then get the difference between the start time and end time
-# diff <- time_df$end_time - time_df$end_time
-# 
-# 
-# ## Ouestion 2: What is the distributions of calls by day
-# 
-# 
-# ## Question 4: What the distribution of calls by time interval.
-# start <- as.Date("2010/01/01")
-# end <- as.Date("2010/12/31")
-# set.seed(1)
-# datewant <- seq(start, end, by = "days")[sample(15)]
-# tmpTimes <- data.frame(EntryTime = datewant, 
-#                        ExitTime = datewant + sample(100, 15))
-# ## reorder on EntryTime so in random order
-# tmpTimes <- tmpTimes[sample(NROW(tmpTimes)), ]
-# head(tmpTimes)
-# 
-#  max(tmpTimes$EntryTime) - min(tmpTimes$EntryTime)
-# ```
+## Data Exploration
 
 ## Data Visualisation
 
@@ -229,7 +167,7 @@ suppressPackageStartupMessages(library(classInt))
 
 ```
 
-# Visualizing the Data Using Traditional Plot System
+### Visualizing the Data Using Traditional Plot System
 ```{r traditional_system, echo = TRUE}
 cdr_spatial_df <- readRDS("cdr_spatial_data.rds")
 plot(cdr_spatial_df, add = FALSE)
@@ -249,15 +187,15 @@ legend("topleft", title = "Legend", legend = "Call Locations", pch = 21,
 ```
 
 
-# Visualizing the Data Using spplot Using Lattice package
+### Visualizing the Data Using spplot Using Lattice package
 ```{r spplot_lattice, echo = TRUE}
 ## spplot provides plotting of spatial data with attributes
 
 ```
 
-# Visializing the Data Using External Libraries
+### Visializing the Data Using External Libraries
 
-## ggplot2
+#### ggplot2
 
 ```{r}
 cdr_ggplot_df <- as.data.frame(cdr_spatial_df)
@@ -273,7 +211,7 @@ p <- ggplot() +
 p
 ```
 
-## ggmap
+#### ggmap
 
 ```{r BackgroundLayer, echo = TRUE, cache = TRUE}
 ## Create the background layer for the city of Cape Town, South Africa. Two Steps using ggmap
@@ -328,9 +266,36 @@ saMap3
 ```
 
 
-## Leaflet
+#### Leaflet
+Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.  
 
-## tmap
+This R package makes it easy to integrate and control Leaflet maps in R.
+
+```{r eval = FALSE}
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(leaflet))
+
+m <- leaflet() %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)
+m %>% addTiles() 
+```
+
+You can use addWMSTiles() to add WMS (Web Map Service) tiles. The map below shows the Base Reflectivity (a measure of the intensity of precipitation occurring) using the WMS from the Iowa Environmental Mesonet:
+
+```{r eval = FALSE}
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    layers = "nexrad-n0r-900913",
+    options = WMSTileOptions(format = "image/png", transparent = TRUE),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  )
+```
+
+#### tmap
 
 
 ## Geostatistical Analysis
+Geostatistical data are data that could in principle be measured anywhere,
+but that typically come as measurements at a limited number of observation
+locations: think of gold grades in an ore body or particulate matter in air
+samples
