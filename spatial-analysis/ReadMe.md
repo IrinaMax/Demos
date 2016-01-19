@@ -467,32 +467,30 @@ houstonMap
 
 ![](ReadMe_files/figure-markdown_github/unnamed-chunk-2-1.png)<!-- -->
 
-Geocode the entire data using longitute and latitute variables
+Plot the shapefiles
 
 ``` r
 houstonMap2 <- houstonMap + 
-  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
+  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
+               alpha = .4, size = .3)
 
 houstonMap2
 ```
 
-    ## Warning: Removed 42 rows containing missing values (geom_point).
+![](ReadMe_files/figure-markdown_github/add_shapefiles-1.png)<!-- -->
 
-![](ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
-
-Plot the shapefiles
+Geocode the downtown crime data using longitute and latitute variables
 
 ``` r
 houstonMap3 <- houstonMap2 + 
-  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
-               alpha = .4, size = .3)
+  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
 
 houstonMap3
 ```
 
     ## Warning: Removed 42 rows containing missing values (geom_point).
 
-![](ReadMe_files/figure-markdown_github/add_shapefiles-1.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
 
 #### Leaflet
 
@@ -510,7 +508,7 @@ m
 Then add the shapefile data onto the map. This is added as another layer, polygon, using the `addPolygon` command.
 
 ``` r
-m1 <- m %>% addPolygons(data = texas_shp)
+m1 <- m %>% addPolygons(data = texas_shp, fillColor = "transparent", color = "black", weight = 1)
 m1
 ```
 
@@ -519,7 +517,7 @@ m1
 Finally add the crime data onto the map. This is added as another layer, points, using the `addMarkers` command.
 
 ``` r
-m2 <- m1 %>% addCircles(data = crime_spatial_df)
+m2 <- m %>% addCircles(data = crime_spatial_df, weight = 1.5, color = "red")
 m2
 ```
 

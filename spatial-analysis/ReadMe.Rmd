@@ -255,23 +255,22 @@ houstonMap <- ggmap(map_dat, extent = "device", legend = "topleft")
 houstonMap
 ```
 
-Geocode the entire data using longitute and latitute variables
-```{r}
+Plot the shapefiles
+```{r add_shapefiles}
 houstonMap2 <- houstonMap + 
-  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
+  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
+               alpha = .4, size = .3)
 
 houstonMap2
 ```
 
-Plot the shapefiles
-```{r add_shapefiles}
+Geocode the downtown crime data using longitute and latitute variables
+```{r add_points}
 houstonMap3 <- houstonMap2 + 
-  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
-               alpha = .4, size = .3)
+  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
 
 houstonMap3
 ```
-
 
 #### Leaflet
 Leaflet for R is a package that provides functions to develop elegant and beautiful Leaflet maps. [Leaflet](http://leafletjs.com/) is the leading open-source JavaScript library for interactive maps.
@@ -293,7 +292,7 @@ m1
 
 Finally add the crime data onto the map. This is added as another layer, points, using the `addMarkers` command.
 ```{r leaflet_add_points, eval = FALSE}
-m2 <- m1 %>% addCircles(data = crime_spatial_df, weight = 1.5, color = "red")
+m2 <- m %>% addCircles(data = crime_spatial_df, weight = 1.5, color = "red")
 m2
 ```
 ![Leaflet Points](figures/leaflet-points.png)
