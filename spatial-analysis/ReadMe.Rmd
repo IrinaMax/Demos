@@ -274,30 +274,32 @@ houstonMap3
 
 
 #### Leaflet
-Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.  
+Leaflet for R is a package that provides functions to develop elegant and beautiful Leaflet maps. [Leaflet](http://leafletjs.com/) is the leading open-source JavaScript library for interactive maps.
 
-This R package makes it easy to integrate and control Leaflet maps in R.
-
-```{r eval = FALSE}
-m <- leaflet() %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)
-m %>% addTiles() 
+Let's first start by creating a map of the the houston area and then adding layers (features). This can be done using the `leaflet()` command. The first layer that we should add are the "Tiles" using the `addTiles` command.
+```{r map_widget, eval = FALSE}
+m <- leaflet() %>% setView(lng = -95.3698028, lat = 29.7604267, zoom = 12) %>% addTiles()
+m
 ```
 
-You can use addWMSTiles() to add WMS (Web Map Service) tiles. The map below shows the Base Reflectivity (a measure of the intensity of precipitation occurring) using the WMS from the Iowa Environmental Mesonet:
+![Leaflet Map](figures/leaflet-map.png)
 
-```{r eval = FALSE}
-leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
-  addWMSTiles(
-    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
-    layers = "nexrad-n0r-900913",
-    options = WMSTileOptions(format = "image/png", transparent = TRUE),
-    attribution = "Weather data © 2012 IEM Nexrad"
-  )
+Then add the shapefile data onto the map. This is added as another layer, polygon, using the `addPolygon` command.
+```{r leaflet_add_shapefiles, eval = FALSE}
+m1 <- m %>% addPolygons(data = texas_shp)
+m1
 ```
+![Leaflet Polygons](figures/leaflet-polygons.png)
 
+Finally add the crime data onto the map. This is added as another layer, points, using the `addMarkers` command.
+```{r leaflet_add_points, eval = FALSE}
+m2 <- m1 %>% addCircles(data = crime_spatial_df)
+m2
+```
+![Leaflet Points](figures/leaflet-points.png)
 
 ## Geostatistical Analysis
-In the next blog post, we shall see how to perform geostatistical analysis on spatial data. Geostatistical data are data that could in principle be measured anywhere, but that typically come as measurements at a limited number of observation locations: think of gold grades in an ore body or particulate matter in air samples.
+In the next blog post, we shall see how to perform geostatistical analysis on spatial data. 
 
 ## References
 For further reading, refer to the following references.  
