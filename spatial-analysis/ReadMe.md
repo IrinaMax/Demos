@@ -12,6 +12,7 @@
         -   [Visualizing the Data Using Traditional Plot System](#visualizing-the-data-using-traditional-plot-system)
         -   [Visializing the Data Using External Libraries](#visializing-the-data-using-external-libraries)
             -   [ggplot2](#ggplot2)
+            -   [ggmap](#ggmap)
             -   [Leaflet](#leaflet)
     -   [Geostatistical Analysis](#geostatistical-analysis)
     -   [References](#references)
@@ -443,6 +444,55 @@ p
 ```
 
 ![](ReadMe_files/figure-markdown_github/ggplot_option-1.png)<!-- -->
+
+#### ggmap
+
+Create the static background layer for the city of Houston, Texas
+
+``` r
+## Use "get_map" command to download the images and format them for plotting
+map_dat <- get_map(location = "houston", source = "osm", zoom = 14)
+```
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=houston&zoom=14&size=640x640&scale=2&maptype=terrain&sensor=false
+
+    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=houston&sensor=false
+
+Use "ggmap" command to make the plot
+
+``` r
+houstonMap <- ggmap(map_dat, extent = "device", legend = "topleft")
+houstonMap
+```
+
+![](ReadMe_files/figure-markdown_github/unnamed-chunk-2-1.png)<!-- -->
+
+Geocode the entire data using longitute and latitute variables
+
+``` r
+houstonMap2 <- houstonMap + 
+  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
+
+houstonMap2
+```
+
+    ## Warning: Removed 42 rows containing missing values (geom_point).
+
+![](ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
+
+Plot the shapefiles
+
+``` r
+houstonMap3 <- houstonMap2 + 
+  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
+               alpha = .4, size = .3)
+
+houstonMap3
+```
+
+    ## Warning: Removed 42 rows containing missing values (geom_point).
+
+![](ReadMe_files/figure-markdown_github/add_shapefiles-1.png)<!-- -->
 
 #### Leaflet
 

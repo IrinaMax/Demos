@@ -1,5 +1,5 @@
 ---
-title: "Applied Spatial Analysis Using R"
+title: "Applied Spatial Data Science with R"
 author: "Daniel Emaasit"
 date: "January 14, 2016"
 output: 
@@ -248,6 +248,30 @@ Create the static background layer for the city of Houston, Texas
 ## Use "get_map" command to download the images and format them for plotting
 map_dat <- get_map(location = "houston", source = "osm", zoom = 14)
 ```
+
+Use "ggmap" command to make the plot
+```{r}
+houstonMap <- ggmap(map_dat, extent = "device", legend = "topleft")
+houstonMap
+```
+
+Geocode the entire data using longitute and latitute variables
+```{r}
+houstonMap2 <- houstonMap + 
+  geom_point(aes(x = lon, y = lat), data = downtown_crime, alpha = 0.5, color="darkred", size = 3)
+
+houstonMap2
+```
+
+Plot the shapefiles
+```{r add_shapefiles}
+houstonMap3 <- houstonMap2 + 
+  geom_polygon(aes(x = long, y = lat, group = group), data = texas_shp_df, colour = "black", 
+               alpha = .4, size = .3)
+
+houstonMap3
+```
+
 
 #### Leaflet
 Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.  
