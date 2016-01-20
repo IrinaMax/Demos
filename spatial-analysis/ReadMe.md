@@ -50,9 +50,9 @@ Data Preparation
 
 ### The Data
 
-In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010 by [David Kahle](https://sites.google.com/site/davidkahle/ggmap), creator of the **ggmap** package.
+In this tutorial we shall use crime data from the [Houston Police Department](http://www.houstontx.gov/police/cs/stats2.htm) collected over the period of January 2010 - August 2010. [David Kahle](https://sites.google.com/site/davidkahle/ggmap), creator of the **ggmap** package, was kind enough to collect the data process it and make available through his package.
 
-So let's install some of my favorite packages that we shall need in this tutorial.
+So let's install some of my favorite packages that we shall use in this tutorial.
 
 ``` r
 ## These are some of my favorite packages for spatial data analysis
@@ -72,15 +72,12 @@ suppressPackageStartupMessages(library(classInt))
 
 ### Reading Spatial Data
 
-The data is in a comma separated value (CSV) format and small in size, only 13MB.
+The crime data is in a comma separated value (CSV) format and small in size, only 13MB. It is available in this github respository:<https://github.com/SparkIQ-Labs/Demos/tree/master/spatial-analysis/data>.
+
+**Note**: This full data is also available in the **ggmap** package as the data set "crime". You can load it into your R environment using the command `data(crime)`.
 
 ``` r
 crime_df <- read_csv("data/crime.csv")
-
-## The variables "offense", "month", "day" should be factors
-crime_df$offense <- as.factor(crime_df$offense)
-crime_df$month <- as.factor(crime_df$month)
-crime_df$day <- as.factor(crime_df$day)
 
 ## We need to understand the structure of this dataset
 str(crime_df)
@@ -91,25 +88,23 @@ str(crime_df)
     ##  $ date    : chr  "1/1/2010" "1/1/2010" "1/1/2010" "1/1/2010" ...
     ##  $ hour    : int  0 0 0 0 0 0 0 0 0 0 ...
     ##  $ premise : chr  "18A" "13R" "20R" "20R" ...
-    ##  $ offense : Factor w/ 7 levels "aggravated assault",..: 4 6 1 1 1 3 3 3 3 3 ...
+    ##  $ offense : chr  "murder" "robbery" "aggravated assault" "aggravated assault" ...
     ##  $ beat    : chr  "15E30" "13D10" "16E20" "2A30" ...
     ##  $ block   : chr  "9600-9699" "4700-4799" "5000-5099" "1000-1099" ...
     ##  $ street  : chr  "marlive" "telephone" "wickview" "ashland" ...
     ##  $ type    : chr  "ln" "rd" "ln" "st" ...
     ##  $ suffix  : chr  "-" "-" "-" "-" ...
     ##  $ number  : int  1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ month   : Factor w/ 8 levels "april","august",..: 4 4 4 4 4 4 4 4 4 4 ...
-    ##  $ day     : Factor w/ 7 levels "friday","monday",..: 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ month   : chr  "january" "january" "january" "january" ...
+    ##  $ day     : chr  "friday" "friday" "friday" "friday" ...
     ##  $ location: chr  "apartment parking lot" "road / street / sidewalk" "residence / house" "residence / house" ...
     ##  $ address : chr  "9650 marlive ln" "4750 telephone rd" "5050 wickview ln" "1050 ashland st" ...
     ##  $ lon     : num  -95.4 -95.3 -95.5 -95.4 -95.4 ...
     ##  $ lat     : num  29.7 29.7 29.6 29.8 29.7 ...
 
-The dataset is a data frame with 86,314 observations and 17 variables.
+A quick look at the data structure reveals that it is a data frame with 86,314 observations and 17 variables.
 
-**Note**: This full data is also available in the **ggmap** package as the data set "crime". You can load it into your R envirionment using the command `data(crime)`.
-
-I always like to take a quick look at some of data records and some summary statistics to get familiar with my data. This can be done using the `head()` and `summary()` commands.
+Let's take a quick look at some of data records and some summary statistics to get familiar with our data. This can be done using the `head()` and `summary()` commands.
 
 ``` r
 head(crime_df, n = 5)
@@ -173,22 +168,60 @@ summary(crime_df)
     ##                                        Max.   :-91.95   Max.   :37.34  
     ##                                        NA's   :5        NA's   :5
 
+The summary statistics reveal that we need to change the format of the variables "date", "offense", "month" and "day" to Date and Factors. We also need to get rid of the 5 data records with NAs in the "coordinates" variable as this will affect some of my spatial analyses.
+
+``` r
+## Because the sp pacakge is not able to find an inherited method for function ‘coordinates’ for signature ‘"tbl_df", let's convert our local dataframe.
+## The variables "offense", "month", "day" should be factors
+crime_df <- data.frame(crime_df) %>% filter(lon != "NA")
+crime_df$offense <- as.factor(crime_df$offense)
+crime_df$month <- as.factor(crime_df$month)
+crime_df$day <- as.factor(crime_df$day)
+crime_df$date <- as.Date(crime_df$date)
+```
+
 ### Spatial Points Dataframe
 
 In order to leverage the classes and methods in the several spatial packages, including the **sp** package, we need to convert the *"crime\_df"* local dataframe into **"SpatialPointsDataFrame"**.
 
 ``` r
-## Because the sp pacakge is not able to find an inherited method for function ‘coordinates’ for signature ‘"tbl_df", let's convert our local dataframe.
-crime_df <- data.frame(crime_df) %>% filter(lon != "NA")
-
 ## Convert to SpatialPointsDataFrame with longitude and latitude so as to use spatial packages
-## The CRS is a Geographic CRS called WGS84
+## The Cordinate Reference System is a Geographic CRS called WGS84
 coords <- SpatialPoints(crime_df[, c("lon", "lat")])
 crime_spatial_df <- SpatialPointsDataFrame(coords, crime_df)
 proj4string(crime_spatial_df) <- CRS("+proj=longlat +ellps=WGS84")
 ```
 
-Let's take a look at the structure of this new data type.
+Notice that we used some new functions namely SpatialPoints, SpatialPointsDataFrame, CRS and proj4string. These come from the **sp** package for spatial analysis. The foundation class from this package is **Spatial** from which other sub classes are generated including the following:
+
+``` r
+getClass("Spatial")
+```
+
+    ## Class "Spatial" [package "sp"]
+    ## 
+    ## Slots:
+    ##                               
+    ## Name:         bbox proj4string
+    ## Class:      matrix         CRS
+    ## 
+    ## Known Subclasses: 
+    ## Class "SpatialPoints", directly
+    ## Class "SpatialMultiPoints", directly
+    ## Class "SpatialGrid", directly
+    ## Class "SpatialLines", directly
+    ## Class "SpatialPolygons", directly
+    ## Class "SpatialPointsDataFrame", by class "SpatialPoints", distance 2
+    ## Class "SpatialPixels", by class "SpatialPoints", distance 2
+    ## Class "SpatialMultiPointsDataFrame", by class "SpatialMultiPoints", distance 2
+    ## Class "SpatialGridDataFrame", by class "SpatialGrid", distance 2
+    ## Class "SpatialLinesDataFrame", by class "SpatialLines", distance 2
+    ## Class "SpatialPixelsDataFrame", by class "SpatialPoints", distance 3
+    ## Class "SpatialPolygonsDataFrame", by class "SpatialPolygons", distance 2
+
+We can see that **SpatialPoints** and **SpatialPointsDataFrame** are subclass of the **Spatial** class. This kind of class system moves away from R's foundation class system to richer representations for working with spatial data types.
+
+Now let's take a look at the structure of this new data type.
 
 ``` r
 str(crime_spatial_df)
@@ -318,20 +351,40 @@ plot(texas_shp)
 Data Exploration
 ----------------
 
-We can explore/extract the individual slots in our spatial points data frame by using the <**@*>\* symbol instead of the **$** symbol. For example, let's look at the data-slot;
+Some foundation methods in R can be used to explore spatial objects like `plot()`, `summary()`, `print()`, etc. The **sp** package provides richer methods for manipulating spatial objects.
+
+A method for exploring the bounding area of any spatial object is the `bbox()` method. The first row reports the west–east range and the second the south–north direction.
+
+``` r
+bbox(crime_spatial_df)
+```
+
+    ##           min       max
+    ## lon -99.50555 -91.94627
+    ## lat  27.50711  37.33690
+
+We can explore the projection system of any spatial object using the `proj4string()` method. This method can also be used to assign a different coordinate system to a spatial object if need be. This can be done as follows:
+
+``` r
+proj4string(crime_spatial_df)
+```
+
+    ## [1] "+proj=longlat +ellps=WGS84"
+
+We can explore/extract the individual slots in our spatial points data frame by using the "@" symbol instead of the "$" symbol. For example, let's look at the data-slot;
 
 ``` r
 # Explore the SpatialPointsDataFrame
 head(crime_spatial_df@data)
 ```
 
-    ##                  time     date hour premise            offense  beat
-    ## 1 2010-01-01 06:00:00 1/1/2010    0     18A             murder 15E30
-    ## 2 2010-01-01 06:00:00 1/1/2010    0     13R            robbery 13D10
-    ## 3 2010-01-01 06:00:00 1/1/2010    0     20R aggravated assault 16E20
-    ## 4 2010-01-01 06:00:00 1/1/2010    0     20R aggravated assault  2A30
-    ## 5 2010-01-01 06:00:00 1/1/2010    0     20A aggravated assault 14D20
-    ## 6 2010-01-01 06:00:00 1/1/2010    0     20R           burglary 18F60
+    ##                  time    date hour premise            offense  beat
+    ## 1 2010-01-01 06:00:00 1-01-20    0     18A             murder 15E30
+    ## 2 2010-01-01 06:00:00 1-01-20    0     13R            robbery 13D10
+    ## 3 2010-01-01 06:00:00 1-01-20    0     20R aggravated assault 16E20
+    ## 4 2010-01-01 06:00:00 1-01-20    0     20R aggravated assault  2A30
+    ## 5 2010-01-01 06:00:00 1-01-20    0     20A aggravated assault 14D20
+    ## 6 2010-01-01 06:00:00 1-01-20    0     20R           burglary 18F60
     ##       block    street type suffix number   month    day
     ## 1 9600-9699   marlive   ln      -      1 january friday
     ## 2 4700-4799 telephone   rd      -      1 january friday
@@ -347,8 +400,6 @@ head(crime_spatial_df@data)
     ## 5                apartment       8350 canyon -95.37791 29.67063
     ## 6        residence / house     9350 rowan ln -95.54830 29.70223
 
-Other slots can also be extracted similary as follows.
-
 ``` r
 head(crime_spatial_df@coords, 4)
 ```
@@ -358,20 +409,6 @@ head(crime_spatial_df@coords, 4)
     ## [2,] -95.29888 29.69171
     ## [3,] -95.45586 29.59922
     ## [4,] -95.40334 29.79024
-
-``` r
-crime_spatial_df@bbox
-```
-
-    ##           min       max
-    ## lon -99.50555 -91.94627
-    ## lat  27.50711  37.33690
-
-``` r
-crime_spatial_df@proj4string
-```
-
-    ## CRS arguments: +proj=longlat +ellps=WGS84
 
 ``` r
 # Restrict the data to capetown only
@@ -490,7 +527,7 @@ houstonMap3
 
     ## Warning: Removed 42 rows containing missing values (geom_point).
 
-![](ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
+![](ReadMe_files/figure-markdown_github/add_points_to_map-1.png)<!-- -->
 
 #### Leaflet
 
