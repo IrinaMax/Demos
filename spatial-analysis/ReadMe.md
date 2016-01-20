@@ -23,15 +23,15 @@ Applied Spatial Data Science with R
 Introduction
 ------------
 
-I recently started working on my Ph.D dissertation which utilizes a vast amount of different spatial data types. During the process, I discovered that there were alot of concepts about using R for spatial data analysis that I was not aware of. The purpose of this report is to document some of those concepts and my favorite packages for spatial data analysis. This includes spatial data preparation, exploration, visualization and geostatistical analysis.
+I recently started working on my Ph.D dissertation which utilizes a vast amount of different spatial data types. During the process, I discovered that there were alot of concepts about using R for spatial data analysis that I was not aware of. The purpose of this report is to document some of those concepts and my favorite packages for spatial data analysis. This report is orgainized as follows: Firstly we need to ask why R is a good tool of choice for spatial analysis; secondly we shall go through a typical data analysis life-cycle from getting spatial data to data preparation, exploration, visualization and geostatistical analysis.
 
 ### Why use R for Spatial Data Analysis
 
 You might be asking yourself; why use R for spatial analysis when there are commercial and open source Geographical Information Systems (GIS) like ESRI ArcMap, QGIS, etc?. These are some of my reasons:
 
 -   R is free and open source
--   Reproducibility: I can repeat my analysis another day
--   Packages: There are a vast amount of R packages for statistical modeling, visualisation like **ggplot2**, **leaflet**. etc.
+-   Reproducibility: Researchers can reproduce their own analyses or other people's analyses and verify their findings
+-   Packages: There are a vast number of R packages for spatial data analysis, statistical modeling, visualisation, machine learning and more.
 
 #### R Packages for Spatial Data Analysis
 
@@ -72,7 +72,7 @@ suppressPackageStartupMessages(library(classInt))
 
 ### Reading Spatial Data
 
-The crime data is in a comma separated value (CSV) format and small in size, only 13MB. It is available in this github respository:<https://github.com/SparkIQ-Labs/Demos/tree/master/spatial-analysis/data>.
+The crime data is in a comma separated value (CSV) format and small in size, only 13MB. It is available in this github respository: <https://github.com/SparkIQ-Labs/Demos/tree/master/spatial-analysis/data>.
 
 **Note**: This full data is also available in the **ggmap** package as the data set "crime". You can load it into your R environment using the command `data(crime)`.
 
@@ -168,10 +168,11 @@ summary(crime_df)
     ##                                        Max.   :-91.95   Max.   :37.34  
     ##                                        NA's   :5        NA's   :5
 
-The summary statistics reveal that we need to change the format of the variables "date", "offense", "month" and "day" to Date and Factors. We also need to get rid of the 5 data records with NAs in the "coordinates" variable as this will affect some of my spatial analyses.
+The summary statistics reveal that we need to change the format of the variables "date", "offense", "month" and "day" to Date and Factors. We also need to get rid of the 5 data records with NAs in the "coordinates" variable as this will affect some of our spatial analyses.
 
 ``` r
-## Because the sp pacakge is not able to find an inherited method for function ‘coordinates’ for signature ‘"tbl_df", let's convert our local dataframe.
+## Because the sp pacakge is not able to find an inherited method 
+## for function ‘coordinates’ for signature ‘"tbl_df", let's convert our local dataframe.
 ## The variables "offense", "month", "day" should be factors
 crime_df <- data.frame(crime_df) %>% filter(lon != "NA")
 crime_df$offense <- as.factor(crime_df$offense)
@@ -258,7 +259,7 @@ str(crime_spatial_df)
     ##   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
     ##   .. .. ..@ projargs: chr "+proj=longlat +ellps=WGS84"
 
-You can see that the class is **SpatialPointsDataFrame** with 5 slots including:
+You can see that the class is **SpatialPointsDataFrame** with 5 slots/components including:
 
 1.  **data**: The origin data that was read into R,
 2.  **coords.nrs**: The data type of the coordinates
@@ -281,7 +282,7 @@ proj4string(crime_spatial_df1) <- CRS("+proj=longlat +ellps=WGS84")
 
 It's important to understand the CRS. These are very helpful in geocoding data in space. There are two types of Coordinate Reference Systems (CRS) namely:
 
-1.  Geographic Coordinate System (longitude, latitude) i.e Angles e.g WGS84
+1.  Geographic Coordinate System (longitude, latitude) e.g WGS84
 2.  Cartesian/Projected/Planar Coordinate System (x, y)
 
 The Projected Coordinate Reference System consists of several systems like:
@@ -351,7 +352,9 @@ plot(texas_shp)
 Data Exploration
 ----------------
 
-Some foundation methods in R can be used to explore spatial objects like `plot()`, `summary()`, `print()`, etc. The **sp** package provides richer methods for manipulating spatial objects.
+Some foundation methods in R can be used to explore spatial objects like `plot()`, `summary()`, `print()`, etc. For example `summary()` gives the number of spatial entities, the projection information, and the bounding box, and `print()` displays a view of the data in the spatial object.
+
+The **sp** package provides richer methods for manipulating spatial objects.
 
 A method for exploring the bounding area of any spatial object is the `bbox()` method. The first row reports the west–east range and the second the south–north direction.
 
@@ -371,7 +374,7 @@ proj4string(crime_spatial_df)
 
     ## [1] "+proj=longlat +ellps=WGS84"
 
-We can explore/extract the individual slots in our spatial points data frame by using the "@" symbol instead of the "$" symbol. For example, let's look at the data-slot;
+We can explore/extract the individual slots in our spatial points data frame by using the "@" symbol instead of the "$" symbol. For example, let's look at the data and coordinate slots:
 
 ``` r
 # Explore the SpatialPointsDataFrame
@@ -411,7 +414,7 @@ head(crime_spatial_df@coords, 4)
     ## [4,] -95.40334 29.79024
 
 ``` r
-# Restrict the data to capetown only
+# Restrict the data to downtown only
 downtown_crime <- subset(crime_df, 
                          -95.39681 <= lon & lon <= -95.34188 &
                           29.73631 <= lat & lat <= 29.78400)
