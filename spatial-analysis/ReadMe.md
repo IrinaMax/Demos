@@ -423,7 +423,7 @@ downtown_crime <- subset(crime_df,
 Data Visualisation
 ------------------
 
-R has several packages for visualizing spatial data. We shall look at tradition plotting systems in R that come with an R installation, commonly named "base-R" packages. An example is the `plot()` function for spatial data in the **sp** package. We shall also explore "external" packages for doing including ggplot2, ggmap, leaflet, tmap and plotly. The purpose of this report is conduct spatial analysis of the CDR sample data.
+R has several packages for visualizing spatial data. We shall look at tradition plotting systems in R that come with an R installation, commonly named "base-R" packages. An example is the `plot()` function for spatial data in the **sp** package. We shall also explore "external" packages for doing including ggplot2, ggmap, and leaflet.
 
 ### Visualizing the Data Using Traditional Plot System
 
@@ -455,13 +455,13 @@ legend("topleft", title = "Legend", legend = "Crime Locations", pch = 21, pt.bg 
 
 ![](ReadMe_files/figure-markdown_github/add_title_legend-1.png)<!-- -->
 
-While the base functions for plotting spatial data can do the job, I prefer using external R libraries that provide more capabilities and produce beautiful maps like ggplot2, ggmap, leaflet.
+While the base functions for plotting spatial data are sufficient enough to produce maps, we would love to "external" R libraries that provide more capabilities and produce beautiful maps like ggplot2, ggmap, leaflet.
 
 ### Visializing the Data Using External Libraries
 
 #### ggplot2
 
-ggplot2 works with data frames and not objects of class **Spatial**\*. So we have to convert them using the `fortify()` function in ggplot2.
+ggplot2 works with data frames and not objects of class **Spatial**\*. So we have to convert them using the `fortify()` function from ggplot2.
 
 ``` r
 crime_df <- data.frame(crime_spatial_df)
