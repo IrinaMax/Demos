@@ -27,7 +27,7 @@ I recently started working on my Ph.D dissertation which utilizes a vast amount 
 
 ### Why use R for Spatial Data Analysis
 
-You might be asking yourself; why use R for spatial analysis when there are commercial and open source Geographical Information Systems (GIS) like ESRI ArcMap, QGIS, etc?. These are some of my reasons:
+You might be asking yourself; why use R for spatial analysis when there are commercial and open source Geographical Information Systems (GIS) like ESRI ArcMap and QGIS respectively. These are some of my reasons:
 
 -   R is free and open source
 -   Reproducibility: Researchers can reproduce their own analyses or other people's analyses and verify their findings

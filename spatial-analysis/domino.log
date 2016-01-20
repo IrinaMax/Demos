@@ -20487,3 +20487,1000 @@ FileUpdate(. File ReadMe.md up to date.,None)
 2016-01-19 21:35:36,598 PST DEBUG FileStructureRepo - Push to origin complete: local/master = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]), origin/master = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]).
 2016-01-19 21:35:36,599 PST DEBUG FileStructureRepoSynchronizer - Upload complete.  Success = true
 2016-01-19 21:35:36,600 PST DEBUG FileSyncClient - Upload complete. Success = true
+2016-01-20 07:28:54,065 PST  INFO Domino - ================================================================================
+2016-01-20 07:28:54,069 PST  INFO Domino - starting client
+2016-01-20 07:28:54,070 PST DEBUG Domino - CWD = /home/emaasit/Dropbox/SparkIQ-Labs/Demos/spatial-analysis
+2016-01-20 07:28:54,071 PST  INFO Domino - executing command: sync
+2016-01-20 07:28:54,710 PST  INFO ProjectControllerProxy - getting git host from https://app.dominodatalab.com/gitRepoUri/SparkIQLabs/spatial-analysis
+2016-01-20 07:28:54,716 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/gitRepoUri/SparkIQLabs/spatial-analysis with proxy detected as DIRECT (full request = Request(GET,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:55,401 PST DEBUG ProjectControllerProxy - response from server: https://git.dominoup.com/projectrepos/5697/5697e26c98f4c85d6e75f257.git
+2016-01-20 07:28:55,403 PST  INFO CLIFileSyncClient - checking whether remote (https://git.dominoup.com/projectrepos/5697/5697e26c98f4c85d6e75f257.git) needs to be upgraded to match new desired url (https://git.dominoup.com/projectrepos/5697/5697e26c98f4c85d6e75f257.git)
+2016-01-20 07:28:55,407 PST  INFO CLIFileSyncClient - Running in cloud mode, so using AnonymousS3BlobStore
+2016-01-20 07:28:55,524 PST TRACE FileSyncClient - Starting upload...
+2016-01-20 07:28:55,964 PST TRACE FileStructureRepo - Staging structure. Current branch = master, head commit ID = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]).
+2016-01-20 07:28:56,484 PST DEBUG FileStructureRepo - Staging structure complete. Head advanced to commit ID = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]).
+2016-01-20 07:28:56,493 PST TRACE FileStructureRepoSynchronizer - Upload starting...
+2016-01-20 07:28:56,519 PST TRACE FileStructureRepoSynchronizer - Asserting repo is safe to operate.  repo state = SAFE, isClean = true, isSafe = true, currentBranch = master.
+2016-01-20 07:28:56,595 PST DEBUG FileStructureRepoSynchronizer - Local paths:
+	ReadMe_files/figure-markdown_github/add_points_to_map-1.png -> FileSignature(1453267849000,438468,Sha1(8acb5ae0bd9841d5d7c52db880cbc8bbf401c5ce))
+	ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.rdb -> FileSignature(1453153335000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.rdx -> FileSignature(1453074481000,166,Sha1(bc5be6a8f90d4929db94ba321e7cb981694f96aa))
+	ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.rdb -> FileSignature(1453153222000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.rdx -> FileSignature(1453303695000,138,Sha1(72310fce9b048f8b61e203974cbeb1ba24921edd))
+	ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.rdx -> FileSignature(1453267810000,161,Sha1(270b87663d6b6235f61e445901ddd4673a05d169))
+	ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.RData -> FileSignature(1453161467000,3011,Sha1(ff0503a5e79001f45afba8162ad436df823c15ab))
+	ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.RData -> FileSignature(1453072817000,2840,Sha1(7bc0621ed765c9d4f5023efa3d5a8a40634121c0))
+	ReadMe_files/figure-markdown_github/add_shapefiles-1.png -> FileSignature(1453170050000,401666,Sha1(ff435238aae6601cef83976f07de2246666bdcae))
+	ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.RData -> FileSignature(1453078504000,3321,Sha1(71837e45d2dfcadd742cb45aeffb7ad4a91e930f))
+	ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.rdb -> FileSignature(1453153376000,33846590,Sha1(ac9f3cbc92ef5d1ef2e72e4773bc9b130d2c9662))
+	ReadMe.md -> FileSignature(1453303696000,28700,Sha1(0bd515fad3639f535852bd97319d2010fa3ac14b))
+	ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.RData -> FileSignature(1453150319000,2848,Sha1(f95823534528b0e64a9d6d3978b5bf5d98351b98))
+	ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.RData -> FileSignature(1453165331000,2792,Sha1(4e9a74625ccbf7392f0ff4aa650d87725e9962e4))
+	ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.rdx -> FileSignature(1453161582000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.rdb -> FileSignature(1453150339000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.rdx -> FileSignature(1453267810000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.rdb -> FileSignature(1453072818000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.rdx -> FileSignature(1453074232000,139,Sha1(f837bd47f1aed97dce5288308b770619630eb2d4))
+	data/shapefiles/tl_2015_48_tract.cpg -> FileSignature(1453150319000,5,Sha1(663b90c899fa25a111067be0c22ffc64dcf581c2))
+	ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.rdx -> FileSignature(1453267854000,825,Sha1(85fd9b3eb25d4aa4e55bfd3b6e8bb6e46a42e4ec))
+	ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.RData -> FileSignature(1453074461000,3337,Sha1(3d622f30dafb2ce7d35c82f1f03ce5702bb4e055))
+	ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.rdb -> FileSignature(1453149507000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.rdb -> FileSignature(1453078505000,4121583,Sha1(77859d49342112f8a7657734e504cd744d3ff6a3))
+	ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.rdx -> FileSignature(1453150174000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_files/figure-markdown_github/add_points-1.png -> FileSignature(1453153222000,78135,Sha1(da0021143585b940348f569e3c6f380b7a7cdbea))
+	ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.RData -> FileSignature(1453078509000,2691,Sha1(3fc5b2fb3a2d9130358472d0c43e6125dccc0383))
+	ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.rdx -> FileSignature(1453267810000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.RData -> FileSignature(1453074229000,3237,Sha1(3a6925563e2a354929d508618056b530d37c2d4a))
+	ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.rdb -> FileSignature(1453078614000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.rdb -> FileSignature(1453150327000,30683378,Sha1(1eaed950c0e687b811dae71a8d4b7fa926f5bb66))
+	data/shapefiles/crime-shapefile.dbf -> FileSignature(1453150319000,96062494,Sha1(15915addd7e6dc5232a2738e4e0c29dd83e6c005))
+	ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.RData -> FileSignature(1453078501000,3232,Sha1(57aa1ec497f142086ae471d0e1c8948221dc719a))
+	ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.RData -> FileSignature(1453267810000,3428,Sha1(5f96ae59e7eb8b33be53e5a9f186a9181db1c354))
+	ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.rdb -> FileSignature(1453078599000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.RData -> FileSignature(1453267810000,2815,Sha1(ecf0e2c8e86fdff195f38f43837cd9455db04ace))
+	ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.RData -> FileSignature(1453074480000,3236,Sha1(21fd316f1acfd5cd55e52f19dc706843abf720c5))
+	ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.rdx -> FileSignature(1453170056000,715,Sha1(71640391e01f24ea15c63e50529c0462870a6429))
+	ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.rdx -> FileSignature(1453150245000,147,Sha1(89aec79ab9532166e703e4ac95099b4ea57a8619))
+	ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.RData -> FileSignature(1453074704000,3914,Sha1(bb2240bc5bcc81db188e4a2459cf7702f2ef9f76))
+	ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.rdb -> FileSignature(1453267810000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.rdb -> FileSignature(1453078614000,6449127,Sha1(4cfdf80e796ba55c4f6fab4e72ae3fd8444faa40))
+	ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.rdb -> FileSignature(1453074481000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.rdx -> FileSignature(1453083029000,187,Sha1(faf7fa5becdb9622ce5ffd889b8421d00d48a59a))
+	data/shapefiles/crime-shapefile.prj -> FileSignature(1453150317000,139,Sha1(3a5eb74e4cb3ddcea7d8f5ba5004e0649faffaee))
+	data/crime.csv -> FileSignature(1453128511000,13045936,Sha1(acab6c9f9801dc7673cc1b946c4ebef593819bcc))
+	ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.rdx -> FileSignature(1453072818000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.RData -> FileSignature(1453078498000,2867,Sha1(14cd905b87dee6250bfd4d50b6a240a688462b82))
+	ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.rdx -> FileSignature(1453074481000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.RData -> FileSignature(1453074228000,3393,Sha1(de24de4b1f0112849d61f6643c44f4fd06bbb676))
+	ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.rdx -> FileSignature(1453078350000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.rdx -> FileSignature(1453150319000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.rdb -> FileSignature(1453150319000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.RData -> FileSignature(1453150339000,2969,Sha1(ffceef7b3049bbba40705a4dd7546a232f946cd4))
+	ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.RData -> FileSignature(1453153335000,2965,Sha1(7d134e1716809f74d9b1bc5e840c8424d760a762))
+	data/crime_spatial_df.rds -> FileSignature(1453150246000,3221456,Sha1(740f1e1c32d3333418d42c7605c63f4bd8a6938e))
+	ReadMe_cache/markdown_github/__packages -> FileSignature(1453303695000,120,Sha1(4dce5dc0146764edc408e3c61cc2c77763df1689))
+	ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.RData -> FileSignature(1453153222000,2861,Sha1(9e968a7a5570a0b73e353aacb22befc7b017ecb2))
+	data/shapefiles/tl_2015_48_tract.dbf -> FileSignature(1453150319000,563773,Sha1(5e2b59f3dbc366e8aece82c7e96c93a798cd2477))
+	ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.RData -> FileSignature(1453170086000,2946,Sha1(37872ea08b4121de961f0c195bc9b567840f6b5d))
+	ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.RData -> FileSignature(1453078599000,2902,Sha1(e945493de2afcb137efdf13dbdf5247b46dc9137))
+	ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.rdx -> FileSignature(1453153426000,374,Sha1(fd6cd56f7500c8f7b2807d71a61099c8bd0e7a38))
+	ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.rdb -> FileSignature(1453170092000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.RData -> FileSignature(1453074465000,2902,Sha1(90b5aadcc619270e6b3def6de1a2b7b4121873fd))
+	ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.rdb -> FileSignature(1453267854000,32653867,Sha1(59b4d25eebfae95564be010cbe81088780104988))
+	ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png -> FileSignature(1453170086000,438468,Sha1(8acb5ae0bd9841d5d7c52db880cbc8bbf401c5ce))
+	ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.rdb -> FileSignature(1453267810000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/__packages -> FileSignature(1453078350000,114,Sha1(3e2986887b23a40a0a647dfc4ba44528adc83011))
+	ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.RData -> FileSignature(1453170092000,2813,Sha1(c104792d76314ecef8d76d67cf4b4e9b94b34fa2))
+	ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.RData -> FileSignature(1453078613000,3231,Sha1(b2fd7d8782d94821f5da5693b9892b65af566e06))
+	ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.RData -> FileSignature(1453150386000,2809,Sha1(f130a98626c9569f79b7d90e28512a52b4ace6b1))
+	ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.rdx -> FileSignature(1453165331000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.rdb -> FileSignature(1453267810000,4051610,Sha1(3a60069810fc749f588eb792b5777683fb1635be))
+	ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.rdb -> FileSignature(1453074494000,12880200,Sha1(69be21e771289dadb3d8ff3cf4ea68139d15d71a))
+	ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.rdb -> FileSignature(1453161542000,1847335,Sha1(33fdd1028c90fa15146452e44b55a66ac4ce3338))
+	figures/leaflet-points.png -> FileSignature(1453167002000,1320334,Sha1(0152502e5e56a90d4c4dcbd1c44d9eaa47dc431a))
+	data/shapefiles/tl_2015_48_tract.shx -> FileSignature(1453150319000,42220,Sha1(eb8ed136a371a4b73bb28863062250b99f5bf661))
+	ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.rdb -> FileSignature(1453153426000,33858780,Sha1(bd0c9801462c9ae7a6d243563eb79f8c07b728fb))
+	ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.rdb -> FileSignature(1453150245000,2364256,Sha1(5dad91638125131959e43377171760bdf7f8b9be))
+	ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.rdx -> FileSignature(1453153376000,161,Sha1(c603f619b029a089326aac7bc88022b66ce24079))
+	data/shapefiles/tl_2015_48_tract.shp -> FileSignature(1453150319000,46703856,Sha1(09c4036c91f197b44e5e2ece2a6cec6e2ed49bdd))
+	ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.rdb -> FileSignature(1453303696000,154258,Sha1(9c252b13fa8187cf1d816fcc33ead8e6c1348498))
+	ReadMe_files/figure-markdown_github/ggplot_option-1.png -> FileSignature(1453153414000,19270,Sha1(5e560ea0a514a9c4aea0017a0b1993194e34a774))
+	ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.rdx -> FileSignature(1453170092000,775,Sha1(1ab3a04d0a3c8d7367eec728546086c36902367f))
+	data/shapefiles/tl_2015_48_tract.shp.xml -> FileSignature(1453150319000,22183,Sha1(6e4ea94ae66cf83393943b300a6de4ccc500b4ba))
+	ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.rdx -> FileSignature(1453078599000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.RData -> FileSignature(1453150174000,3777,Sha1(1145c75c973b1d7efcb611884338e7c0b3525366))
+	ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.RData -> FileSignature(1453303695000,2846,Sha1(f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591))
+	ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.rdb -> FileSignature(1453074232000,4121583,Sha1(77859d49342112f8a7657734e504cd744d3ff6a3))
+	data/shapefiles/crime-shapefile.shx -> FileSignature(1453150319000,690572,Sha1(ae1d36ecfced83efd1de3abb4c69310a4848bea1))
+	ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.rdb -> FileSignature(1453267810000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	data/shapefiles/tl_2015_48_tract.zip -> FileSignature(1453145588000,28401046,Sha1(1c8f717b50192deabac9351d5ff7d8cb11ccb5de))
+	ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.RData -> FileSignature(1453074236000,2691,Sha1(c116a399031cc48f65e7ea0c5ef6909a06844c7d))
+	ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.RData -> FileSignature(1453267810000,2992,Sha1(5df72a876b5da488a59ef83c0e83ad6216411d2b))
+	ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.RData -> FileSignature(1453150245000,2853,Sha1(9fdfa55a792c6dc24bf60fce5ac6e10d014cf203))
+	ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.rdx -> FileSignature(1453150339000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.rdb -> FileSignature(1453074708000,21485804,Sha1(3f91265228ea7f6a00aff7804299826c730ee47f))
+	ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.rdx -> FileSignature(1453267810000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_files/figure-markdown_github/add_title_legend-1.png -> FileSignature(1453153335000,85047,Sha1(96fab353b92fae22a26842655fbb8bbfd1a97375))
+	data/shapefiles/tl_2015_48_tract.shp.iso.xml -> FileSignature(1453150319000,34028,Sha1(5942e57d9833356602f3854c70be154089338b3b))
+	ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.rdx -> FileSignature(1453150339000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.RData -> FileSignature(1453074232000,3326,Sha1(072e28b5632ba6531516514b8482041c0f0f8624))
+	ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.rdx -> FileSignature(1453074229000,139,Sha1(37d6a482cc836f410343dccf7c427be2fb7a9576))
+	ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.rdx -> FileSignature(1453078505000,139,Sha1(f837bd47f1aed97dce5288308b770619630eb2d4))
+	ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.RData -> FileSignature(1453072818000,3947,Sha1(e84652221a6d393234a2aeb33b0773285cdf8417))
+	data/shapefiles/crime-shapefile.shp -> FileSignature(1453150319000,2416752,Sha1(03bbc878976c57929c142758fde1e9c74460a053))
+	ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.RData -> FileSignature(1453161582000,2792,Sha1(600589c427274efa20892dbb12187b6f3c67a51f))
+	ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.RData -> FileSignature(1453078350000,2869,Sha1(01616ab8ff989f0a10b0372f6899ed72bf1939e3))
+	ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.rdb -> FileSignature(1453078350000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.rdb -> FileSignature(1453165331000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.rdb -> FileSignature(1453074236000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.rdx -> FileSignature(1453078614000,166,Sha1(bc5be6a8f90d4929db94ba321e7cb981694f96aa))
+	ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.RData -> FileSignature(1453153369000,2812,Sha1(6634995538b63e73cc85774994ac3a8e17ecc64e))
+	ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.rdx -> FileSignature(1453161542000,585,Sha1(bdd0f100dcd72a4750fe255bd514d123983969e1))
+	figures/leaflet-polygons.png -> FileSignature(1453166525000,1638657,Sha1(32718ffdf7c4205ddb53904921770e609a0a9ae4))
+	ggmapTemp.png -> FileSignature(1453161466000,670602,Sha1(0e84fbecd58539e39f5bbaa07f38760b19ccb8b2))
+	ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.rdx -> FileSignature(1453074463000,177,Sha1(bf9736a7d807ecf8fabe3c9e3fc48713e3d8ef47))
+	ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.RData -> FileSignature(1453078614000,2764,Sha1(d5cb4590b5e4c0f52d6bfdc63c2a57284e6f8bd7))
+	ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.rdb -> FileSignature(1453161582000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.rdx -> FileSignature(1453267808000,138,Sha1(83dda85444c548ae1a258c98a85b358e6314db26))
+	data/shapefiles/tl_2015_48_tract.shp.ea.iso.xml -> FileSignature(1453150319000,19417,Sha1(747104574c000888939ce138b65d8456058e4aac))
+	ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.rdb -> FileSignature(1453150174000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.RData -> FileSignature(1453267810000,2783,Sha1(15e2a26fcd86d61dad4ed63fc568d56a0337a28a))
+	ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.rdb -> FileSignature(1453150333000,30667322,Sha1(a1eb73b277026b70825b9ab2d3ebec1875246d4a))
+	ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.rdx -> FileSignature(1453170092000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.RData -> FileSignature(1453267849000,2942,Sha1(0c3e9a18a89e372dc8c27b3767fe673f80c46dfe))
+	ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.rdx -> FileSignature(1453074465000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.RData -> FileSignature(1453150323000,3017,Sha1(5eec0d4e6a696f536f617ada4cb7c1fdf8045e00))
+	ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.RData -> FileSignature(1453267807000,3368,Sha1(e64f530e9a890ebecbe2842735f2ad0910abbd72))
+	ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.rdb -> FileSignature(1453078509000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.RData -> FileSignature(1453150246000,2834,Sha1(d8c509ba36487ddc611fef3c490582de64a1091c))
+	ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.rdx -> FileSignature(1453267810000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.rdb -> FileSignature(1453267808000,2378276,Sha1(3b039eac611e5c10e9d598e160c1d3b05381adcd))
+	ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.rdb -> FileSignature(1453074228000,2784636,Sha1(f7923d57cf4e7242c69122f19deb0225f5dd3563))
+	ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.RData -> FileSignature(1453074492000,3050,Sha1(cf114f6d5c35f35e9adf3530619b69923a44fd34))
+	ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.RData -> FileSignature(1453150329000,2825,Sha1(dfbc4f8ec6001bce918a6680a85ed3dccb304c2a))
+	ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.RData -> FileSignature(1453170092000,2788,Sha1(3eede2949dbdcf3811623b97d527d0bb384cb2d1))
+	ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.rdx -> FileSignature(1453078498000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.rdx -> FileSignature(1453161467000,192,Sha1(e22b09cd1b35a5a59dbee9dd488ec75cd316b8fd))
+	ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.rdb -> FileSignature(1453150386000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.rdb -> FileSignature(1453170092000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.rdx -> FileSignature(1453072817000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.RData -> FileSignature(1453074481000,2764,Sha1(2e720f4ecb4803da5defdd9f8d787edd4bb43777))
+	ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.RData -> FileSignature(1453072817000,2900,Sha1(c4f9927c97c37f4617a6962e727aa5560b3e2e21))
+	ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.rdx -> FileSignature(1453078509000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.rdb -> FileSignature(1453170056000,32491040,Sha1(43f952a95e1b65bd7e3410dc850216bb250eef58))
+	ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.rdx -> FileSignature(1453153222000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.rdx -> FileSignature(1453150327000,141,Sha1(16a03c430bdde7aa7aa9a204266c68f4575a6be6))
+	ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.rdx -> FileSignature(1453149507000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	figures/leaflet-map.png -> FileSignature(1453162819000,1320334,Sha1(057ab1e013e3f7fa036c726e557b7e35b726ff28))
+	ReadMe.Rmd -> FileSignature(1453303680000,17260,Sha1(3a186f2263ace859ec7bae0ab4d672e0c33a9d53))
+	ReadMe_files/figure-markdown_strict/.dominokeep -> FileSignature(1453152165000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.rdx -> FileSignature(1453150386000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.rdx -> FileSignature(1453150177000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.RData -> FileSignature(1453149507000,2930,Sha1(f25f67024a8d6c618ca8e5adb1119c082de3e474))
+	ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.rdb -> FileSignature(1453150339000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.RData -> FileSignature(1453170051000,2897,Sha1(6c5d2e6c473b9b6409f12861dba729d8bfede5b2))
+	ReadMe_files/figure-markdown_github/plot_polygon-1.png -> FileSignature(1453150386000,31500,Sha1(742ce55ba754f95ab2f60a395b8a9b4eb6f76fc5))
+	ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.rdb -> FileSignature(1453074481000,6449127,Sha1(4cfdf80e796ba55c4f6fab4e72ae3fd8444faa40))
+	ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.rdx -> FileSignature(1453078502000,139,Sha1(37d6a482cc836f410343dccf7c427be2fb7a9576))
+	ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.rdx -> FileSignature(1453074708000,1245,Sha1(dc9c71d1d93ac7e5c102ea5373c6a428407642a5))
+	ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.rdx -> FileSignature(1453074494000,410,Sha1(83d7116bf30ea514753f4451decf7e5ebd69acab))
+	ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.rdb -> FileSignature(1453150177000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.rdx -> FileSignature(1453170092000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.RData -> FileSignature(1453153414000,2984,Sha1(359c3b707ec6b902f9eea0396965d59066c74dda))
+	ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.rdb -> FileSignature(1453150246000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.rdb -> FileSignature(1453074229000,2779037,Sha1(f5ce9883879a0bed7459aec6ead8b26b6e532707))
+	ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.rdb -> FileSignature(1453267810000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.RData -> FileSignature(1453267809000,2968,Sha1(c9ccaeaf21147aba2f498a0ab54e5d681c8a7cd4))
+	data/shapefiles/tl_2015_48_tract.prj -> FileSignature(1453150319000,165,Sha1(0dd77fe6a0a733e27b0f8da783ebb72e9824c250))
+	ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.rdb -> FileSignature(1453074463000,10765077,Sha1(8b365e6e3f10b7b3dc32b16d7c068bbf320e10bf))
+	ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.RData -> FileSignature(1453150177000,3595,Sha1(aac5d8efb5723bf895e6328279498ea2c13fa399))
+	ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.RData -> FileSignature(1453150339000,2806,Sha1(386ba5162d7c3890ff9850bbcbbe253528f309f4))
+	ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.RData -> FileSignature(1453303695000,3022,Sha1(c1df78016c8899a51e1176c241422b7dc8f04459))
+	ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.RData -> FileSignature(1453161542000,2838,Sha1(947c873cd8967da37b64cea3d5148287bdcbab8a))
+	ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.rdx -> FileSignature(1453074236000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.rdb -> FileSignature(1453161582000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.rdx -> FileSignature(1453161582000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.rdx -> FileSignature(1453150333000,142,Sha1(3c49a044760b28919240a4baab6f5fe413fc26aa))
+	ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.rdx -> FileSignature(1453153335000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	.dominoignore -> FileSignature(1452210567000,287,Sha1(a5f5eb83114b9b51af35b87c00dace198c7db58b))
+	ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.rdb -> FileSignature(1453161467000,911341,Sha1(bffabbb5feeee240b706267251e365272981220d))
+	ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.rdb -> FileSignature(1453303695000,2360863,Sha1(049fa8af021534567ee88901c45dd3a7759d23fd))
+	ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.rdx -> FileSignature(1453150246000,113,Sha1(5101f983bcf381140ba45f78529a5f98c4aa3b62))
+	ReadMe_files/figure-markdown_github/quick_plot-1.png -> FileSignature(1453150339000,27868,Sha1(9bc80c058bfe4b585234b1a92bc943fbf0d5e9b5))
+	ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.rdx -> FileSignature(1453074228000,137,Sha1(180b4c4e122abb519109f7641d65817e8fb95c74))
+	ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.rdx -> FileSignature(1453072817000,277,Sha1(adc6815c87908da338aa99aea38c3f5d0d0b4ef7))
+	ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.rdb -> FileSignature(1453074465000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.RData -> FileSignature(1453161582000,2984,Sha1(5f97953b722588892a28d9ffa30ddaebc0a2b645))
+	ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.rdb -> FileSignature(1453078502000,2779037,Sha1(f5ce9883879a0bed7459aec6ead8b26b6e532707))
+	figures/.dominokeep -> FileSignature(1453152165000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.rdb -> FileSignature(1453170092000,32648262,Sha1(7345f991911f15d3b9868a37ada5ba8765e72ea2))
+	ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.rdb -> FileSignature(1453072817000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+	ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.rdb -> FileSignature(1453083029000,4100,Sha1(39edc899d92fae113f8e027c6e24d59ce6c3a40d))
+	ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.rdx -> FileSignature(1453078614000,113,Sha1(3c777a243d058d55d75d39b290bb209230c69c6a))
+	ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.rdb -> FileSignature(1453072817000,9294,Sha1(54a4f986785f2a918c2f55e813000f3af8c47551))
+	ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.RData -> FileSignature(1453083029000,2712,Sha1(fc65decd2df8519985a7528de93b612d144f9010))
+	ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.rdx -> FileSignature(1453303696000,142,Sha1(3f0636f23a76aedac289d46a9326a8da4acbbca4))
+	ReadMe_files/figure-markdown_github/unnamed-chunk-2-1.png -> FileSignature(1453161542000,430125,Sha1(952ee4e591d07da6a9f9f0182f858205004ee97e))
+	ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.rdb -> FileSignature(1453078498000,0,Sha1(da39a3ee5e6b4b0d3255bfef95601890afd80709))
+2016-01-20 07:28:56,609 PST TRACE FileStructureRepo - Starting fetch: master = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]), refs/remotes/origin/master = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]).
+2016-01-20 07:28:57,138 PST TRACE FileStructureRepo - Fetch complete: master = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]), refs/remotes/origin/master = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]).
+2016-01-20 07:28:57,139 PST TRACE FileStructureRepo - Fetch result = [No Update]
+2016-01-20 07:28:57,141 PST DEBUG FileStructureRepo - Computing diffs between base = refs/remotes/origin/master (36f533495f4d7772276a65a2e3a85ba86fab6a33) and target = HEAD (0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c).
+2016-01-20 07:28:57,254 PST DEBUG FileStructureRepo - Updates:
+	- Deleting file ReadMe_cache/markdown_github/format_variables_6516afb1af81b22e934a60388a42b748.RData
+	. File ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.rdx up to date.
+	. File ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.rdx up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.rdx up to date.
+	. File ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.RData up to date.
+	. File ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.RData up to date.
+	. File ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.rdb up to date.
+	. File data/shapefiles/crime-shapefile.shp up to date.
+	x Modifying file ReadMe.md
+	. File ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.rdx up to date.
+	. File ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.rdx up to date.
+	. File ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.RData up to date.
+	. File ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.rdb up to date.
+	. File ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.rdb up to date.
+	. File ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.rdb up to date.
+	. File ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.rdb up to date.
+	. File ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.rdx up to date.
+	. File ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.RData up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.rdx up to date.
+	. File ReadMe_files/figure-markdown_github/add_points_to_map-1.png up to date.
+	- Deleting file ReadMe_cache/markdown_github/downtown_only_9f1f279b25eeba8814cd224273a36dfe.RData
+	. File data/shapefiles/tl_2015_48_tract.zip up to date.
+	. File data/shapefiles/tl_2015_48_tract.shp.iso.xml up to date.
+	. File ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.rdx up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.rdx up to date.
+	. File ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.rdb up to date.
+	. File ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.RData up to date.
+	. File ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.rdx up to date.
+	. File .dominoignore up to date.
+	. File ReadMe_files/figure-markdown_github/plot_polygon-1.png up to date.
+	. File data/shapefiles/tl_2015_48_tract.shp.ea.iso.xml up to date.
+	. File ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.rdb up to date.
+	. File ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.RData up to date.
+	. File ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.RData up to date.
+	. File ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.RData up to date.
+	. File ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.rdx up to date.
+	. File ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.RData up to date.
+	. File ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.RData up to date.
+	. File ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.rdx up to date.
+	. File ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.RData up to date.
+	. File ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.RData up to date.
+	. File ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.RData up to date.
+	. File ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.rdx up to date.
+	. File ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.rdb up to date.
+	. File data/shapefiles/tl_2015_48_tract.dbf up to date.
+	. File ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.rdb up to date.
+	. File ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.RData up to date.
+	+ Adding file ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.rdx
+	. File ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.rdx up to date.
+	. File figures/leaflet-polygons.png up to date.
+	. File ggmapTemp.png up to date.
+	. File ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.rdx up to date.
+	. File ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.rdb up to date.
+	. File ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.rdx up to date.
+	. File ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.rdx up to date.
+	. File ReadMe_cache/markdown_github/__packages up to date.
+	. File figures/leaflet-map.png up to date.
+	x Modifying file ReadMe.Rmd
+	. File ReadMe_cache/markdown_github/install_packages_dbb9c494f2ea7ebef3c3ea08f9b9fe35.RData up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.rdb up to date.
+	. File ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.rdb up to date.
+	. File ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.RData up to date.
+	. File ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.RData up to date.
+	. File ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.RData up to date.
+	. File ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.rdb up to date.
+	. File ReadMe_cache/markdown_github/write_data_6a6d5bc71ff6f56a8e3fb8d5ce8df194.RData up to date.
+	. File ReadMe_cache/markdown_github/proj4string_method_1fe84b5d3351863890ea7ef262916886.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.RData up to date.
+	. File ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.rdx up to date.
+	+ Adding file ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.rdb
+	. File ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.rdx up to date.
+	. File ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.RData up to date.
+	. File ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.RData up to date.
+	. File data/shapefiles/crime-shapefile.prj up to date.
+	. File ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.rdb up to date.
+	. File ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.rdx up to date.
+	. File ReadMe_files/figure-markdown_strict/.dominokeep up to date.
+	. File ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.RData up to date.
+	. File ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.rdb up to date.
+	. File ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.rdx up to date.
+	. File data/shapefiles/tl_2015_48_tract.prj up to date.
+	. File data/crime.csv up to date.
+	. File ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.rdb up to date.
+	. File ReadMe_cache/markdown_strict/BackgroundLayer_b090811cdc1fc54af2d7a7616c4b8d85.rdx up to date.
+	. File ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.rdx up to date.
+	. File ReadMe_cache/markdown_github/quick_look_4edf1261764886cb20598e5aff31d529.RData up to date.
+	. File ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.rdb up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.RData up to date.
+	- Deleting file ReadMe_cache/markdown_github/format_variables_6516afb1af81b22e934a60388a42b748.rdb
+	. File ReadMe_cache/markdown_github/leaflet_add_shapefiles_c6ae99321f5c70c587faab8459be5387.RData up to date.
+	. File ReadMe_cache/markdown_github/BackgroundLayer_5269ec15d8ae7f61da859bf51d4e6d56.rdb up to date.
+	+ Adding file ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.rdb
+	. File ReadMe_files/figure-markdown_github/ggplot_option-1.png up to date.
+	. File ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.rdb up to date.
+	. File ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.rdb up to date.
+	. File ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.rdx up to date.
+	. File ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.RData up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.RData up to date.
+	. File ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.rdx up to date.
+	. File ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.rdb up to date.
+	. File ReadMe_cache/markdown_strict/__packages up to date.
+	. File ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.rdx up to date.
+	. File ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.RData up to date.
+	. File ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.RData up to date.
+	. File ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.rdb up to date.
+	. File ReadMe_cache/markdown_github/ggplot_option_4ec9d699a97519e02a908eb1fdaf9db7.rdb up to date.
+	. File ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.RData up to date.
+	. File ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.RData up to date.
+	. File ReadMe_cache/markdown_github/plot_polygon_119539c34eb1197367f927c7d459fbae.rdx up to date.
+	. File ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.RData up to date.
+	. File ReadMe_cache/markdown_github/read_data_1b8a50774931b0131b956370cde8a6b1.rdx up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.rdx up to date.
+	. File ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.RData up to date.
+	. File ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.rdb up to date.
+	- Deleting file ReadMe_cache/markdown_github/format_variables_6516afb1af81b22e934a60388a42b748.rdx
+	. File ReadMe_cache/markdown_github/unnamed-chunk-2_2940046c8c1532d7fd49da5ffbdea602.rdb up to date.
+	. File ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.rdx up to date.
+	. File ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.rdx up to date.
+	. File ReadMe_cache/markdown_github/add_points_to_map_ebe43a45c535e749964a500cfdc01bcc.RData up to date.
+	. File ReadMe_cache/markdown_github/fortify_a07b40bfdeb21ce9902246fd0df5af2f.rdx up to date.
+	. File ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.RData up to date.
+	. File ReadMe_files/figure-markdown_github/unnamed-chunk-3-1.png up to date.
+	+ Adding file ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.rdx
+	. File data/shapefiles/crime-shapefile.dbf up to date.
+	. File ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.rdx up to date.
+	. File ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.RData up to date.
+	. File ReadMe_cache/markdown_github/packages2_46b77fb110304376b6fe1bf68ff2181c.rdx up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.RData up to date.
+	- Deleting file ReadMe_cache/markdown_github/downtown_only_9f1f279b25eeba8814cd224273a36dfe.rdx
+	. File ReadMe_cache/markdown_github/other_slots_b59ab0910b83f3cba634ee466925087e.rdx up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.rdb up to date.
+	. File ReadMe_cache/markdown_github/quick_plot_1bfa998b153e3e9ea1bc8d122a7df4e0.rdb up to date.
+	. File figures/leaflet-points.png up to date.
+	. File ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.RData up to date.
+	. File ReadMe_cache/markdown_strict/read_data_2227dcf6bedda74e7e23dcfa27e036f9.rdx up to date.
+	+ Adding file ReadMe_cache/markdown_github/downtown_only_e2bb66d7683abd79b07cc6037dfe503a.RData
+	. File data/shapefiles/tl_2015_48_tract.shp.xml up to date.
+	. File ReadMe_files/figure-markdown_github/unnamed-chunk-2-1.png up to date.
+	. File ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.rdb up to date.
+	. File ReadMe_cache/markdown_github/packages3_370e66dbbc99b9aff3dbfe4ee34c5339.rdx up to date.
+	. File ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.rdb up to date.
+	. File ReadMe_cache/markdown_strict/packages3_9180a2fd52c77136ce781a9ae6a70af8.RData up to date.
+	. File ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.RData up to date.
+	. File data/shapefiles/tl_2015_48_tract.shx up to date.
+	. File ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.rdb up to date.
+	. File ReadMe_cache/markdown_github/traditional_system_c955f595b5d7cf787b831062cecb01ae.rdx up to date.
+	. File ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.rdb up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.rdx up to date.
+	. File figures/.dominokeep up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.rdx up to date.
+	. File data/shapefiles/tl_2015_48_tract.cpg up to date.
+	. File ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.rdb up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.rdb up to date.
+	. File ReadMe_cache/markdown_github/structure_spdf_a1e5ddf52128d3cc78df298b0cd02bcd.RData up to date.
+	. File ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-4_7eb50c41c7864e0e760f1772b89096f6.RData up to date.
+	. File ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.rdx up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-3_1f915be1afdeadd753281bc275c81d61.rdb up to date.
+	. File ReadMe_files/figure-markdown_github/quick_plot-1.png up to date.
+	. File data/shapefiles/crime-shapefile.shx up to date.
+	. File ReadMe_cache/markdown_github/remove_cord_errors_d80aec3a4d6c132c5ad208e61ffa82e6.rdb up to date.
+	. File ReadMe_cache/markdown_github/leaflet_add_points_ca4a66015067c2a897ec6d337c5f441f.rdx up to date.
+	. File data/crime_spatial_df.rds up to date.
+	. File ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.rdx up to date.
+	. File ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.rdb up to date.
+	. File ReadMe_cache/markdown_strict/remove_cord_errors_42b4aaa99b799a4398c360b9789377ef.rdb up to date.
+	. File ReadMe_cache/markdown_github/data_slot_73e265cebc2fce3257db8a8e67f0d6d5.rdx up to date.
+	. File ReadMe_cache/markdown_github/create_time_cols_9484049e3c7d57e5ee81d44f07b85327.RData up to date.
+	. File ReadMe_cache/markdown_github/read_shapefile_957325ac6a99324a6a15e266100a7617.rdb up to date.
+	. File ReadMe_cache/markdown_github/write_shapefile_3026899b14f1708af09bedde14059aeb.rdb up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.rdb up to date.
+	. File ReadMe_cache/markdown_strict/traditional_system_ac982640a603a029ad1037a954321283.rdx up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-5_aede14999347fa69a5e49a98238c431c.rdb up to date.
+	. File ReadMe_cache/markdown_strict/write_data_a429c77812bfb898a63de8e79cf242ec.rdb up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-2_18237538c91dbc3aa958d0b2e6e46108.RData up to date.
+	. File ReadMe_cache/markdown_github/write_data1_5f56c90c0a8486cebf4228c8e9f71287.RData up to date.
+	. File ReadMe_cache/markdown_github/crime_data_597c3d91effbb7349ce07e5a372c0265.RData up to date.
+	- Deleting file ReadMe_cache/markdown_github/downtown_only_9f1f279b25eeba8814cd224273a36dfe.rdb
+	. File ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.rdx up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-3_4190e5a7ece244cc857967c8bfa9620f.RData up to date.
+	. File ReadMe_files/figure-markdown_github/add_shapefiles-1.png up to date.
+	. File ReadMe_cache/markdown_github/spplot_lattice_e37a6aa6cbf364d8ae9333962aa5420e.rdx up to date.
+	. File ReadMe_cache/markdown_github/coordinates_method_0d616e28325c1748b866d0aa2a1d717f.RData up to date.
+	. File ReadMe_files/figure-markdown_github/add_title_legend-1.png up to date.
+	. File ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.rdb up to date.
+	. File ReadMe_cache/markdown_github/add_title_legend_534f6687a8ee8f8dc724096eb73defcb.rdb up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-1_0d84659c12503226235569217863df72.rdb up to date.
+	. File ReadMe_cache/markdown_strict/create_time_cols_81f33f2e65e0cb17021eb7241d2ee16d.RData up to date.
+	. File ReadMe_cache/markdown_github/add_shapefiles_8121dd0a628c5446fdec03ee7ad89389.RData up to date.
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.RData up to date.
+	. File ReadMe_cache/markdown_strict/packages2_8baec113530e55218939a4a7c6b86aed.rdx up to date.
+	+ Adding file ReadMe_cache/markdown_github/format_variables_bbc0304444ba9d6b0a56161a4f06a56a.RData
+	. File ReadMe_cache/markdown_strict/unnamed-chunk-4_2356071360331b55e1a5f23553155e7d.rdx up to date.
+	. File ReadMe_cache/markdown_github/bounding_box_c422d77c29bd39ca87fc7296be8a2ed8.rdb up to date.
+	. File ReadMe_files/figure-markdown_github/add_points-1.png up to date.
+	. File ReadMe_cache/markdown_strict/SpatialPointsDataFrame_7295a8a301a2e69dd04c29dec086618d.rdx up to date.
+	. File ReadMe_cache/markdown_github/map_widget_6a0a9425ffc58871bf9369afeba3ff7e.rdb up to date.
+	. File ReadMe_cache/markdown_strict/spplot_lattice_e104a14e3405c9949bb2153587c25026.rdx up to date.
+	. File ReadMe_cache/markdown_github/add_points_1fa8b512f452874b1eb5d35a7748c531.RData up to date.
+	. File ReadMe_cache/markdown_github/unnamed-chunk-1_fcac68fdb2eb7183242bd7ff6329f556.rdx up to date.
+	. File ReadMe_cache/markdown_github/SpatialPointsDataFrame_74a449b10b16f0423e670c4c2b591383.rdx up to date.
+	. File data/shapefiles/tl_2015_48_tract.shp up to date.
+	. File ReadMe_cache/markdown_github/sp_classes_8d8a8b77cfbb162b414c2343a0d647f4.rdb up to date.
+2016-01-20 07:28:57,255 PST TRACE FileStructureRepoSynchronizer - Upload before push starting
+2016-01-20 07:28:57,417 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/0bd515fad3639f535852bd97319d2010fa3ac14b/28700?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,471 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/0bd515fad3639f535852bd97319d2010fa3ac14b?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=alMWr2dum603X23vWg5OWIJcSpY%3D
+2016-01-20 07:28:57,480 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,483 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/c1df78016c8899a51e1176c241422b7dc8f04459/3022?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,500 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,500 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,500 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,500 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,500 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,501 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/3a186f2263ace859ec7bae0ab4d672e0c33a9d53/17260?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,501 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/9c252b13fa8187cf1d816fcc33ead8e6c1348498/154258?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,501 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/3f0636f23a76aedac289d46a9326a8da4acbbca4/142?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,505 PST DEBUG DefaultTransport - Issuing request to https://app.dominodatalab.com/blobs/signedPutUrl/f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591/2846?x=true with proxy detected as DIRECT (full request = Request(POST,<function2>,<function1>,List(),List((X-Domino-Api-Key,RrhDbogjvXzbxkm15hedptBVYmuBGiGMBGacUuv2jNulfYLHAMxKmDWlHqRVC4Nu), (content-type,application/x-www-form-urlencoded)),List(<function1>, <function1>, <function1>, <function1>, <function1>),DIRECT,UTF-8,4096))
+2016-01-20 07:28:57,507 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,507 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,507 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,507 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,507 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,509 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,509 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,509 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,516 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,516 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,516 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,518 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,518 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,518 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,518 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,518 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,518 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,518 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,519 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,519 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,519 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,521 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,522 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,522 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 8946
+2016-01-20 07:28:57,522 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 8946
+2016-01-20 07:28:57,522 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,522 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/0bd515fad3639f535852bd97319d2010fa3ac14b?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=alMWr2dum603X23vWg5OWIJcSpY%3D', expecting response codes: [200]
+2016-01-20 07:28:57,524 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 28700]
+2016-01-20 07:28:57,524 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,524 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,544 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/c1df78016c8899a51e1176c241422b7dc8f04459?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=mhiWYaAgnNJlTPcCg8u0aJnr5ls%3D
+2016-01-20 07:28:57,544 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,544 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,544 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,544 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,544 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,545 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,545 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,545 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,546 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,546 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,546 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,546 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,546 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,546 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,547 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,547 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,547 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 3045
+2016-01-20 07:28:57,547 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 3045
+2016-01-20 07:28:57,547 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,547 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/c1df78016c8899a51e1176c241422b7dc8f04459?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=mhiWYaAgnNJlTPcCg8u0aJnr5ls%3D', expecting response codes: [200]
+2016-01-20 07:28:57,547 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 3022]
+2016-01-20 07:28:57,547 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,547 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,551 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/3f0636f23a76aedac289d46a9326a8da4acbbca4?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=3jBFeodQAxeFcRSSD5Fu2Y4q46Q%3D
+2016-01-20 07:28:57,551 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,551 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,552 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,552 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,552 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,552 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,553 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,553 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,553 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,553 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,553 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,553 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,554 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 165
+2016-01-20 07:28:57,554 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 165
+2016-01-20 07:28:57,554 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,554 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/3f0636f23a76aedac289d46a9326a8da4acbbca4?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=3jBFeodQAxeFcRSSD5Fu2Y4q46Q%3D', expecting response codes: [200]
+2016-01-20 07:28:57,554 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 142]
+2016-01-20 07:28:57,554 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,554 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,554 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/3a186f2263ace859ec7bae0ab4d672e0c33a9d53?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=qXOok9pV%2BcE%2Fq%2BAUiIlHE%2F1Auaw%3D
+2016-01-20 07:28:57,555 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,555 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,555 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,555 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,555 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,555 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,556 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,556 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,557 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,557 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,557 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,557 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,557 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,557 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,558 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 6382
+2016-01-20 07:28:57,558 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,558 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,558 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 6382
+2016-01-20 07:28:57,558 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,558 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/3a186f2263ace859ec7bae0ab4d672e0c33a9d53?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=qXOok9pV%2BcE%2Fq%2BAUiIlHE%2F1Auaw%3D', expecting response codes: [200]
+2016-01-20 07:28:57,558 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 17260]
+2016-01-20 07:28:57,558 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,558 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,562 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/9c252b13fa8187cf1d816fcc33ead8e6c1348498?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=eH0nx5f9QF83iVRCnjzWpee7lMc%3D
+2016-01-20 07:28:57,563 PST  INFO AnonymousS3SingleProjectBlobStore - Generated signed PUT url: https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=0gvSJh3Izk8AU7j%2BTk0dQGxwLds%3D
+2016-01-20 07:28:57,563 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,563 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,563 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,563 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,563 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,564 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,564 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,564 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,564 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,565 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,565 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,565 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,565 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,565 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,565 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,566 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,566 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 2869
+2016-01-20 07:28:57,567 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 2869
+2016-01-20 07:28:57,567 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,567 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=0gvSJh3Izk8AU7j%2BTk0dQGxwLds%3D', expecting response codes: [200]
+2016-01-20 07:28:57,567 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 2846]
+2016-01-20 07:28:57,567 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,567 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,568 PST  INFO AnonymousS3SingleProjectBlobStore - Starting signed PUT request
+2016-01-20 07:28:57,569 PST DEBUG Jets3tProperties - s3service.https-only=true
+2016-01-20 07:28:57,569 PST DEBUG Jets3tProperties - storage-service.internal-error-retry-max=5
+2016-01-20 07:28:57,569 PST DEBUG Jets3tProperties - storage-service.apply-recommended-dns-caching-defaults=true
+2016-01-20 07:28:57,569 PST DEBUG StorageService - Setting recommended DNS caching defaults
+2016-01-20 07:28:57,569 PST DEBUG StorageService - Using DNS caching system settings: networkaddress.cache.ttl=300, networkaddress.cache.negative.ttl=1
+2016-01-20 07:28:57,569 PST DEBUG Jets3tProperties - http.connection-manager.factory-class-name=org.jets3t.service.utils.RestUtils$ConnManagerFactory
+2016-01-20 07:28:57,569 PST DEBUG Jets3tProperties - httpclient.connection-timeout-ms=60000
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.socket-timeout-ms=60000
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.stale-checking-enabled=true
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.useragent=null
+2016-01-20 07:28:57,572 PST DEBUG RestUtils - Setting user agent string: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - http.protocol.expect-continue=true
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.connection-manager-timeout=0
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,572 PST DEBUG Jets3tProperties - httpclient.proxy-autodetect=true
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,573 PST DEBUG PluginProxyUtil - About to attempt auto proxy detection under Java version:1.7.0_91-b02
+2016-01-20 07:28:57,573 PST DEBUG PluginProxyUtil - Sun Plugin reported java version not 1.3.X, 1.4.X, 1.5.X or 1.6.X - trying failover detection...
+2016-01-20 07:28:57,573 PST DEBUG PluginProxyUtil - Using failover proxy detection...
+2016-01-20 07:28:57,573 PST DEBUG PluginProxyUtil - Plugin Proxy Config List Property:null
+2016-01-20 07:28:57,573 PST DEBUG PluginProxyUtil - No configured plugin proxy list
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - s3service.default-storage-class=null
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - s3service.server-side-encryption=null
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - devpay.user-token=null
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - devpay.product-token=null
+2016-01-20 07:28:57,573 PST DEBUG Jets3tProperties - httpclient.requester-pays-buckets-enabled=false
+2016-01-20 07:28:57,574 PST DEBUG Jets3tProperties - storage-service.disable-live-md5=false
+2016-01-20 07:28:57,574 PST DEBUG Jets3tProperties - s3service.s3-endpoint=s3.amazonaws.com
+2016-01-20 07:28:57,574 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream com.cerebro.domino.common.sync.ConsoleProgressMonitoredInputStream assuming it doesn't use in-memory storage: 153859
+2016-01-20 07:28:57,574 PST DEBUG RepeatableRequestEntity - Setting maximal read-ahead mark limit for markable input stream java.io.ByteArrayInputStream assuming it doesn't use in-memory storage: 153859
+2016-01-20 07:28:57,574 PST DEBUG Jets3tProperties - httpclient.read-throttle=0
+2016-01-20 07:28:57,574 PST DEBUG RestStorageService - Performing PUT request for 'https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com/9c252b13fa8187cf1d816fcc33ead8e6c1348498?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=eH0nx5f9QF83iVRCnjzWpee7lMc%3D', expecting response codes: [200]
+2016-01-20 07:28:57,574 PST DEBUG RestStorageService - Headers: [x-amz-server-side-encryption: AES256, Content-Encoding: gzip, Content-Type: application/x-gzip, x-amz-meta-domino-original-blob-length: 154258]
+2016-01-20 07:28:57,574 PST DEBUG Jets3tProperties - httpclient.retry-max=5
+2016-01-20 07:28:57,575 PST DEBUG RestStorageService - Service has no Credential and is un-authenticated, skipping authorization
+2016-01-20 07:28:57,585 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,585 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,585 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,589 PST DEBUG Jets3tProperties - httpclient.max-connections=20
+2016-01-20 07:28:57,589 PST DEBUG Jets3tProperties - httpclient.max-connections-per-host=0
+2016-01-20 07:28:57,589 PST DEBUG Jets3tProperties - httpclient.connection.ttl=-1
+2016-01-20 07:28:57,611 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,611 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,611 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,611 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,611 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,612 PST DEBUG RestUtils$ThreadSafeConnManager - Get connection: {s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443, timeout = 0
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,612 PST DEBUG ConnPoolByRoute - [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443] total kept alive: 0, total issued: 0, total allocated: 0 out of 20
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - No free connections [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,613 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Available capacity: 20 out of 20 [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:57,614 PST DEBUG ConnPoolByRoute - Creating new connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443]
+2016-01-20 07:28:57,668 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,668 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,668 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,668 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,668 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,669 PST DEBUG DefaultClientConnectionOperator - Connecting to com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443
+2016-01-20 07:28:57,970 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:57,970 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:57,971 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:57,971 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:57,971 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:57,971 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:57,971 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:57,971 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:57,972 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:57,972 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:57,972 PST DEBUG DefaultClientConnection - Sending request: PUT /f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=0gvSJh3Izk8AU7j%2BTk0dQGxwLds%3D HTTP/1.1
+2016-01-20 07:28:57,972 PST DEBUG DefaultClientConnection - Sending request: PUT /c1df78016c8899a51e1176c241422b7dc8f04459?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=mhiWYaAgnNJlTPcCg8u0aJnr5ls%3D HTTP/1.1
+2016-01-20 07:28:57,972 PST DEBUG headers - >> PUT /f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=0gvSJh3Izk8AU7j%2BTk0dQGxwLds%3D HTTP/1.1
+2016-01-20 07:28:57,973 PST DEBUG headers - >> PUT /c1df78016c8899a51e1176c241422b7dc8f04459?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=mhiWYaAgnNJlTPcCg8u0aJnr5ls%3D HTTP/1.1
+2016-01-20 07:28:57,973 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:57,973 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:57,973 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:57,973 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:57,973 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:57,973 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:57,973 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 2846
+2016-01-20 07:28:57,973 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 3022
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Content-Length: 2869
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Content-Length: 3045
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:57,974 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,974 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:57,974 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:57,978 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:57,979 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:57,979 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:57,979 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:57,979 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:57,979 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:57,979 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:57,979 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:57,979 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:57,979 PST DEBUG DefaultClientConnection - Sending request: PUT /3f0636f23a76aedac289d46a9326a8da4acbbca4?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=3jBFeodQAxeFcRSSD5Fu2Y4q46Q%3D HTTP/1.1
+2016-01-20 07:28:57,979 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:57,979 PST DEBUG DefaultClientConnection - Sending request: PUT /3a186f2263ace859ec7bae0ab4d672e0c33a9d53?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=qXOok9pV%2BcE%2Fq%2BAUiIlHE%2F1Auaw%3D HTTP/1.1
+2016-01-20 07:28:57,979 PST DEBUG headers - >> PUT /3a186f2263ace859ec7bae0ab4d672e0c33a9d53?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=qXOok9pV%2BcE%2Fq%2BAUiIlHE%2F1Auaw%3D HTTP/1.1
+2016-01-20 07:28:57,979 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:57,979 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:57,980 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:57,980 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 17260
+2016-01-20 07:28:57,980 PST DEBUG headers - >> Content-Length: 6382
+2016-01-20 07:28:57,980 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:57,980 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:57,980 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,980 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:57,979 PST DEBUG headers - >> PUT /3f0636f23a76aedac289d46a9326a8da4acbbca4?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=3jBFeodQAxeFcRSSD5Fu2Y4q46Q%3D HTTP/1.1
+2016-01-20 07:28:57,981 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:57,981 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 142
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Content-Length: 165
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:57,981 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,981 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:57,993 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:57,993 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:57,994 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:57,994 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:57,994 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:57,994 PST DEBUG DefaultClientConnection - Sending request: PUT /9c252b13fa8187cf1d816fcc33ead8e6c1348498?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=eH0nx5f9QF83iVRCnjzWpee7lMc%3D HTTP/1.1
+2016-01-20 07:28:57,994 PST DEBUG headers - >> PUT /9c252b13fa8187cf1d816fcc33ead8e6c1348498?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=eH0nx5f9QF83iVRCnjzWpee7lMc%3D HTTP/1.1
+2016-01-20 07:28:57,994 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:57,994 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:57,994 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:57,994 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 154258
+2016-01-20 07:28:57,994 PST DEBUG headers - >> Content-Length: 153859
+2016-01-20 07:28:57,994 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:57,994 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:57,995 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:57,995 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:58,002 PST DEBUG RequestAddCookies - CookieSpec selected: default
+2016-01-20 07:28:58,002 PST DEBUG RequestAuthCache - Auth cache not set in the context
+2016-01-20 07:28:58,002 PST DEBUG RequestTargetAuthentication - Target auth state: UNCHALLENGED
+2016-01-20 07:28:58,002 PST DEBUG RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+2016-01-20 07:28:58,002 PST DEBUG DefaultHttpClient - Attempt 1 to execute request
+2016-01-20 07:28:58,002 PST DEBUG DefaultClientConnection - Sending request: PUT /0bd515fad3639f535852bd97319d2010fa3ac14b?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=alMWr2dum603X23vWg5OWIJcSpY%3D HTTP/1.1
+2016-01-20 07:28:58,002 PST DEBUG headers - >> PUT /0bd515fad3639f535852bd97319d2010fa3ac14b?x-amz-security-token=AQoDYXdzENX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa4AMnF7APqXJj08NM%2BOSufILpcLgadIGz6yzMXaxH%2B7XYpGqAz6Z%2BQIlpfnH3pHnw2EVXVUuWplO%2BU6enzriM%2Fwow2L8j0vvxwmg3QeBcbU9rCEfK2NuXUU9coHqecO6%2F8eExMLfffmNXa446tLIKcuVD2VXMPjugYHW006caZJ5c3DzytSPTunM%2B0bF1DtPKMdlwpUJJYXe%2F7wmRcM9nsJaK%2BmXN5hPR%2Buw2xsL7Cz08oq7h%2BqD0L0duxKaApMaj%2FxJbFLFWHc7S8pxaW9MhsYrSrtdoyQy%2Fl3TwNuUuMayf5yR%2BCqRV2G871fXXSj%2Fg0CfN%2F9LEGlFKK7GDdKKbVn2hp5rvJlffCnB729GMgO6tmuLfuE4v9a31l%2B%2FJRCc69h%2BRgc0yX1YfMBoR%2FRNn%2Bi1mPqlvpqx%2FiUWudOqjX2HcZR0gRNHiKP3WI4%2FYmTeXBetnuA%2Bhx6SIPhzz7IvT5huBffi5mLJL39Dr2nwkVIOc0JkgJ8d2sqhcFybA32%2BQcb1FS24ERj5UfZWS9YiDMY3CO7sYFLAm4%2FzoYG2gXPJdskFUEROX9P6UTv%2FqqAWIk61SVdr%2BzPr1NuAFXle4M3Z1pvkqVDJPyKSxZMIcQfvFJYc4g1SHaGlt2uA75q%2FTLxUgieL9tAU%3D&AWSAccessKeyId=ASIAI4OYGZEKDXN3CGVA&Expires=1453303797&Signature=alMWr2dum603X23vWg5OWIJcSpY%3D HTTP/1.1
+2016-01-20 07:28:58,002 PST DEBUG headers - >> x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,002 PST DEBUG headers - >> Content-Encoding: gzip
+2016-01-20 07:28:58,002 PST DEBUG headers - >> Content-Type: application/x-gzip
+2016-01-20 07:28:58,003 PST DEBUG headers - >> x-amz-meta-domino-original-blob-length: 28700
+2016-01-20 07:28:58,003 PST DEBUG headers - >> Content-Length: 8946
+2016-01-20 07:28:58,003 PST DEBUG headers - >> Host: com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com
+2016-01-20 07:28:58,003 PST DEBUG headers - >> Connection: Keep-Alive
+2016-01-20 07:28:58,003 PST DEBUG headers - >> User-Agent: JetS3t/0.9.4 (Linux/3.16.0-38-generic; amd64; en; JVM 1.7.0_91)
+2016-01-20 07:28:58,003 PST DEBUG headers - >> Expect: 100-continue
+2016-01-20 07:28:58,042 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,042 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,045 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for 'f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591' - B64:sIHYCS2sTe6VJ4p8fc/pwg== Hex:b081d8092dac4dee95278a7c7dcfe9c2
+2016-01-20 07:28:58,052 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,052 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,053 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for 'c1df78016c8899a51e1176c241422b7dc8f04459' - B64:uOl2CPHfmKRDqh9wNRc7xw== Hex:b8e97608f1df98a443aa1f7035173bc7
+2016-01-20 07:28:58,069 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,069 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,070 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for '3a186f2263ace859ec7bae0ab4d672e0c33a9d53' - B64:2HbyU7awjqxRUL9VahFDlw== Hex:d876f253b6b08eac5150bf556a114397
+2016-01-20 07:28:58,084 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,084 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,084 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,084 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,085 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for '3f0636f23a76aedac289d46a9326a8da4acbbca4' - B64:hApL+VVwavN42nuOLSMqBw== Hex:840a4bf955706af378da7b8e2d232a07
+2016-01-20 07:28:58,124 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-01-20 07:28:58,124 PST DEBUG headers - << HTTP/1.1 100 Continue
+2016-01-20 07:28:58,125 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for '0bd515fad3639f535852bd97319d2010fa3ac14b' - B64:1/L2JwvnbTgbHPqFHaTquw== Hex:d7f2f6270be76d381b1cfa851da4eabb
+2016-01-20 07:28:58,144 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,144 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,144 PST DEBUG headers - << x-amz-id-2: t621qKuLgX41QvM+aJh2aM4vVYV06gl+Jud3Ds+KqHcv1yUjyXEQdqOzBf1mSCVUUJI5Fm4BlVM=
+2016-01-20 07:28:58,144 PST DEBUG headers - << x-amz-request-id: B74A0C2B093C6EF3
+2016-01-20 07:28:58,144 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,145 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,145 PST DEBUG headers - << ETag: "b8e97608f1df98a443aa1f7035173bc7"
+2016-01-20 07:28:58,145 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,145 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,147 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,155 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: t621qKuLgX41QvM+aJh2aM4vVYV06gl+Jud3Ds+KqHcv1yUjyXEQdqOzBf1mSCVUUJI5Fm4BlVM=, x-amz-request-id: B74A0C2B093C6EF3, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "b8e97608f1df98a443aa1f7035173bc7", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,156 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@500abb49
+2016-01-20 07:28:58,156 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,156 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,157 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,157 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,157 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,157 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,157 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,158 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,158 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="b8e97608f1df98a443aa1f7035173bc7"
+2016-01-20 07:28:58,158 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,158 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,159 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,159 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,159 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,159 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,159 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: c1df78016c8899a51e1176c241422b7dc8f04459
+2016-01-20 07:28:58,169 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,169 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,169 PST DEBUG headers - << x-amz-id-2: Qs1dxnc8FElQMwsgNweWWdzqYAegGJ3+2BY4c3HU7Tfash0ayLrXoexjD1KDXU0oiSQzGywz32A=
+2016-01-20 07:28:58,169 PST DEBUG headers - << x-amz-request-id: 00AF3E5A7A1D121D
+2016-01-20 07:28:58,169 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,170 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,170 PST DEBUG headers - << ETag: "d876f253b6b08eac5150bf556a114397"
+2016-01-20 07:28:58,170 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,170 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,170 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,170 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: Qs1dxnc8FElQMwsgNweWWdzqYAegGJ3+2BY4c3HU7Tfash0ayLrXoexjD1KDXU0oiSQzGywz32A=, x-amz-request-id: 00AF3E5A7A1D121D, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "d876f253b6b08eac5150bf556a114397", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,170 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@5506cc82
+2016-01-20 07:28:58,170 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,170 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,170 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,170 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,170 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,170 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,170 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="d876f253b6b08eac5150bf556a114397"
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,171 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,171 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: 3a186f2263ace859ec7bae0ab4d672e0c33a9d53
+2016-01-20 07:28:58,175 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,175 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,175 PST DEBUG headers - << x-amz-id-2: CtKPrW+dt+60+lSRY8462BelAWyDqd3OoOrL9hC3YQ7eFAst+AyDdEMtMKfoOLZJnRdKUORWS68=
+2016-01-20 07:28:58,175 PST DEBUG headers - << x-amz-request-id: 1BD7048C31EBF588
+2016-01-20 07:28:58,175 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,175 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,175 PST DEBUG headers - << ETag: "b081d8092dac4dee95278a7c7dcfe9c2"
+2016-01-20 07:28:58,176 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,176 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,176 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,176 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: CtKPrW+dt+60+lSRY8462BelAWyDqd3OoOrL9hC3YQ7eFAst+AyDdEMtMKfoOLZJnRdKUORWS68=, x-amz-request-id: 1BD7048C31EBF588, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "b081d8092dac4dee95278a7c7dcfe9c2", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,176 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@35972277
+2016-01-20 07:28:58,176 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,176 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,176 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,176 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,176 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,176 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,176 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,176 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,176 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="b081d8092dac4dee95278a7c7dcfe9c2"
+2016-01-20 07:28:58,176 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,176 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,177 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,177 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,177 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,177 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,177 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: f817ef3e4cc36a1ab426b88a6e0ae7dc8d6e9591
+2016-01-20 07:28:58,214 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,214 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,215 PST DEBUG headers - << x-amz-id-2: jCOcCDkG44GySjn1e1sEAZB6fXGwrWdtTJ+21ep5r1DWggDR8VBuKmxP+upUM3F+MGzfNaaTmNM=
+2016-01-20 07:28:58,215 PST DEBUG headers - << x-amz-request-id: AE422762E206F7A5
+2016-01-20 07:28:58,215 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,215 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,215 PST DEBUG headers - << ETag: "840a4bf955706af378da7b8e2d232a07"
+2016-01-20 07:28:58,215 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,215 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,215 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,215 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: jCOcCDkG44GySjn1e1sEAZB6fXGwrWdtTJ+21ep5r1DWggDR8VBuKmxP+upUM3F+MGzfNaaTmNM=, x-amz-request-id: AE422762E206F7A5, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "840a4bf955706af378da7b8e2d232a07", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,215 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@5557ce1d
+2016-01-20 07:28:58,215 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,215 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,216 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,216 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,216 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,216 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="840a4bf955706af378da7b8e2d232a07"
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,216 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,216 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: 3f0636f23a76aedac289d46a9326a8da4acbbca4
+2016-01-20 07:28:58,232 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,232 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,232 PST DEBUG headers - << x-amz-id-2: 65G5FEfQwXWI4un/EeE5fJ8ZnVx3LANLqU0SXT5/uyro9FkUXv86uHqGPZqZyknloBGf3KYojYE=
+2016-01-20 07:28:58,232 PST DEBUG headers - << x-amz-request-id: E4E7188D56449AB3
+2016-01-20 07:28:58,232 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,232 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,232 PST DEBUG headers - << ETag: "d7f2f6270be76d381b1cfa851da4eabb"
+2016-01-20 07:28:58,232 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,232 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,232 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,232 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: 65G5FEfQwXWI4un/EeE5fJ8ZnVx3LANLqU0SXT5/uyro9FkUXv86uHqGPZqZyknloBGf3KYojYE=, x-amz-request-id: E4E7188D56449AB3, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "d7f2f6270be76d381b1cfa851da4eabb", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,233 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@4d2083f2
+2016-01-20 07:28:58,233 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,233 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,233 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,233 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,233 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,233 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="d7f2f6270be76d381b1cfa851da4eabb"
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,233 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,234 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: 0bd515fad3639f535852bd97319d2010fa3ac14b
+2016-01-20 07:28:58,404 PST DEBUG RepeatableRequestEntity - MD5 digest of data sent for '9c252b13fa8187cf1d816fcc33ead8e6c1348498' - B64:wKLz+voTyF9xr7IV6SnVPQ== Hex:c0a2f3fafa13c85f71afb215e929d53d
+2016-01-20 07:28:58,782 PST DEBUG DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-01-20 07:28:58,782 PST DEBUG headers - << HTTP/1.1 200 OK
+2016-01-20 07:28:58,782 PST DEBUG headers - << x-amz-id-2: 1nt1ZY/1WGpj0NhdKhtjUPFmXznusjkD4UqRycaW+4gOoQmIJxpmbQc4dsUi9EflOXeto6ihv2k=
+2016-01-20 07:28:58,782 PST DEBUG headers - << x-amz-request-id: B1AC4A4182F7AEA2
+2016-01-20 07:28:58,782 PST DEBUG headers - << Date: Wed, 20 Jan 2016 15:28:59 GMT
+2016-01-20 07:28:58,782 PST DEBUG headers - << x-amz-server-side-encryption: AES256
+2016-01-20 07:28:58,782 PST DEBUG headers - << ETag: "c0a2f3fafa13c85f71afb215e929d53d"
+2016-01-20 07:28:58,782 PST DEBUG headers - << Content-Length: 0
+2016-01-20 07:28:58,782 PST DEBUG headers - << Server: AmazonS3
+2016-01-20 07:28:58,782 PST DEBUG DefaultHttpClient - Connection can be kept alive indefinitely
+2016-01-20 07:28:58,782 PST DEBUG RestStorageService - Response for 'PUT'. Content-Type: , Headers: [x-amz-id-2: 1nt1ZY/1WGpj0NhdKhtjUPFmXznusjkD4UqRycaW+4gOoQmIJxpmbQc4dsUi9EflOXeto6ihv2k=, x-amz-request-id: B1AC4A4182F7AEA2, Date: Wed, 20 Jan 2016 15:28:59 GMT, x-amz-server-side-encryption: AES256, ETag: "c0a2f3fafa13c85f71afb215e929d53d", Content-Length: 0, Server: AmazonS3]
+2016-01-20 07:28:58,782 PST DEBUG RestStorageService - Response entity: org.apache.http.conn.BasicManagedEntity@11b6ac6d
+2016-01-20 07:28:58,783 PST DEBUG RestStorageService - Entity length: 0
+2016-01-20 07:28:58,783 PST DEBUG RestStorageService - Received response code 200; matches one of expected set ([200])? true
+2016-01-20 07:28:58,783 PST DEBUG RestUtils$ThreadSafeConnManager - Released connection is reusable.
+2016-01-20 07:28:58,783 PST DEBUG ConnPoolByRoute - Releasing connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]
+2016-01-20 07:28:58,783 PST DEBUG ConnPoolByRoute - Pooling connection [{s}->https://com-cerebro-domino-prod-blobs.s3-us-west-2.amazonaws.com:443][null]; keep alive indefinitely
+2016-01-20 07:28:58,783 PST DEBUG ConnPoolByRoute - Notifying no-one, there are no waiting threads
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Processing REST metadata items
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-request-id=>request-id
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Leaving header item unchanged: ETag="c0a2f3fafa13c85f71afb215e929d53d"
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-server-side-encryption=>server-side-encryption
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Parsing date string 'Wed, 20 Jan 2016 15:28:59 GMT' into Date object for key: Date
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Leaving header item unchanged: Date=Wed Jan 20 07:28:59 PST 2016
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Leaving HTTP header item unchanged: Content-Length=0
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Removed header prefix x-amz- from key: x-amz-id-2=>id-2
+2016-01-20 07:28:58,783 PST DEBUG ServiceUtils - Ignoring metadata item: Server=AmazonS3
+2016-01-20 07:28:58,784 PST DEBUG RestStorageService - Object upload was automatically verified, the calculated MD5 hash value matched the ETag returned by S3: 9c252b13fa8187cf1d816fcc33ead8e6c1348498
+2016-01-20 07:28:58,789 PST TRACE FileStructureRepoSynchronizer - Upload before push complete
+2016-01-20 07:28:58,791 PST TRACE FileStructureRepo - Starting push to origin: local/master = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]), origin/master = Some(AnyObjectId[36f533495f4d7772276a65a2e3a85ba86fab6a33]).
+2016-01-20 07:28:59,416 PST DEBUG FileStructureRepo - Push result: [RemoteRefUpdate[remoteName=refs/heads/master, OK, (null)...0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c, fastForward, srcRef=refs/heads/master, message=null]]
+2016-01-20 07:28:59,417 PST DEBUG FileStructureRepo - Push to origin complete: local/master = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]), origin/master = Some(AnyObjectId[0cda0cc14b4a7de3d7517c8d97e3b5bd6028ce4c]).
+2016-01-20 07:28:59,418 PST DEBUG FileStructureRepoSynchronizer - Upload complete.  Success = true
+2016-01-20 07:28:59,418 PST DEBUG FileSyncClient - Upload complete. Success = true
