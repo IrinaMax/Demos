@@ -267,7 +267,7 @@ You can see that the class is **SpatialPointsDataFrame** with 5 slots/components
 4.  **bbox**: This is the bounding box of the coordinates, and
 5.  **proj4string**: This is the Coordinate Reference System.
 
-We used the function `CRS()` to assign a Cordinate Reference System, in this case **WGS84**. We know that this is a **GEOGRAPHIC** coordinate Sytem type since the coordinates are in lontigute and latitude format.
+We used the function `CRS()` to assign a Cordinate Reference System, in this case **WGS84**. We know that this is a **GEOGRAPHIC** Coordinate Reference System (CRS) type since the coordinates are in longitute and latitude format.
 
 Alternatively you could use the `coordinates()` command as follows.
 
@@ -280,24 +280,24 @@ proj4string(crime_spatial_df1) <- CRS("+proj=longlat +ellps=WGS84")
 
 #### Cordinate Reference Systems
 
-It's important to understand the CRS. These are very helpful in geocoding data in space. There are two types of Coordinate Reference Systems (CRS) namely:
+It's important to understand Coordinate Reference Systems (CRS). These are very helpful in geocoding data in space. There are two types of CRS namely:
 
 1.  Geographic Coordinate System (longitude, latitude) e.g WGS84
 2.  Cartesian/Projected/Planar Coordinate System (x, y)
 
-The Projected Coordinate Reference System consists of several systems like:
+The Projected Coordinate Reference System consists of several systems categorized into two main classes, namely:
 
 1.  State Plane (NADS 83): This is mostly used in the United States e.g Nevada State Plane NADS83.
-2.  UTM e.g Nevada (UTM Zone 11N), South Africa (UTM Zones 34S & 35S)
+2.  Universal Transverse Mercator (UTM) e.g Nevada (UTM Zone 11N), South Africa (UTM Zones 34S & 35S)
 
 If you see coordinate data that is in the following format, then it's in a Geographic Coordinate Systems.
 
 1.  (-94.324, 42.234)
-2.  («33.33 44.4», «33d19'47"N 44d23.9'E», «38SMB4488», «38n 444000 3688000»)
+2.  (33.33 44.4), (33d19'47"N 44d23.9'E), (38SMB4488), (38n 444000 3688000)
 
 Datums: Datums are sets of parameters and ground control points defining local coordinate systems. Examples: WGS84, NADS83
 
-We now have a spatial points data frame with the right coordinate system and time data. We should probably save a copy of this as an R data file and as an ESRI shapefile.
+We now have a spatial points data frame with the right coordinate system and time data. We should probably save a copy of this as an R data file.
 
 ``` r
 ## So we can quickly read in our processed data without having to re-process it.
@@ -313,7 +313,7 @@ writeOGR(crime_spatial_df, dsn = "data/shapefiles", layer = "crime-shapefile", d
 
 ##### ESRI Shapefile Polygon
 
-Another data set that we shall need are administrative census tracts for the Housston area. These data are available as polygon shapefiles from [the US Census website](http://www.census.gov/cgi-bin/geo/shapefiles/index.php).
+Another data set that we shall use are administrative census tracts for the Housston area. These data are available as polygon shapefiles from [the US Census website](http://www.census.gov/cgi-bin/geo/shapefiles/index.php).
 
 ``` r
 ## Create a SpatialPolygonsDataFrame by reading in shapefile data
