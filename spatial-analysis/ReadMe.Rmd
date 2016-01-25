@@ -237,7 +237,7 @@ title("Locations of Offensive Crimes in Houston, Texas")
 legend("topleft", title = "Legend", legend = "Crime Locations", pch = 21, pt.bg = "red", bty = "n")
 ```
 
-While the base functions for plotting spatial data are sufficient enough to produce maps, we would love to "external" R libraries that provide more capabilities and produce beautiful maps like ggplot2, ggmap, leaflet.
+While the base functions for plotting spatial data are sufficient enough to produce maps, we would love to explore "external" R libraries that provide more capabilities and produce beautiful maps like ggplot2, ggmap, leaflet.
 
 ### Visializing the Data Using External Libraries
 
@@ -248,7 +248,7 @@ crime_df <- data.frame(crime_spatial_df)
 texas_shp_df <- fortify(texas_shp)
 ```
 
-Now we can leverage **gplot2's** powerful plotting capabilities.
+Now we can leverage **ggplot2's** powerful plotting capabilities.
 ```{r ggplot_option}
 p <- ggplot() + 
   geom_polygon(data = texas_shp_df, aes(x=long, y=lat, group = group)) + coord_equal() +
