@@ -99,17 +99,57 @@ There are several ways of reading data from shapefiles. The following example co
 sport <- readOGR(dsn = "data", layer = "london_sport")
 ```
 
+    OGR data source with driver: ESRI Shapefile 
+    Source: "data", layer: "london_sport"
+    with 33 features
+    It has 4 fields
+
 The `dsn` argument refers to a subdirectory of the current working directory, while the `layer` argument refers to the name associated with the relevant set of shapefiles. More specifically, it accesses the files `london_sport.shp`, `london_sport.dbf`, `london_sport.sbn`, etc.
 
 As an S4 object, the information in `sport` is held in *slots*, accessed by `@`. Slots are somewhat analogous to list components. The metadata in a `SpatialPolygonsDataFrame` (SPDF) are held in its `data` slot; the other slots contain information about the geometry of the spatial object.
 
 ``` r
 head(sport@data, n = 2)
+```
+
+      ons_label                 name Partic_Per Pop_2001
+    0      00AF              Bromley       21.7   295535
+    1      00BD Richmond upon Thames       26.6   172330
+
+``` r
 # Note that the slot is a data frame
 str(sport@data)
+```
+
+    'data.frame':   33 obs. of  4 variables:
+     $ ons_label : Factor w/ 33 levels "00AA","00AB",..: 6 27 17 16 21 29 18 24 32 8 ...
+     $ name      : Factor w/ 33 levels "Barking and Dagenham",..: 5 27 17 16 21 29 18 24 32 8 ...
+     $ Partic_Per: num  21.7 26.6 21.5 17.9 24.4 19.3 16.9 20.7 26 17.6 ...
+     $ Pop_2001  : int  295535 172330 243006 224262 147271 179767 212352 187919 260379 330584 ...
+
+``` r
 # Generate a summary of the object
 summary(sport)
 ```
+
+    Object of class SpatialPolygonsDataFrame
+    Coordinates:
+           min      max
+    x 503571.2 561941.1
+    y 155850.8 200932.5
+    Is projected: TRUE 
+    proj4string :
+    [+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000
+    +y_0=-100000 +ellps=airy +units=m +no_defs]
+    Data attributes:
+       ons_label                    name      Partic_Per       Pop_2001     
+     00AA   : 1   Barking and Dagenham: 1   Min.   : 9.10   Min.   :  7181  
+     00AB   : 1   Barnet              : 1   1st Qu.:17.60   1st Qu.:181284  
+     00AC   : 1   Bexley              : 1   Median :19.40   Median :216505  
+     00AD   : 1   Brent               : 1   Mean   :20.05   Mean   :217335  
+     00AE   : 1   Bromley             : 1   3rd Qu.:21.70   3rd Qu.:248917  
+     00AF   : 1   Camden              : 1   Max.   :28.40   Max.   :330584  
+     (Other):27   (Other)             :27                                   
 
 The summary tells us that the object `sport` is a `SpatialPolygonsDataFrame`. Moreover, there is some information about the CRS: we see that the object is projected, which means it is a Cartesian reference system. It also appears that the projection is Mercator.
 
@@ -119,12 +159,36 @@ Before doing any plotting, we can change the coordinate reference system by rede
 proj4string(sport) <- CRS("+init=epsg:27700")
 ```
 
+    Warning in `proj4string<-`(`*tmp*`, value = <S4 object of class structure("CRS", package = "sp")>): A new CRS was assigned to an object with an existing CRS:
+    +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs
+    without reprojecting.
+    For reprojection, use function spTransform in package rgdal
+
 The warning states that the CRS is being changed, but the data are not being reprojected. To do that, you need to use `spTransform`. For example, to change the CRS to `WGS84`, one would use
 
 ``` r
 sport.wgs84 <- spTransform(sport, CRS("+init=epsg:4326"))
 summary(sport.wgs84)
 ```
+
+    Object of class SpatialPolygonsDataFrame
+    Coordinates:
+             min        max
+    x -0.5103395  0.3338729
+    y 51.2867601 51.6918477
+    Is projected: FALSE 
+    proj4string :
+    [+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84
+    +towgs84=0,0,0]
+    Data attributes:
+       ons_label                    name      Partic_Per       Pop_2001     
+     00AA   : 1   Barking and Dagenham: 1   Min.   : 9.10   Min.   :  7181  
+     00AB   : 1   Barnet              : 1   1st Qu.:17.60   1st Qu.:181284  
+     00AC   : 1   Bexley              : 1   Median :19.40   Median :216505  
+     00AD   : 1   Brent               : 1   Mean   :20.05   Mean   :217335  
+     00AE   : 1   Bromley             : 1   3rd Qu.:21.70   3rd Qu.:248917  
+     00AF   : 1   Camden              : 1   Max.   :28.40   Max.   :330584  
+     (Other):27   (Other)             :27                                   
 
 Note that not only is the CRS changed to `WGS84`, but the object `sport.wgs84` is not projected since the `+proj` argument was not applied.
 
@@ -134,12 +198,16 @@ The geometry data can be plotted with the `plot()` method associated with S4 spa
 plot(sport)
 ```
 
+![](ReadMe_files/figure-markdown_github/ex1-plot-borders-1.png)<!-- -->
+
 Adding some metadata to the plot is fairly simple:
 
 ``` r
 plot(sport)
 plot(sport[sport$Partic_Per > 25, ], col = "blue", add = TRUE)
 ```
+
+![](ReadMe_files/figure-markdown_github/ex1-plot-meta0-1.png)<!-- -->
 
 This shows the boroughs of London where participation in sports is over 25%. However, it is important to observe that the metadata is not bound to the geometry data. In this example, the mapping was rendered in base graphics. However, it is more common in R to use the `lattice` and `ggplot2` packages for mapping spatial data. Moreover, there exist additional CRAN packages for more specific sets of spatial mapping applications, a few of which will be considered later in this document.
 
@@ -154,12 +222,33 @@ sport.f <- fortify(sport, region = "ons_label")
 str(sport.f)
 ```
 
+    'data.frame':   1102 obs. of  7 variables:
+     $ long : num  531027 531555 532136 532946 533411 ...
+     $ lat  : num  181611 181659 182198 181895 182038 ...
+     $ order: int  1 2 3 4 5 6 7 8 9 10 ...
+     $ hole : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+     $ piece: Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
+     $ id   : chr  "00AA" "00AA" "00AA" "00AA" ...
+     $ group: Factor w/ 33 levels "00AA.1","00AB.1",..: 1 1 1 1 1 1 1 1 1 1 ...
+
 In this call, `ons_label` identifies boroughs; it is a variable in `sport@data`. We can see from the output of `str()` that the result is indeed a data frame. However, the attribute information is lost in the process, so we need to get it back through a merge operation.
 
 ``` r
 sport.f <- merge(sport.f, sport@data, by.x = "id", by.y = "ons_label")
 str(sport.f)
 ```
+
+    'data.frame':   1102 obs. of  10 variables:
+     $ id        : chr  "00AA" "00AA" "00AA" "00AA" ...
+     $ long      : num  531027 531555 532136 532946 533411 ...
+     $ lat       : num  181611 181659 182198 181895 182038 ...
+     $ order     : int  1 2 3 4 5 6 7 8 9 10 ...
+     $ hole      : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+     $ piece     : Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
+     $ group     : Factor w/ 33 levels "00AA.1","00AB.1",..: 1 1 1 1 1 1 1 1 1 1 ...
+     $ name      : Factor w/ 33 levels "Barking and Dagenham",..: 7 7 7 7 7 7 7 7 7 7 ...
+     $ Partic_Per: num  9.1 9.1 9.1 9.1 9.1 9.1 9.1 9.1 9.1 9.1 ...
+     $ Pop_2001  : int  7181 7181 7181 7181 7181 7181 7181 7181 7181 7181 ...
 
 This recovers the attribute data, so we are now ready to use this data frame for plotting maps in `ggplot2`. The following code plots sport participation by borough using a greyscale gradient:
 
@@ -176,6 +265,8 @@ Map <- ggplot(sport.f,
 Map + scale_fill_gradient(low = "grey30", high = "white")
 ```
 
+![](ReadMe_files/figure-markdown_github/map-sport-partic-1.png)<!-- -->
+
 This is a version of a choropleth map. Adding the argument `color = "black"` to `geom_polygon()` produces black outlines of borough boundaries. Since we are plotting the map in greyscale, it's useful to create a dark panel background to make the gradations in greyscale pop out a bit more.
 
 Example 2: Merging attribute data from two sources
@@ -187,6 +278,11 @@ This example will also use the London shapefile, but will use a different set of
 lnd <- readOGR(dsn = "data", layer = "london_sport")
 ```
 
+    OGR data source with driver: ESRI Shapefile 
+    Source: "data", layer: "london_sport"
+    with 33 features
+    It has 4 fields
+
 The attribute data associated with `lnd` contains information about sport participation and 2001 population. The objective in this section is to merge it with a related source of crime data.
 
 ``` r
@@ -194,6 +290,15 @@ crimeDat <- read.csv("data/mps-recordedcrime-borough.csv",
                      fileEncoding = "UCS-2LE")
 head(crimeDat, 3)
 ```
+
+       Month                   MajorText              MinorText CrimeCount
+    1 201104 Violence Against The Person         Common Assault         81
+    2 201104                    Burglary Burglary In A Dwelling         78
+    3 201104   Other Notifiable Offences       Other Notifiable         12
+        Spatial_DistrictName
+    1 Kensington and Chelsea
+    2 Kensington and Chelsea
+    3 Kensington and Chelsea
 
 Our first step is to aggregate the number of Theft and Handling crimes over boroughs. The GeoTALISMAN short course notes show how to do this with base package code, but it is clearer to do this with `dplyr` and the result is the same (except for data class).
 
@@ -220,12 +325,23 @@ lndCrime <- merge(lnd, crimeAgg[, -1],  by = "name")
 class(lndCrime)
 ```
 
+    [1] "SpatialPolygonsDataFrame"
+    attr(,"package")
+    [1] "sp"
+
 To merge the data into a separate object, we do the following:
 
 ``` r
 londonCrime <- lnd@data %>% inner_join(crimeAgg[, -1])
 str(londonCrime)
 ```
+
+    'data.frame':   32 obs. of  5 variables:
+     $ ons_label : Factor w/ 33 levels "00AA","00AB",..: 6 27 17 16 21 29 18 24 32 8 ...
+     $ name      : chr  "Bromley" "Richmond upon Thames" "Hillingdon" "Havering" ...
+     $ Partic_Per: num  21.7 26.6 21.5 17.9 24.4 19.3 16.9 20.7 26 17.6 ...
+     $ Pop_2001  : int  295535 172330 243006 224262 147271 179767 212352 187919 260379 330584 ...
+     $ CrimeCount: int  15172 9715 15302 12611 9023 8810 17319 10508 22898 21259 ...
 
 Apart from the ordering of the columns, `londonCrime` and `lndCrime@data` are equivalent.
 
@@ -237,13 +353,42 @@ It is reasonably common to have spatial data that apply to a broader geographica
 ``` r
 # read in the lnd-stns shapefile
 stations <- readOGR(dsn = "data", layer = "lnd-stns")
+```
+
+    OGR data source with driver: ESRI Shapefile 
+    Source: "data", layer: "lnd-stns"
+    with 2532 features
+    It has 27 fields
+
+``` r
 # check the projection with that of lnd
 proj4string(stations)
+```
+
+    [1] "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+``` r
 proj4string(lnd)
+```
+
+    [1] "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"
+
+``` r
 # compare the respective bounding boxes
 bbox(stations)
+```
+
+                    min        max
+    coords.x1 -1.199066  0.9358515
+    coords.x2 50.984598 51.9398978
+
+``` r
 bbox(lnd)
 ```
+
+           min      max
+    x 503571.2 561941.1
+    y 155850.8 200932.5
 
 Firstly, the CRS of `stations` differs from that of `lnd`; secondly, the bounding boxes are widely different. This means we need to do some work to make the coordinate systems correspond. We choose to reproject the `stations` shapefile to make it correspond with `lnd` and then plot the results.
 
@@ -253,6 +398,8 @@ plot(lnd)
 points(stations)
 ```
 
+![](ReadMe_files/figure-markdown_github/stations-reproj-1.png)<!-- -->
+
 We can see that the `stations` data go well beyond the London city limits and into the suburbs, so we need to clip it, which is quite easy to do:
 
 ``` r
@@ -260,6 +407,8 @@ stations_lnd <- stations[lnd, ]
 plot(lnd)
 points(stations_lnd, cex = 0.6)
 ```
+
+![](ReadMe_files/figure-markdown_github/stations-plot-lnd-1.png)<!-- -->
 
 The subsetting that produces `stations_lnd` works because it is using the function `sp::over()` in the background. The less concise version is
 
@@ -278,10 +427,19 @@ stations.c <- aggregate(x = stations["CODE"], by = lnd, FUN = length)
 class(stations.c)
 ```
 
+    [1] "SpatialPolygonsDataFrame"
+    attr(,"package")
+    [1] "sp"
+
 Observe that the `by` variable, `lnd`, is used to identify the borough in which each station is located. We then count the number of stations in each borough. One option is to extend `lnd` by adding a new list component; to do this,
 
 ``` r
 names(stations.c@data)
+```
+
+    [1] "CODE"
+
+``` r
 lnd$NPoints <- stations.c$CODE   # add new component to lnd
 ```
 
@@ -304,12 +462,27 @@ plot(lndCrime, col = cols[q])
 legend(legend = levels(lndCrime@data$crimeCat), fill = cols, "topright")
 ```
 
+![](ReadMe_files/figure-markdown_github/cat-crime-1.png)<!-- -->
+
 The two high-crime boroughs are in the central part of the city, with one of them having over twice the theft incidence of the other.
 
 We can add information to this map concerning the location of train stations and tube (subway) stations within greater London. This is done by using the `stations` data again, subsetting the stations within London and making separate symbols to distinguish the two types. This is done through regular expressions on the station description in the variable `LEGEND`; we want to select A Roads and Rapid Transit stations.
 
 ``` r
 levels(stations$LEGEND)
+```
+
+    [1] "Railway Station"                           
+    [2] "Rapid Transit Station"                     
+    [3] "Roundabout, A Road Dual Carriageway"       
+    [4] "Roundabout, A Road Single Carriageway"     
+    [5] "Roundabout, B Road Dual Carriageway"       
+    [6] "Roundabout, B Road Single Carriageway"     
+    [7] "Roundabout, Minor Road over 4 metres wide" 
+    [8] "Roundabout, Primary Route Dual Carriageway"
+    [9] "Roundabout, Primary Route Single C'way"    
+
+``` r
 stations_lnd <- stations[lnd, ]
 sel <- grepl("A Road|Rapid", stations_lnd$LEGEND)
 sym <- 2 + grepl("Rapid", droplevels(stations_lnd$LEGEND[sel]))
@@ -317,6 +490,8 @@ plot(lnd)
 points(stations_lnd[sel, ], pch = sym, cex = 0.8)
 legend(legend = c("A Road", "RTS"), "bottomright", pch = unique(sym))
 ```
+
+![](ReadMe_files/figure-markdown_github/stat-select-1.png)<!-- -->
 
 Fun with rgeos
 --------------
@@ -330,11 +505,29 @@ Some of the tasks performed above can also be done with the `rgeos` package. The
 int <- gIntersects(stations, lnd, byid = TRUE)
 b.indices <- which(int, arr.ind = TRUE)
 summary(b.indices)
+```
 
+          row             col        
+     Min.   : 1.00   Min.   :  91.0  
+     1st Qu.: 8.00   1st Qu.: 446.5  
+     Median :15.00   Median : 636.0  
+     Mean   :15.01   Mean   : 946.3  
+     3rd Qu.:22.00   3rd Qu.:1370.5  
+     Max.   :33.00   Max.   :2496.0  
+
+``` r
 b.names <- lnd$name[b.indices[, 1]]
 b.count <- aggregate(b.indices ~ b.names, FUN = length)
 head(b.count)
 ```
+
+                   b.names row col
+    1 Barking and Dagenham  12  12
+    2               Barnet  31  31
+    3               Bexley  28  28
+    4                Brent  30  30
+    5              Bromley  48  48
+    6               Camden  14  14
 
 The original `stations` data has 2352 rows while the `lnd@data` data frame has 33, one row per borough. The object `int` is a logical matrix of size 33 \(\times\) 2352 that indicates, for each borough, whether a station is or is not located within it. The matrix `b.indices` has one row per station located inside greater London whose first coordinate is its borough. The atomic vector `b.names` is a factor of length 731 that contains the borough name of each row of `b.indices`, and equivalently, of `stations_lnd`. Finally, the vector `b.count` contains the number of stations in each borough.
 
@@ -344,6 +537,8 @@ To plot the locations of the stations within borough Barking and Dagenham, we fi
 plot(lnd[grepl("Barking", lnd$name), ])
 points(stations_lnd[which(b.names == "Barking and Dagenham"), ])
 ```
+
+![](ReadMe_files/figure-markdown_github/plot-bd-1.png)<!-- -->
 
 Finally, we can plot the number of stations in each borough with a choropleth as follows.
 
@@ -355,6 +550,8 @@ plot(lnd, col = cols[qv])
 rngs <- c("0-10", "11-20", "21-30", "31-40", "41-50")
 legend(legend = rngs, fill = cols, "topright")
 ```
+
+![](ReadMe_files/figure-markdown_github/choro-count-1.png)<!-- -->
 
 Maps with ggplot2
 -----------------
@@ -421,6 +618,8 @@ ggplot(france2, aes(x = long, y = lat, group = group)) +
   coord_quickmap()
 ```
 
+![](ReadMe_files/figure-markdown_github/fortify-france-1.png)<!-- -->
+
 Note that `coord_quickmap()` was introduced in `ggplot2-1.1.0` and provides a quick-and-dirty way to set a reasonable aspect ratio for long-lat coordinates. Another option is to use `coord_equal()`, which ensures the same long-lat units in each direction.
 
 This map does not contain the unemployment data. We want to do two things:
@@ -468,6 +667,8 @@ ggplot(france_adm1, aes(x = long, y = lat)) +
     labs(x = "Longitude", y = "Latitude", fill = "Rate (%) ") 
 ```
 
+![](ReadMe_files/figure-markdown_github/france-choro-1.png)<!-- -->
+
 The separate annotation data frame reduces execution time by a considerable margin.
 
 If we replace the unemployment rate annotation with department names, we run into a problem of overlapping names. The `ggrepel` package provides a way out:
@@ -484,6 +685,8 @@ ggplot(france_adm1, aes(x = long, y = lat)) +
     scale_fill_gradient(low = "orangered", high = "yellow") +
     labs(x = "Longitude", y = "Latitude", fill = "Rate (%) ") 
 ```
+
+![](ReadMe_files/figure-markdown_github/choronames-1.png)<!-- -->
 
 The function `geom_text_repel()` applies a text separation algorithm that tries to disentangle overlapping text as best it can. It does a pretty decent job in this case, but it would be less successful if the text size were increased.
 
@@ -512,6 +715,8 @@ ggplot(france_adm2, aes(x = long, y = lat)) +
     facet_wrap(~ year)
 ```
 
+![](ReadMe_files/figure-markdown_github/melt-unemp-1.png)<!-- -->
+
 This plot shows a gradual nationwide increase in unemployment since the financial crisis struck in 2008, despite the fact that France resisted the austerity measures imposed by the Central European Bank that caused unemployment to soar in other countries. When a department has the same color as the background, it means the unemployment rate is missing for that year. Most of the missing data is in 2003 and 2004, but the unemployment rate is also missing for Corsica (Corse) in 2009 and 2011.
 
 ### Example 5: California cities
@@ -532,6 +737,14 @@ ca_counties <- map_data("county", "california") %>%
 head(ca_counties)
 ```
 
+            lon      lat group      id
+    1 -121.4785 37.48290     1 alameda
+    2 -121.5129 37.48290     1 alameda
+    3 -121.8853 37.48290     1 alameda
+    4 -121.8968 37.46571     1 alameda
+    5 -121.9254 37.45998     1 alameda
+    6 -121.9483 37.47717     1 alameda
+
 We can plot it as follows:
 
 ``` r
@@ -542,6 +755,8 @@ ggplot(ca_counties, aes(x = lon, y = lat)) +
     coord_quickmap() +
     theme(panel.background = element_rect(fill = "gray20"))
 ```
+
+![](ReadMe_files/figure-markdown_github/ca-counties-1.png)<!-- -->
 
 The last line just sets a slightly darker fill color than the default for `theme_dark()`. Next, let's extract some (obsolete) data for California cities with population over 200,000.
 
@@ -565,6 +780,8 @@ ggplot(ca_cities, aes(x = lon, y = lat)) +
   scale_size_area() + 
   coord_quickmap() 
 ```
+
+![](ReadMe_files/figure-markdown_github/ca_pop_plot-1.png)<!-- -->
 
 Fortunately, several sources exist for getting vector boundaries data at the state and county level. We have already seen two ways to get state level boundaries: from `gadm.org` and from the `maps` package. Another source is the `choroplethr` package and its companion, `choroplethrMaps`. We have also cited the `tigris` package on Github and the CRAN package `USAboundaries`.
 
@@ -595,6 +812,8 @@ ggplot(crimes, aes(map_id = state)) +
 last_plot() + coord_map()
 ```
 
+![](ReadMe_files/figure-markdown_github/usarrests-plot-1.png)![](ReadMe_files/figure-markdown_github/usarrests-plot-2.png)
+
 To plot choropleths for multiple crimes, we use the melted data in conjunction with `facet_wrap()`. The downside of this approach is that murder rates, for example, are much lower than assault rates. The fill scale colorbar covers the range of values over all faceted variables rather than individual variables, so we find in the plot below that the map for all crimes other than assault are essentially uninformative due to homogeneity in color.
 
 ``` r
@@ -603,6 +822,8 @@ ggplot(crimesm, aes(map_id = state)) +
     expand_limits(x = states_map$long, y = states_map$lat) +
     facet_wrap( ~ variable)
 ```
+
+![](ReadMe_files/figure-markdown_github/multicrime-1.png)<!-- -->
 
 Mapping with raster images
 --------------------------
@@ -623,12 +844,24 @@ air$dir <- 2 * pi * air$wd/360  # convert from degrees to radians
 str(air)
 ```
 
+    'data.frame':   8 obs. of  8 variables:
+     $ label: int  43 71 73 75 298 540 1019 2002
+     $ site : chr  "PM" "WJ" "PV" "JO" ...
+     $ lat  : num  36.1 36.2 36.2 36.3 36 ...
+     $ lon  : num  -115 -115 -115 -115 -115 ...
+     $ ws   : int  15 9 20 8 13 5 10 11
+     $ wd   : int  90 270 180 185 112 10 189 45
+     $ o3   : int  80 80 82 77 81 87 84 83
+     $ dir  : num  1.57 4.71 3.14 3.23 1.95 ...
+
 The original wind direction is in degrees, but we will be using `geom_spoke()`, which requires angles in radians. Next, we get a map of Las Vegas as follows.
 
 ``` r
 map <- get_map(location = "Clark County, NV", zoom = 10, maptype = "roadmap")
 class(map)
 ```
+
+    [1] "ggmap"  "raster"
 
 `ggmap::ggmap()` requires an object of class `ggmap` as input. One of its arguments allows darkening of the map so that the features in the plot appear more prominently. We plot wind vectors in this graph, whose angle reflects wind direction and whose length reflects wind speed. Color is mapped to \(O_3\) concentration, where higher \(O_3\) values get lighter colors. Since \(O_3\) is numeric, the guide is a colorbar. The plotted points represent the locations where the measurements were taken. The numbers in yellow are numeric codes for the locations.
 
@@ -645,6 +878,8 @@ ggmap(map, darken = 0.4) +
                      radius=ws/100, colour = o3),
                  size = 1.5)
 ```
+
+![](ReadMe_files/figure-markdown_github/lv-windplot-1.png)<!-- -->
 
 This example shows a rather typical use of `ggmap`: get a nice raster image background map and then superimpose a `ggplot` on top of it.
 
@@ -675,6 +910,8 @@ ggmap(lnd_b1) +
     scale_fill_gradient(low = "maroon", high = "yellow")
 ```
 
+![](ReadMe_files/figure-markdown_github/sport.wgs84-map-1.png)<!-- -->
+
 We can try a different base map and crop it to the City of London itself.
 
 ``` r
@@ -687,6 +924,8 @@ ggmap(lnd_b2) +
                  alpha = 0.5) +
     scale_fill_gradient(low = "blue", high = "yellow")
 ```
+
+![](ReadMe_files/figure-markdown_github/sport-wgs84-map2-1.png)<!-- -->
 
 Coda
 ----

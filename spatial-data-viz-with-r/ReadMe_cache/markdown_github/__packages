@@ -7,3 +7,6 @@ rgeos
 maptools
 ggplot2
 ggmap
+readxl
+ggrepel
+maps
