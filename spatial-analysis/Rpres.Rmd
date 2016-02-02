@@ -155,7 +155,7 @@ str(crime_spatial_df)
 You can see that the class is **SpatialPointsDataFrame** with 5 slots/components including:
 
 1. **data**: The origin data that was read into R,
-2. **coords.nrs**: The data type of the coordinates
+2. **coords.nrs**: The column positions where in data the coordinates were taken from
 3. **coords**: These are the coordinates
 4. **bbox**: This is the bounding box of the coordinates, and 
 5. **proj4string**: This is the Coordinate Reference System.  
