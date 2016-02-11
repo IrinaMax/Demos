@@ -2,6 +2,7 @@
 title: "Intro to Data Visualization with R for Data Journalists"
 author: "Daniel Emaasit"
 date: "February 11, 2016"
+always_allow_html: yes
 output: 
   md_document:
     variant: markdown_github
@@ -37,5 +38,13 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 library(ggplot2)
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + 
   geom_point()
+```
+
+## Building Interactive Graphics
+```{r plotly, cache = FALSE}
+library(plotly)
+p <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + 
+  geom_point()
+ggplotly(p)
 ```
 
