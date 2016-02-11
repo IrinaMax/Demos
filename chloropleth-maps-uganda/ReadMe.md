@@ -1,12 +1,12 @@
--   [Cholopleth Maps in R for Uganda](#cholopleth-maps-in-r-for-uganda)
-    -   [What is choloplethr?](#what-is-choloplethr)
+-   [Choropleth Maps in R for Uganda](#choropleth-maps-in-r-for-uganda)
+    -   [What is choroplethr?](#what-is-choroplethr)
     -   [Installation](#installation)
     -   [References](#references)
 
-Cholopleth Maps in R for Uganda
+Choropleth Maps in R for Uganda
 ===============================
 
-What is choloplethr?
+What is choroplethr?
 --------------------
 
 choroplethr simplifies the creation of choropleth maps in R. Choropleths are thematic maps where geographic regions, such as states, are colored according to some metric, such as the number of people who live in that state. choroplethr simplifies this process by
