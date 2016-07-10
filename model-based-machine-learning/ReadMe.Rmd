@@ -48,19 +48,16 @@ The first key idea enabling this different framework for machine learning is Bay
 Probabilistic programming is a flexible software development environment for model-based machine learning. It takes existing programming languages and adds support for random variables, constraints on variables and inference packages. In this environment, models can be described in a compact form with a few lines of code, and then an inference engine is called to automatically generate inference routines (and even source code) to solve a wide variety of models. Some notable examples of probabilistic programming languages include Infer.Net [@minka2010], Stan [@stan2016], BUGS [@lunn2000], church [@goodman2008], and PyMC [@patil2010]. In this project, we access Stan algorithms through the R interface [@rstan2016] as described in section 5.
 
 ## Stages of MBML
+There are 3 steps to model based machine learning namely:
+1. *Describe the Model*: Describe the process that generated the data using factor graphs.
 
-### Describe the Model
-Describe the process that generated the data.
+2. *Condition on Observed Data*: Condition the observed variables to their known quantities
 
-### Incorporate Observed Data
-Condition the observed variables to their known quantities
-
-### Perform Inference
-Perform backward reasoning to update the prior distribution over the latent variables or parameters.
+3. *Perform Inference*: Perform backward reasoning to update the prior distribution over the latent variables or parameters. In other words, calculate the posterior probability distributions of latent variables conditioned on observed variables.
 
 ## Case Study
 
-### Traffic Prediction
+### A Model for Traffic Prediction
 Suppose you wish to track the changing skill of a player in an online gaming service (this is the problem we will explore in detail in Chapter 3). A machine learning textbook might tell you that there is an algorithm called a Kalman filter [Kalman, 1960] which can be used for these kinds of problems. Suppose you decide to try and make use of some Kalman filter software to predict how a player’s skill evolves over time. First you will have to work out how to convert the skill prediction task into the form of a standard Kalman filter. Having done that, if you are lucky, the software might give a sufficiently good solution. However, the results from using an off-the-shelf algorithm often fail to reach the accuracy level required by real applications. How will you modify the algorithm, and the corresponding software, to achieve better results? It seems you will have to become an expert on the Kalman filter algorithm, and to delve into the software implementation, in order to make progress.
 
 Contrast this with the model-based approach. You begin by listing the assumptions which your solution must satisfy. This defines your model. You then use this model to create the corresponding machine-learning algorithm, which is a mechanical process that can be automated. If your assumptions happen to correspond to those which are implicit in the Kalman filter, then your algorithm will correspond precisely to the Kalman filtering algorithm (and this will happen even if you have never heard of a Kalman filter). Perhaps, however, the model for your particular application has somewhat different assumptions. In this case you will obtain a variant of the Kalman filter, appropriate to your application. Whether this variant already exists, or whether it is a novel algorithm, is irrelevant if your goal is to find the best solution to your problem. Suppose you try your model-based algorithm, and the results again fall short of your requirements. Now you have a framework for improving the results by examining and modifying the assumptions to produce a better model, along with the corresponding improved algorithm. As a domain expert it is far easier and more intuitive to understand and change the assumptions than it is to modify a machine learning algorithm directly. Even if your goal is simply to understand the Kalman filter, then starting with the model assumptions is by far the clearest and simplest way to derive the filtering algorithm, and to understand what Kalman filters are all about.
@@ -80,56 +77,82 @@ install.packages("rstan", type = "source")
 ```
 
 You are recommended to restart R after the installation before loading the rstan package. Then load the rstan library like this:
-```{r load-library, eval = FALSE}
+```{r load-library}
 library(rstan)
 ```
 
 Then you can describe the model is a compact language using the Stan modeling language as follows:
-```{r traffic-stan, eval = FALSE}
-## First, we specify this model in a file called 8schools.stan as follows
+1. First, we specify this model in a file called traffic.stan as follows  
 
-## The first section of the below code specifies the data that is 
-## conditioned upon by Bayes Rule
+2. The first section of the below code specifies the data that is conditioned upon by Bayes Rule  
 
-## The second section of the code defines the parameters whose posterior distribution 
-## is sought using Bayes Rule
-
-data {
-  int<lower=0> J; //  the number of schools, J; constrained to be non-negative
-  real y[J]; // vector of estimated treatment effects,y1, . . . , yJ (real = double)
-  real<lower=0> sigma[J]; //  the standard errors, σ1, . . . σJ, of effect estimates 
-
+3. The second section of the code defines the parameters whose posterior distribution is sought using Bayes Rule  
+```{r traffic-stan}
+traffic_model <- "
+  data {
+  int<lower=0> N;
+  int<lower=0> T;
+  real x[T];
+  real y[N,T];
+  real xbar;
+}
 parameters {
-  real mu; // the mean of the school effects
-  real<lower=0> tau; // the standard deviation of the school effects
-  real eta[J];  // the standardized school-level effects
+  real alpha[N];
+  real beta[N];
+
+  real mu_alpha;
+  real mu_beta;          
+
+  real<lower=0> sigmasq_y;
+  real<lower=0> sigmasq_alpha;
+  real<lower=0> sigmasq_beta;
 }
 transformed parameters {
-  real theta[J];  // the unstandardized school-level effects
-  for (j in 1:J)
-    theta[j] <- mu + tau * eta[j];
+  real<lower=0> sigma_y;       
+  real<lower=0> sigma_alpha;
+  real<lower=0> sigma_beta;
+
+  sigma_y <- sqrt(sigmasq_y);
+  sigma_alpha <- sqrt(sigmasq_alpha);
+  sigma_beta <- sqrt(sigmasq_beta);
 }
 model {
-  eta ~ normal(0, 1);
-  y ~ normal(theta, sigma); // the second argument in Stan's normal(.,.) is the standard deviation
+  mu_alpha ~ normal(0, 100);
+  mu_beta ~ normal(0, 100);
+  sigmasq_y ~ inv_gamma(0.001, 0.001);
+  sigmasq_alpha ~ inv_gamma(0.001, 0.001);
+  sigmasq_beta ~ inv_gamma(0.001, 0.001);
+  alpha ~ normal(mu_alpha, sigma_alpha); // vectorized
+  beta ~ normal(mu_beta, sigma_beta);  // vectorized
+  for (n in 1:N)
+    for (t in 1:T) 
+      y[n,t] ~ normal(alpha[n] + beta[n] * (x[t] - xbar), sigma_y);
+
 }
+generated quantities {
+  real alpha0;
+  alpha0 <- mu_alpha - xbar * mu_beta;
+}
+"
 ```
 
 After describing the model, you can perform inference by calling Stan inference engine as follows:
-```{r fit-model, eval = FALSE}
-traffic_data <- list(y = read.table('traffic.txt', header = TRUE),
-                 x = c(8, 15, 22, 29, 36),
-                 xbar = mean(x),
-                 N = nrow(y),
-                 T = ncol(y))
+```{r fit-model}
+y = read.table('data/rats.txt', header = TRUE)
+x = c(8, 15, 22, 29, 36)
+xbar = mean(x)
+N = nrow(y)
+T = ncol(y)
+traffic_data <- list(y, x, xbar, N, T)
 
-traffic_fit <- stan(file = 'traffic.stan', data = traffic_data, 
-            iter = 1000, chains = 4, save_dso = TRUE)
+traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic", 
+                          data = traffic_data, iter = 1000, chains = 4, save_dso = TRUE)
+
 ```
 
 Now, let's use the following code to check out the results in ```traffic_fit```. We can review a summary of the parameter of the model as well as the log-posterior by using the ```print()``` function.
-```{r print-fit, eval = FALSE}
-print(fit, digits = 1)
+```{r print-fit}
+print(traffic_model_fit, digits = 1)
 ```
 
 ## Conclusion
@@ -164,4 +187,4 @@ For further reading, refer to the following references.
 
 9. D. Emaasit, A. Paz, and J. Salzwedel (2016). ["A Model-Based Machine Learning Approach for Capturing Activity-Based Mobility Patterns using Cellular Data"](). IEEE ITSC 2016. Under Review.
 
-10. D. Emaasit (2017). ["A Model-Based Machine Learning Approach for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya"](). TRB 2017. Under Review.
+10. D. Emaasit (2017). ["A Model-Based Machine Learning Framework for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya"](). TRB 2017. Under Review.
