@@ -1,5 +1,5 @@
 ---
-title: "Model-Based Machine Learning and Probabilistic Programming Using RStan"
+title: "Introduction to Model-Based Machine Learning"
 author: "Daniel Emaasit"
 date: "July 11, 2016"
 output: 
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(cache=TRUE)
 ```
 
-# Model-Based Machine Learning and Probabilistic Programming Using RStan
+# Introduction to Model-Based Machine Learning
 
 ## Introduction
 During the last few years, the field of machine learning has moved to centre stage in the world of technology. Today thousands of scientists and engineers are applying machine learning to an extraordinarily broad range of domains. However, making effective use of machine learning in practice can be daunting, especially for newcomers to the field. Here are some of the principal challenges encountered when trying to solve real-world problems using machine learning
@@ -49,13 +49,10 @@ Probabilistic programming is a flexible software development environment for mod
 
 ### Perform Inference
 
-## Case Studies
+## Case Study
 
 ### Traffic Prediction
-
-### Credit Scoring
-
-### Recommender Systems
+![Traffic](figures/traffic.jpg)
 
 ## Conclusion
 In the next blog post, we shall see how to perform geostatistical analysis on spatial data. 
@@ -63,41 +60,38 @@ In the next blog post, we shall see how to perform geostatistical analysis on sp
 ## References
 For further reading, refer to the following references.  
 
-\section*{References}\label{references}
-\addcontentsline{toc}{section}{References}
+J. Winn, C. Bishop, and T. Diethe, Model-Based Machine Learning,Microsoft Research, ![http://www.mbmlbook.com/](http://www.mbmlbook.com/),2015.
 
-\hypertarget{refs}{}
-\hypertarget{ref-bishop2013}{}
-{[}1{]} Bishop, C. 2012. \emph{Model-based machine learning}. John Wiley
-\& Sons, Inc.
+C. M. Bishop, “Model-based machine learning” Phil Trans R Soc, A 371: 20120222. ![http://dx.doi.org/10.1098/rsta.2012.0222](http://dx.doi.org/10.1098/rsta.2012.0222), Jan. 2013
 
-\hypertarget{ref-goodman2008}{}
-{[}2{]} Goodman, D. et al. 2010. Church - a language for generative
-models. \emph{Nature Materials}. 11, 4 (Mar. 2010), 261--263.
+T. Minka, J. Winn, J. Guiver, and D. Knowles, Infer.NET, Microsoft Research Cambridge, ![http://research.microsoft.com/infernet](http://research.microsoft.com/infernet).2010.
 
-\hypertarget{ref-lunn2000}{}
-{[}3{]} Lunn, J. et al. 2000. WinBUGS a Bayesian modelling framework,
-concepts, structure, and extensibility. \emph{Statistics and Computing}.
-11, 4 (Mar. 2000), 261--263.
+Stan Development Team, “Stan Modeling Language Users Guide and Reference Manual,” Version 2.9.0,![http://mc-stan.org](http://mc-stan.org),2016.
 
-\hypertarget{ref-minka2010}{}
-{[}4{]} Minka, T. et al. 2010. Infer.NET. \emph{Nature Materials}. 11, 4
-(Mar. 2010), 261--263.
+J. Lunn, A.Thomas, N. Best, and D. Spiegelhalter, “WinBUGS --a Bayesian modelling framework: concepts, structure, and extensibility,”Statistics and Computing,10:325—337, 2000.
 
-\hypertarget{ref-patil2010}{}
-{[}5{]} Patil, A. 2010. PyMC - Bayesian Stochastic Modelling in Python.
-\emph{Journal of Statistical Software}. 11, 4 (Mar. 2010), 1--81.
+N. D. Goodman, V. K. Mansinghka, D. M. Roy, K. Bonawitz, and J. B.Tenenbaum,“Church: a language for generative models,”In Uncertainty in Artificial Intelligence (UAI), pages 220–229, 2008.
 
-\hypertarget{ref-rstan2016}{}
-{[}6{]} Stan Development Team, J. 2016. RStan - the R interface to Stan
-Version 2.9.0. \emph{Statistics and Computing}. 11, 4 (Mar. 2016),
-261--263.
+Patil, A., D. Huard and C.J. Fonnesbeck. 2010. PyMC: Bayesian Stochastic Modelling in Python. Journal of Statistical Software, 35(4), pp. 1-81, 2010.
 
-\hypertarget{ref-stan2016}{}
-{[}7{]} Stan Development Team, R. 2010. \emph{Stan Modeling Language
-Users Guide and Reference Manual}. John Wiley \& Sons, Inc.
+Stan Development Team, “RStan: the R interface to Stan,” Version 2.9.0,http://mc-sta n.org,2016.
 
-\hypertarget{ref-winn-et-al2016}{}
-{[}8{]} Winn, J. et al. 2015. Model-Based Machine Learning. \emph{Nature
-Materials}. 11, 4 (Mar. 2015), 261--263.
-\setlength{\parindent}{0in}
+D. Emaasit, A. Paz, and J. Salzwedel (2016). "A Model-Based Machine Learning Approach for Capturing Activity-Based Mobility Patterns using Cellular Data". IEEE ITSC 2016. Under Review.
+
+D. Emaasit (2017). "A Model-Based Machine Learning Approach for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya". TRB 2017. Under Review.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

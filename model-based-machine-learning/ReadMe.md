@@ -1,4 +1,4 @@
--   [Model-Based Machine Learning and Probabilistic Programming Using RStan](#model-based-machine-learning-and-probabilistic-programming-using-rstan)
+-   [Introduction to Model-Based Machine Learning](#introduction-to-model-based-machine-learning)
     -   [Introduction](#introduction)
     -   [Current Challenges in Adopting Machine Learning](#current-challenges-in-adopting-machine-learning)
     -   [What is Model-Based Machine Learning (MBML)](#what-is-model-based-machine-learning-mbml)
@@ -10,15 +10,13 @@
         -   [Describe the Model](#describe-the-model)
         -   [Incorporate Observed Data](#incorporate-observed-data)
         -   [Perform Inference](#perform-inference)
-    -   [Case Studies](#case-studies)
+    -   [Case Study](#case-study)
         -   [Traffic Prediction](#traffic-prediction)
-        -   [Credit Scoring](#credit-scoring)
-        -   [Recommender Systems](#recommender-systems)
     -   [Conclusion](#conclusion)
     -   [References](#references)
 
-Model-Based Machine Learning and Probabilistic Programming Using RStan
-======================================================================
+Introduction to Model-Based Machine Learning
+============================================
 
 Introduction
 ------------
@@ -63,14 +61,12 @@ Stages of MBML
 
 ### Perform Inference
 
-Case Studies
-------------
+Case Study
+----------
 
 ### Traffic Prediction
 
-### Credit Scoring
-
-### Recommender Systems
+![Traffic](figures/traffic.jpg)
 
 Conclusion
 ----------
@@ -82,19 +78,22 @@ References
 
 For further reading, refer to the following references.
 
-\section*{References}\label{references}\addcontentsline{toc}{section}{References}
- 1{\]} Bishop, C. 2012. . John Wiley & Sons, Inc.
+J. Winn, C. Bishop, and T. Diethe, Model-Based Machine Learning,Microsoft Research, ![<http://www.mbmlbook.com/>](http://www.mbmlbook.com/),2015.
 
-2{\]} Goodman, D. et al. 2010. Church - a language for generative models. . 11, 4 (Mar. 2010), 261--263.
+C. M. Bishop, “Model-based machine learning” Phil Trans R Soc, A 371: 20120222. ![<http://dx.doi.org/10.1098/rsta.2012.0222>](http://dx.doi.org/10.1098/rsta.2012.0222), Jan. 2013
 
-3{\]} Lunn, J. et al. 2000. WinBUGS a Bayesian modelling framework, concepts, structure, and extensibility. . 11, 4 (Mar. 2000), 261--263.
+T. Minka, J. Winn, J. Guiver, and D. Knowles, Infer.NET, Microsoft Research Cambridge, ![<http://research.microsoft.com/infernet>](http://research.microsoft.com/infernet).2010.
 
-4{\]} Minka, T. et al. 2010. Infer.NET. . 11, 4 (Mar. 2010), 261--263.
+Stan Development Team, “Stan Modeling Language Users Guide and Reference Manual,” Version 2.9.0,![<http://mc-stan.org>](http://mc-stan.org),2016.
 
-5{\]} Patil, A. 2010. PyMC - Bayesian Stochastic Modelling in Python. . 11, 4 (Mar. 2010), 1--81.
+J. Lunn, A.Thomas, N. Best, and D. Spiegelhalter, “WinBUGS --a Bayesian modelling framework: concepts, structure, and extensibility,”Statistics and Computing,10:325—337, 2000.
 
-6{\]} Stan Development Team, J. 2016. RStan - the R interface to Stan Version 2.9.0. . 11, 4 (Mar. 2016), 261--263.
+N. D. Goodman, V. K. Mansinghka, D. M. Roy, K. Bonawitz, and J. B.Tenenbaum,“Church: a language for generative models,”In Uncertainty in Artificial Intelligence (UAI), pages 220–229, 2008.
 
-7{\]} Stan Development Team, R. 2010. . John Wiley & Sons, Inc.
+Patil, A., D. Huard and C.J. Fonnesbeck. 2010. PyMC: Bayesian Stochastic Modelling in Python. Journal of Statistical Software, 35(4), pp. 1-81, 2010.
 
-8{\]} Winn, J. et al. 2015. Model-Based Machine Learning. . 11, 4 (Mar. 2015), 261--263.
+Stan Development Team, “RStan: the R interface to Stan,” Version 2.9.0,<http://mc-sta> n.org,2016.
+
+D. Emaasit, A. Paz, and J. Salzwedel (2016). "A Model-Based Machine Learning Approach for Capturing Activity-Based Mobility Patterns using Cellular Data". IEEE ITSC 2016. Under Review.
+
+D. Emaasit (2017). "A Model-Based Machine Learning Approach for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya". TRB 2017. Under Review.
