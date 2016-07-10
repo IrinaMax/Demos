@@ -67,8 +67,81 @@ Contrast this with the model-based approach. You begin by listing the assumption
 
 ![Traffic](figures/traffic.jpg)
 
+### Learning the Model Parameters using a Probabilisitic Programming Language
+For this case study, we shall use Stan to learn the model parameters. RStan is the R (http://www.r-project.org/) interface for Stan. Before installing rstan, follow this [link to get the prerequisites for installing RStan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#prerequisites).
+
+Then install the latest rstan package and the packages it depends on like this:
+```{r environment-setup, eval = FALSE}
+## omit the 's' in 'https' if you cannot handle https downloads
+install.packages('rstan', repos = 'https://cloud.r-project.org/', dependencies = TRUE)
+
+## If all else fails, you can try to install rstan from source via
+install.packages("rstan", type = "source")
+```
+
+You are recommended to restart R after the installation before loading the rstan package. Then load the rstan library like this:
+```{r load-library, eval = FALSE}
+library(rstan)
+```
+
+Then you can describe the model is a compact language using the Stan modeling language as follows:
+```{r traffic-stan, eval = FALSE}
+## First, we specify this model in a file called 8schools.stan as follows
+
+## The first section of the below code specifies the data that is 
+## conditioned upon by Bayes Rule
+
+## The second section of the code defines the parameters whose posterior distribution 
+## is sought using Bayes Rule
+
+data {
+  int<lower=0> J; //  the number of schools, J; constrained to be non-negative
+  real y[J]; // vector of estimated treatment effects,y1, . . . , yJ (real = double)
+  real<lower=0> sigma[J]; //  the standard errors, σ1, . . . σJ, of effect estimates 
+
+parameters {
+  real mu; // the mean of the school effects
+  real<lower=0> tau; // the standard deviation of the school effects
+  real eta[J];  // the standardized school-level effects
+}
+transformed parameters {
+  real theta[J];  // the unstandardized school-level effects
+  for (j in 1:J)
+    theta[j] <- mu + tau * eta[j];
+}
+model {
+  eta ~ normal(0, 1);
+  y ~ normal(theta, sigma); // the second argument in Stan's normal(.,.) is the standard deviation
+}
+```
+
+After describing the model, you can perform inference by calling Stan inference engine as follows:
+```{r fit-model, eval = FALSE}
+traffic_data <- list(y = read.table('traffic.txt', header = TRUE),
+                 x = c(8, 15, 22, 29, 36),
+                 xbar = mean(x),
+                 N = nrow(y),
+                 T = ncol(y))
+
+traffic_fit <- stan(file = 'traffic.stan', data = traffic_data, 
+            iter = 1000, chains = 4, save_dso = TRUE)
+```
+
+Now, let's use the following code to check out the results in ```traffic_fit```. We can review a summary of the parameter of the model as well as the log-posterior by using the ```print()``` function.
+```{r print-fit, eval = FALSE}
+print(fit, digits = 1)
+```
+
 ## Conclusion
-the proposed machine learning approach provides a systematic process of developing bespoke models tailored to our specific problem. It also provides transparency in our model because we explicitly defined our modelassumptions by leveraging prior knowledge about human travel. Our approach also allows handling of uncertainty in a principled manner using probability theory. It also does not suffer from overfitting because the model parameters are learned using Bayesian inference and not optimization. Finally, our approach separates the model development from inference which allows us to build several models and use the same inference algorithm to learn the model parameters. This in turn helps to quickly compare several alternative modelsand select the best model that is explained by the observed data. 
+There several potential advantages of using model-based machine learning including;
+* This approach provides a systematic process of developing bespoke models tailored to our specific problem.  
+
+* It also provides transparency in our model because we explicitly defined our modelassumptions by leveraging prior knowledge about human travel.  
+
+* This approach allows handling of uncertainty in a principled manner using probability theory. 
+* It also does not suffer from overfitting because the model parameters are learned using Bayesian inference and not optimization.  
+
+* Finally, this approach separates the model development from inference which allows us to build several models and use the same inference algorithm to learn the model parameters. This in turn helps to quickly compare several alternative modelsand select the best model that is explained by the observed data.   
 
 ## References
 For further reading, refer to the following references.  
@@ -92,19 +165,3 @@ For further reading, refer to the following references.
 9. D. Emaasit, A. Paz, and J. Salzwedel (2016). ["A Model-Based Machine Learning Approach for Capturing Activity-Based Mobility Patterns using Cellular Data"](). IEEE ITSC 2016. Under Review.
 
 10. D. Emaasit (2017). ["A Model-Based Machine Learning Approach for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya"](). TRB 2017. Under Review.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
