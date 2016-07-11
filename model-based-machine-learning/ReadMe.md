@@ -61,11 +61,13 @@ Probabilistic programming is a flexible software development environment for mod
 Stages of MBML
 --------------
 
-There are 3 steps to model based machine learning namely: 1. *Describe the Model*: Describe the process that generated the data using factor graphs.
+There are 3 steps to model based machine learning namely:
 
-1.  *Condition on Observed Data*: Condition the observed variables to their known quantities
+1.  *Describe the Model*: Describe the process that generated the data using factor graphs.
 
-2.  *Perform Inference*: Perform backward reasoning to update the prior distribution over the latent variables or parameters. In other words, calculate the posterior probability distributions of latent variables conditioned on observed variables.
+2.  *Condition on Observed Data*: Condition the observed variables to their known quantities
+
+3.  *Perform Inference*: Perform backward reasoning to update the prior distribution over the latent variables or parameters. In other words, calculate the posterior probability distributions of latent variables conditioned on observed variables.
 
 Case Study
 ----------
@@ -108,57 +110,29 @@ library(rstan)
     ## rstan_options(auto_write = TRUE)
     ## options(mc.cores = parallel::detectCores())
 
-Then you can describe the model is a compact language using the Stan modeling language as follows: 1. First, we specify this model in a file called traffic.stan as follows
+Then you can describe the model is a compact language using the Stan modeling language as follows:
 
-1.  The first section of the below code specifies the data that is conditioned upon by Bayes Rule
+1.  First, we specify this model in a file called traffic.stan as follows
 
-2.  The second section of the code defines the parameters whose posterior distribution is sought using Bayes Rule
+2.  The first section of the below code specifies the data that is conditioned upon by Bayes Rule
+
+3.  The second section of the code defines the parameters whose posterior distribution is sought using Bayes Rule
 
 ``` r
 traffic_model <- "
   data {
-  int<lower=0> N;
-  int<lower=0> T;
-  real x[T];
-  real y[N,T];
-  real xbar;
+  int<lower=0> N;          //  the number of speed measurements, N; constrained to be non-negative
+  real y[N];               // vector of observed speed measurements,y1, . . . , yN (real = double)
+  real<lower=0> sigma[N]; //  the standard errors, σ1, . . . σN, of speed measurements
 }
 parameters {
-  real alpha[N];
-  real beta[N];
-
-  real mu_alpha;
-  real mu_beta;          
-
-  real<lower=0> sigmasq_y;
-  real<lower=0> sigmasq_alpha;
-  real<lower=0> sigmasq_beta;
-}
-transformed parameters {
-  real<lower=0> sigma_y;       
-  real<lower=0> sigma_alpha;
-  real<lower=0> sigma_beta;
-
-  sigma_y <- sqrt(sigmasq_y);
-  sigma_alpha <- sqrt(sigmasq_alpha);
-  sigma_beta <- sqrt(sigmasq_beta);
+  real mu;            // the mean of the traffic speeds
+  real<lower=0> tau; // the standard deviation of the traffic speeds
+  real theta[N];     // the unstandardized speed measurement
 }
 model {
-  mu_alpha ~ normal(0, 100);
-  mu_beta ~ normal(0, 100);
-  sigmasq_y ~ inv_gamma(0.001, 0.001);
-  sigmasq_alpha ~ inv_gamma(0.001, 0.001);
-  sigmasq_beta ~ inv_gamma(0.001, 0.001);
-  alpha ~ normal(mu_alpha, sigma_alpha); // vectorized
-  beta ~ normal(mu_beta, sigma_beta);  // vectorized
-  for (n in 1:N)
-    for (t in 1:T) 
-      y[n,t] ~ normal(alpha[n] + beta[n] * (x[t] - xbar), sigma_y);
-
-}
-generated quantities {
-  real alpha0;
-  alpha0 <- mu_alpha - xbar * mu_beta;
+  theta ~ normal(mu, tau);
+  y ~ normal(theta, sigma); // sigma is the standard deviation
 }
 "
 ```
@@ -166,19 +140,18 @@ generated quantities {
 After describing the model, you can perform inference by calling Stan inference engine as follows:
 
 ``` r
-y = read.table('data/rats.txt', header = TRUE)
-x = c(8, 15, 22, 29, 36)
-xbar = mean(x)
-N = nrow(y)
-T = ncol(y)
-traffic_data <- list(y, x, xbar, N, T)
+traffic <- read.table("data/traffic.txt", header = TRUE) 
 
-traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic", 
+traffic_data <- list(y = traffic[, "sensor_speed"], 
+                     sigma = traffic[, "sigma"], 
+                     N = nrow(traffic))
+
+traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic-prediction", 
                           data = traffic_data, iter = 1000, chains = 4, save_dso = TRUE)
 ```
 
     ## 
-    ## SAMPLING FOR MODEL 'traffic' NOW (CHAIN 1).
+    ## SAMPLING FOR MODEL 'traffic-prediction' NOW (CHAIN 1).
     ## 
     ## Chain 1, Iteration:   1 / 1000 [  0%]  (Warmup)
     ## Chain 1, Iteration: 100 / 1000 [ 10%]  (Warmup)
@@ -192,12 +165,12 @@ traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic",
     ## Chain 1, Iteration: 800 / 1000 [ 80%]  (Sampling)
     ## Chain 1, Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Chain 1, Iteration: 1000 / 1000 [100%]  (Sampling)
-    ##  Elapsed Time: 0.31 seconds (Warm-up)
-    ##                0.09 seconds (Sampling)
-    ##                0.4 seconds (Total)
+    ##  Elapsed Time: 0.21 seconds (Warm-up)
+    ##                0.04 seconds (Sampling)
+    ##                0.25 seconds (Total)
     ## 
     ## 
-    ## SAMPLING FOR MODEL 'traffic' NOW (CHAIN 2).
+    ## SAMPLING FOR MODEL 'traffic-prediction' NOW (CHAIN 2).
     ## 
     ## Chain 2, Iteration:   1 / 1000 [  0%]  (Warmup)
     ## Chain 2, Iteration: 100 / 1000 [ 10%]  (Warmup)
@@ -211,12 +184,23 @@ traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic",
     ## Chain 2, Iteration: 800 / 1000 [ 80%]  (Sampling)
     ## Chain 2, Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Chain 2, Iteration: 1000 / 1000 [100%]  (Sampling)
-    ##  Elapsed Time: 0.65 seconds (Warm-up)
-    ##                0.08 seconds (Sampling)
-    ##                0.73 seconds (Total)
+    ##  Elapsed Time: 0.22 seconds (Warm-up)
+    ##                0.04 seconds (Sampling)
+    ##                0.26 seconds (Total)
+
+    ## The following numerical problems occured the indicated number of times after warmup on chain 2
+
+    ##                                                                                 count
+    ## Exception thrown at line 13: normal_log: Scale parameter is 0, but must be > 0!     1
+
+    ## When a numerical problem occurs, the Metropolis proposal gets rejected.
+
+    ## However, by design Metropolis proposals sometimes get rejected even when there are no numerical problems.
+
+    ## Thus, if the number in the 'count' column is small, do not ask about this message on stan-users.
+
     ## 
-    ## 
-    ## SAMPLING FOR MODEL 'traffic' NOW (CHAIN 3).
+    ## SAMPLING FOR MODEL 'traffic-prediction' NOW (CHAIN 3).
     ## 
     ## Chain 3, Iteration:   1 / 1000 [  0%]  (Warmup)
     ## Chain 3, Iteration: 100 / 1000 [ 10%]  (Warmup)
@@ -230,23 +214,12 @@ traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic",
     ## Chain 3, Iteration: 800 / 1000 [ 80%]  (Sampling)
     ## Chain 3, Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Chain 3, Iteration: 1000 / 1000 [100%]  (Sampling)
-    ##  Elapsed Time: 1.76 seconds (Warm-up)
-    ##                0.3 seconds (Sampling)
-    ##                2.06 seconds (Total)
-
-    ## The following numerical problems occured the indicated number of times after warmup on chain 3
-
-    ##                                                                                 count
-    ## Exception thrown at line 35: normal_log: Scale parameter is 0, but must be > 0!     1
-
-    ## When a numerical problem occurs, the Metropolis proposal gets rejected.
-
-    ## However, by design Metropolis proposals sometimes get rejected even when there are no numerical problems.
-
-    ## Thus, if the number in the 'count' column is small, do not ask about this message on stan-users.
-
+    ##  Elapsed Time: 0.22 seconds (Warm-up)
+    ##                0.04 seconds (Sampling)
+    ##                0.26 seconds (Total)
     ## 
-    ## SAMPLING FOR MODEL 'traffic' NOW (CHAIN 4).
+    ## 
+    ## SAMPLING FOR MODEL 'traffic-prediction' NOW (CHAIN 4).
     ## 
     ## Chain 4, Iteration:   1 / 1000 [  0%]  (Warmup)
     ## Chain 4, Iteration: 100 / 1000 [ 10%]  (Warmup)
@@ -260,22 +233,11 @@ traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic",
     ## Chain 4, Iteration: 800 / 1000 [ 80%]  (Sampling)
     ## Chain 4, Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Chain 4, Iteration: 1000 / 1000 [100%]  (Sampling)
-    ##  Elapsed Time: 0.6 seconds (Warm-up)
-    ##                0.09 seconds (Sampling)
-    ##                0.69 seconds (Total)
+    ##  Elapsed Time: 0.23 seconds (Warm-up)
+    ##                0.05 seconds (Sampling)
+    ##                0.28 seconds (Total)
 
-    ## The following numerical problems occured the indicated number of times after warmup on chain 4
-
-    ##                                                                                 count
-    ## Exception thrown at line 36: normal_log: Scale parameter is 0, but must be > 0!     1
-
-    ## When a numerical problem occurs, the Metropolis proposal gets rejected.
-
-    ## However, by design Metropolis proposals sometimes get rejected even when there are no numerical problems.
-
-    ## Thus, if the number in the 'count' column is small, do not ask about this message on stan-users.
-
-Now, let's use the following code to check out the results in `traffic_fit`. We can review a summary of the parameter of the model as well as the log-posterior by using the `print()` function.
+Now, let's use the following code to check out the results in `traffic_model_fit`. We can review a summary of the parameter of the model as well as the log-posterior by using the `print()` function.
 
 ``` r
 print(traffic_model_fit, digits = 1)
