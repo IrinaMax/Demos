@@ -4,12 +4,12 @@
     -   [The Defining moment](#the-defining-moment)
     -   [What is Model-Based Machine Learning (MBML)](#what-is-model-based-machine-learning-mbml)
     -   [The Key Ideas of MBML](#the-key-ideas-of-mbml)
-        -   [Factor Graphs](#factor-graphs)
         -   [Bayesian Inference](#bayesian-inference)
+        -   [Factor Graphs](#factor-graphs)
         -   [Probabilistic Programming](#probabilistic-programming)
     -   [Stages of MBML](#stages-of-mbml)
     -   [Case Study](#case-study)
-        -   [A Model for Traffic Prediction](#a-model-for-traffic-prediction)
+        -   [A Simple Model for Traffic Prediction](#a-simple-model-for-traffic-prediction)
         -   [Learning the Model Parameters using a Probabilisitic Programming Language](#learning-the-model-parameters-using-a-probabilisitic-programming-language)
         -   [Evaluating Model Results](#evaluating-model-results)
     -   [Conclusion](#conclusion)
@@ -28,7 +28,7 @@ During my Masters in Transportation Engineering (2011-2013), I used traditional 
 Challenges in Adopting Machine Learning
 ---------------------------------------
 
-However, I found this shift from traditional statistical modeling to machine learning to be overwhelming because:
+I, however, found this shift from traditional statistical modeling to machine learning to be daunting because:
 
 1.  There was a vast amount of literature to read, about the 1000s of existing ML algorithms. There was too much learn including the new vocabulary like "features", "feature engineering", etc.
 
@@ -39,7 +39,7 @@ However, I found this shift from traditional statistical modeling to machine lea
 The Defining moment
 -------------------
 
-As, I continued to read this vast amount of literature and watch several MOOCs on machine learning, I discovered Prof. Daphne Koller's [course of Probabilistic Graphical Models (PGMs) on Coursera](https://www.coursera.org/learn/probabilistic-graphical-models). This later led to a text book by Prof. Christopher Bishop titled ["Pattern Recognition and Machine Learning"](http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738/ref=sr_1_2?ie=UTF8&s=books&qid=1263391804&sr=8-2#reader_0387310738) which I found easy to understand. So naturally I looked up Bishop's other publications and that's when I found his paper titled ["Model-Based Machine Learning"](http://rsta.royalsocietypublishing.org/content/371/1984/20120222). This was a career defining moment for me because I feel in love with Bayesian Machine Learning. I later discovered that Bishop and his colleagues at Microsoft Research - Cambridge were writing a [book](http://www.mbmlbook.com/) (Winn et al., 2015) with the same title.
+As, I continued to read this vast amount of literature and watch several MOOCs on machine learning, I discovered Prof. Daphne Koller's [course on Probabilistic Graphical Models (PGMs) on Coursera](https://www.coursera.org/learn/probabilistic-graphical-models). This later led me to a text book by Prof. Christopher Bishop titled ["Pattern Recognition and Machine Learning"](http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738/ref=sr_1_2?ie=UTF8&s=books&qid=1263391804&sr=8-2#reader_0387310738) which I found easy to understand. So naturally I looked up Bishop's other publications and that's when I found his paper titled ["Model-Based Machine Learning"](http://rsta.royalsocietypublishing.org/content/371/1984/20120222). This was a career defining moment for me because I feel in love with Bayesian Machine Learning. I later discovered that Bishop and his colleagues at Microsoft Research - Cambridge were writing a [book](http://www.mbmlbook.com/) (Winn et al., 2015) on the same topic.
 
 What is Model-Based Machine Learning (MBML)
 -------------------------------------------
@@ -59,25 +59,25 @@ The core idea is that all assumptions about the problem domain are made explicit
 The Key Ideas of MBML
 ---------------------
 
-### Factor Graphs
-
-The second cornerstone to MBML is the use of Probabilistic Graphical Models (PGM), particularly factor graphs. A PGM is a diagrammatic representation of the joint probability distribution over all random variables in a model expressed as a graph. Factor graphs is a type of PGM that consist of circular nodes representing random variables, square nodes for the conditional probability distributions (factors), and vertices for conditional dependencies between nodes (Figure 2). They provide a general framework for modeling the joint distribution of a set of random variables.
-
-The joint probability *P*(*U*, *X*) over the whole model in Figure 1 is factorized as:
-
-*P*(*U*, *X*)=*P*(*U*)\**P*(*X*|*U*)
-
-Where U are the set of model parameters and X are the set of observed variables
-
-![A Factor Graph](figures/factor-graph.png)
-
-In factor graphs, we treat the traffic congestion states as random variables and learn their probability distributions using Bayesian inference algorithms along the graph. Inference/learning is simply the product of factors over a subset of variables in the graph. This allows for easy implementation of local message passing algorithms.
-
 ### Bayesian Inference
 
 The first key idea enabling this different framework for machine learning is Bayesian inference/learning. In MBML, latent/hidden parameters are expressed as random variables with probability distributions. This allows for a coherent and principled manner of quantification of uncertainty in the model parameters. Once the observed variables in the model are fixed to their observed values, initially assumed probability distributions(i.e. priors)are updated using the Bayes theorem.
 
 This is in contrast to the traditional/classical machine learning framework where model parameters are assigned average values that are determined by optimizing an objective function. Bayesian inference on large models over millions of variables is similarly implemented using the Bayes theorem but in a more complex manner. This is because Bayes theorem is an exact inference technique that is intractable over large datasets. In the past decade,the increase of processing power of computers has enabled research and development of fast and efficient inference algorithms that can scale to large data like Belief Propagation (BP), Expectation Propagation (EP), Variational Bayes (VB).
+
+### Factor Graphs
+
+The second cornerstone to MBML is the use of Probabilistic Graphical Models (PGM), particularly factor graphs. A PGM is a diagrammatic representation of the joint probability distribution over all random variables in a model expressed as a graph. Factor graphs is a type of PGM that consist of circular nodes representing random variables, square nodes for the conditional probability distributions (factors), and vertices for conditional dependencies between nodes (Figure 2). They provide a general framework for modeling the joint distribution of a set of random variables.
+
+The joint probability *P*(*μ*, *X*) over the whole model in Figure 1 is factorized as:
+
+*P*(*μ*, *X*)=*P*(*μ*)\**P*(*X*|*μ*)
+
+Where is the model parameter and X are the set of observed variables
+
+![A Factor Graph](figures/factor-graph.png)
+
+In factor graphs, we treat the latent parameters as random variables and learn their probability distributions using Bayesian inference algorithms along the graph. Inference/learning is simply the product of factors over a subset of variables in the graph. This allows for easy implementation of local message passing algorithms.
 
 ### Probabilistic Programming
 
@@ -97,13 +97,21 @@ There are 3 steps to model based machine learning namely:
 Case Study
 ----------
 
-### A Model for Traffic Prediction
+### A Simple Model for Traffic Prediction
 
-Suppose you wish to track the propagation of traffic congestion on a road segment. A machine learning textbook might tell you that there is an algorithm called a Kalman filter \[Kalman, 1960\] which can be used for these kinds of problems. Suppose you decide to try and make use of some Kalman filter software to predict how a traffic congestion evolves over time. First you will have to work out how to convert the traffic congestion prediction task into the form of a standard Kalman filter. Having done that, if you are lucky, the software might give a sufficiently good solution. However, the results from using an off-the-shelf algorithm often fail to reach the accuracy level required by real applications. How will you modify the algorithm, and the corresponding software, to achieve better results? It seems you will have to become an expert on the Kalman filter algorithm, and to delve into the software implementation, in order to make progress.
+We apply the model-based approach by following the three stages of MBML:
 
-Contrast this with the model-based approach. You begin by listing the assumptions which your solution must satisfy. This defines your model. You then use this model to create the corresponding machine-learning algorithm, which is a mechanical process that can be automated. If your assumptions happen to correspond to those which are implicit in the Kalman filter, then your algorithm will correspond precisely to the Kalman filtering algorithm (and this will happen even if you have never heard of a Kalman filter). Perhaps, however, the model for your particular application has somewhat different assumptions. In this case you will obtain a variant of the Kalman filter, appropriate to your application. Whether this variant already exists, or whether it is a novel algorithm, is irrelevant if your goal is to find the best solution to your problem. Suppose you try your model-based algorithm, and the results again fall short of your requirements. Now you have a framework for improving the results by examining and modifying the assumptions to produce a better model, along with the corresponding improved algorithm. As a domain expert it is far easier and more intuitive to understand and change the assumptions than it is to modify a machine learning algorithm directly. Even if your goal is simply to understand the Kalman filter, then starting with the model assumptions is by far the clearest and simplest way to derive the filtering algorithm, and to understand what Kalman filters are all about.
+1.  **Step 1**: Build a model of our traffic congestion problem. We begin by listing the assumptions which our problem must satisfy. We assume that there's a latent traffic congestion state () that we are interested in learning which has a Gausian distribution with some mean and standard deviation. This traffic congestion state will determine the observed speed measurement at the sensors (X). We then introduce a condition probability P(X|) which the probability of X conditioned that we have observed . We also know that traffic at some subsequent time period will depend on the previous traffic state. So we introduce another factor graph at the next time step. We assume that it's latent variable has a Gaussian distribution centered at the quantity of the previous state with some (known or unknown) standard deviation.
 
-![A Model for Traffic Congestion](figures/kalman.png)
+![A Simple Model for Traffic Congestion](figures/kalman.png)
+
+1.  **Step 2**: Incorporate observed data. We condition the observed variable to their know quantities. This is represented by shading the node in blue, as shown in the previous figure.
+
+2.  **Step 3**: Perform Bayesian Inference. By using a probabilsitic programming language, we are able to write a compact piece of code that performs inference by simply calling a built-in inference algorithm.
+
+The bespoke model we've built together with the inference algorithm constitute our custom machine learning algorithm specific to our traffic prediction problem. If you are familiar with the literature, you might find out that we have just developed a common algorithm called the Kalman filter. We can extend our model by adding other assumptions to account for weather, pavement, transportation network conditions and sports events. These assumptions may obtain a variant of the Kalman filter, appropriate to our application. Whether this variant already exists, or whether it is a novel algorithm, is irrelevant if your goal is to find the best solution to your problem.
+
+If we implemented our model-based algorithm and obtained less accurate results, we can easily examine and modify our model assumptions to produce a better model. In their experience, Winn et al. (2015) find it "*far easier and more intuitive to understand and change the assumptions than it is to modify a machine learning algorithm directly. Even if your goal is simply to understand the Kalman filter, then starting with the model assumptions is by far the clearest and simplest way to derive the filtering algorithm, and to understand what Kalman filters are all about*".
 
 ### Learning the Model Parameters using a Probabilisitic Programming Language
 
@@ -215,5 +223,3 @@ For further reading, refer to the following references.
 8.  Stan Development Team, "[RStan: the R interface to Stan,” Version 2.9.0](http://mc-sta%20n.org,2016)".
 
 9.  D. Emaasit, A. Paz, and J. Salzwedel (2016). ["A Model-Based Machine Learning Approach for Capturing Activity-Based Mobility Patterns using Cellular Data"](). IEEE ITSC 2016. Under Review.
-
-10. D. Emaasit (2017). ["A Model-Based Machine Learning Framework for Predicting Traffic Congestion: A Case Study of Nairobi, Kenya"](). TRB 2017. Under Review.
