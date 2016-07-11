@@ -11,6 +11,7 @@
     -   [Case Study](#case-study)
         -   [A Model for Traffic Prediction](#a-model-for-traffic-prediction)
         -   [Learning the Model Parameters using a Probabilisitic Programming Language](#learning-the-model-parameters-using-a-probabilisitic-programming-language)
+        -   [Evaluating Model Results](#evaluating-model-results)
     -   [Conclusion](#conclusion)
     -   [References](#references)
 
@@ -49,7 +50,7 @@ The goal of MBML is to provide a single development framework which supports the
 
 1.  the adoption of a Bayesian viewpoint,
 
-2.  the use of factor graphs (a probabilistic graphical models), and
+2.  the use of factor graphs (a type of probabilistic graphical model), and
 
 3.  the application of fast, deterministic, efficient and approximate inference algorithms.
 
@@ -63,7 +64,9 @@ The Key Ideas of MBML
 The second cornerstone to MBML is the use of Probabilistic Graphical Models (PGM), particularly factor graphs. A PGM is a diagrammatic representation of the joint probability distribution over all random variables in a model expressed as a graph. Factor graphs is a type of PGM that consist of circular nodes representing random variables, square nodes for the conditional probability distributions (factors), and vertices for conditional dependencies between nodes (Figure 2). They provide a general framework for modeling the joint distribution of a set of random variables.
 
 The joint probability *P*(*U*, *X*) over the whole model in Figure 1 is factorized as:
+
 *P*(*U*, *X*)=*P*(*U*)\**P*(*X*|*U*)
+
 Where U are the set of model parameters and X are the set of observed variables
 
 ![A Factor Graph](figures/factor-graph.png)
@@ -104,7 +107,7 @@ Contrast this with the model-based approach. You begin by listing the assumption
 
 ### Learning the Model Parameters using a Probabilisitic Programming Language
 
-For this case study, we shall use Stan to learn the model parameters. RStan is the R (<http://www.r-project.org/>) interface for Stan. Before installing rstan, follow this [link to get the prerequisites for installing RStan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#prerequisites).
+For this case study, we shall use Stan to learn the model parameters. Stan provides an R interface, RStan, which can be used to call Stan algorithms from within the [R programming lanuage](http://www.r-project.org/) Firstly, follow this [link to get the prerequisites for installing RStan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#prerequisites).
 
 Then install the latest rstan package and the packages it depends on like this:
 
@@ -124,11 +127,9 @@ library(rstan)
 
 Then you can describe the model is a compact language using the Stan modeling language as follows:
 
-1.  First, we specify this model in a file called traffic.stan as follows
+\*. The first section of the below code specifies the data that is conditioned upon by Bayes Rule
 
-2.  The first section of the below code specifies the data that is conditioned upon by Bayes Rule
-
-3.  The second section of the code defines the parameters whose posterior distribution is sought using Bayes Rule
+\*. The second section of the code defines the parameters whose posterior distribution is sought using Bayes Rule
 
 ``` r
 traffic_model <- "
@@ -148,6 +149,8 @@ model {
 }
 "
 ```
+
+It is recommended that we specify the above model in a separate text file with extension *.stan*. However for this tutorial we shall combine it in the same R Markdown file.
 
 After describing the model, you can perform inference by calling Stan inference engine as follows:
 
@@ -249,7 +252,17 @@ traffic_model_fit <- stan(model_code = traffic_model, model_name = "traffic-pred
     ##                0.05 seconds (Sampling)
     ##                0.28 seconds (Total)
 
-Now, let's use the following code to check out the results in `traffic_model_fit`. We can review a summary of the parameter of the model as well as the log-posterior by using the `print()` function.
+Calling the `stan()` function performs three fundamental operations:
+
+1.  First, your Stan program is translated to C++ code using the `stanc()` function,
+
+2.  Then the resulting C++ code is compiled to create a DSO (also called a dynamic link library (DLL)) that can be loaded by R,
+
+3.  Finally, the DSO is run to sample from the posterior distribution.
+
+### Evaluating Model Results
+
+Now, we can use the the `print()` function to check out the results in `traffic_model_fit` including a summary of the parameter of the model as well as the log-posterior .
 
 ``` r
 print(traffic_model_fit, digits = 1)
@@ -414,7 +427,7 @@ print(traffic_model_fit, digits = 1)
 Conclusion
 ----------
 
-There several potential advantages of using model-based machine learning including;
+There are several potential advantages of using model-based machine learning including;
 
 -   This approach provides a systematic process of developing bespoke models tailored to our specific problem.
 
