@@ -17,54 +17,73 @@ suppressPackageStartupMessages(library(dplyr))
 # Introduction to Model-Based Machine Learning
 
 ## Introduction
-During the last few years, the field of machine learning has moved to centre stage in the world of technology. Today thousands of scientists and engineers are applying machine learning to an extraordinarily broad range of domains. However, making effective use of machine learning in practice can be daunting, especially for newcomers to the field. Here are some of the principal challenges encountered when trying to solve real-world problems using machine learning.
+This blog post follows my journey from traditional statistical modeling to Machine Learning (ML) and introduces a new paradigm of ML called **Model-Based Machine Learning**[^1]. It will particulary be interesting to new comers or other people who want to make a shift to machine learning for their research or practice.
 
-In this book we look at machine learning from a fresh perspective which we call model-based machine learning. This viewpoint helps to address all of these challenges, and makes the process of creating effective machine learning solutions much more systematic. It is applicable to the full spectrum of machine learning techniques and application domains, and will help guide you towards building successful machine learning solutions without requiring that you master the huge literature on machine learning.
+During my Masters in Transportation Engineering (2011-2013), I used traditional statistical modeling in my research to study transportation related problems like [highway crashes](http://dx.doi.org/10.1080/19439962.2013.812168). When I started my PhD, I wanted to make a shift to using machine learning because of the powerful use cases I was constantly reading about in several fields in academia and industry. Particulary I wanted to develop methods that learn how people travel within cities so that we can better plan our transportation infrastructure. 
 
-## Current Challenges in Adopting Machine Learning
-“I am overwhelmed by the choice of machine learning methods and techniques. There’s too much to learn!”
+## Challenges in Adopting Machine Learning
+However, I found this shift from traditional statistical modeling to machine learning to be overwhelming because:
 
-“I don’t know which algorithm to use or why one would be better than another for my problem.”
+1. There was a vast amount of literature to read, about the 1000s of existing ML algorithms. There was too much learn including the new vocabulary like "features", "feature engineering", etc.
 
-“My problem doesn’t seem to fit with any standard algorithm.”
+2. I had to understand which algorithms to use or why one would be better than another for my urban mobility research projects.
+
+3. What if my problem didn't seem to fit with any standard algorithm? Would I have to devise a new algorithm.
+
+## The Defining moment
+As, I continued to read this vast amount of literature and watch several MOOCs on machine learning, I discovered Prof. Daphne Koller's [course of Probabilistic Graphical Models (PGMs) on Coursera](https://www.coursera.org/learn/probabilistic-graphical-models). This later led to a text book by Prof. Christopher Bishop titled ["Pattern Recognition and Machine Learning"](http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738/ref=sr_1_2?ie=UTF8&s=books&qid=1263391804&sr=8-2#reader_0387310738) which I found easy to understand. So naturally I looked up Bishop's other publications and that's when I found his paper titled ["Model-Based Machine Learning"](http://rsta.royalsocietypublishing.org/content/371/1984/20120222)[2]. This was a career defining moment for me. I feel in love with Bayesian Machine Learning. I later discovered that Bishop and his colleagues at Microsoft Research - Cambridge were writing a [book](http://www.mbmlbook.com/)[3] with the same title. 
 
 ## What is Model-Based Machine Learning (MBML)
-The field of machine learning has experienced the development of thousands of learning algorithms. Typically, scientists choose from these algorithms to solve specific problems. Their choices are constrained by their familiarity with the algorithms. In this classical/traditional framework of machine learning, scientists are constrained to making some assumptions so as to use an existing algorithm. This is in contrast to the model-based machine learning approach which seeks to create a bespoke solution tailored to each new problem. The goal of model-based machine learning is to provide a single development framework which supports the creation of a wide range of bespoke models. This different framework emerged from an important convergence of three key ideas: (i) the adoption of a Bayesian viewpoint, (ii) the use of probabilistic graphical models, and (iii) the application of fast, deterministic, efficient and approximate inference algorithms. The core idea is that all assumptions about the problem domain are made explicit in the form of a model. In this framework, a model is simply a set of assumptionsabout the world expressed in a probabilistic graphical format with all the parameters and variables expressed as random components.
+The field of machine learning has experienced the development of thousands of learning algorithms. Typically, scientists choose from these algorithms to solve specific problems. Their choices are constrained by their familiarity with the algorithms. In this classical/traditional framework of machine learning, scientists are constrained to making some assumptions so as to use an existing algorithm. This is in contrast to the model-based machine learning approach which seeks to create a bespoke solution tailored to each new problem. 
+
+The goal of MBML is to provide a single development framework which supports the creation of a wide range of bespoke models. This different framework emerged from an important convergence of three key ideas:   
+
+(i) the adoption of a Bayesian viewpoint,  
+
+(ii) the use of factor graphs (a probabilistic graphical models), and   
+
+(iii) the application of fast, deterministic, efficient and approximate inference algorithms.   
+
+The core idea is that all assumptions about the problem domain are made explicit in the form of a model. In this framework, a model is simply a set of assumptions about the world expressed in a probabilistic graphical format with all the parameters and variables expressed as random components.
 
 ## The Key Ideas of MBML
 
 ### Factor Graphs
-The second cornerstone to model-based machine learning is the use of Probabilistic Graphical Models (PGM), particularly factor graphs. A PGM is a diagrammatic representation of the joint probability distribution over all random variables in a model expressed as a graph. Factor graphs is a type of PGM that consist of circular nodes representing random variables, square nodes for the conditional probability distributions (factors), and vertices for conditional dependencies between nodes (Figure 2). They provide a general framework for modeling the joint distribution of a set of random variables. The joint probability $P(Q, X)$ over the whole model in Figure 1 is factorized as (Equation 1):  
-$$ P(Q, X) = P(Q) * P(X|Q)$$  
-Where Q are the set of model parameters and X are the set of observed variables
+The second cornerstone to MBML is the use of Probabilistic Graphical Models (PGM), particularly factor graphs. A PGM is a diagrammatic representation of the joint probability distribution over all random variables in a model expressed as a graph. Factor graphs is a type of PGM that consist of circular nodes representing random variables, square nodes for the conditional probability distributions (factors), and vertices for conditional dependencies between nodes (Figure 2). They provide a general framework for modeling the joint distribution of a set of random variables. 
+
+The joint probability $P(U, X)$ over the whole model in Figure 1 is factorized as:  
+$$ P(U, X) = P(U) * P(X|U)$$  
+Where U are the set of model parameters and X are the set of observed variables
 
 ![A Factor Graph](figures/factor-graph.png)
 
 In factor graphs, we treat the traffic congestion states as random variables and learn their probability distributions using Bayesian inference algorithms along the graph. Inference/learning is simply the product of factors over a subset of variables in the graph. This allows for easy implementation of local message passing algorithms.
 
 ### Bayesian Inference
-The first key idea enabling this different framework for machine learning is Bayesian inference/learning. In model-based machine learning, latent/hidden parameters are expressed as random variables with probability distributions. This allows for a coherent and principled manner of quantification of uncertainty in the model parameters. Once the observed variables in the model are fixed to their observed values, initially assumed probability distributions(i.e. priors)are updated using the Bayes theorem. This is in contrast to the traditional/classical machine learning framework where model parameters are assigned average values that are determined by optimizing an objective function. Bayesian inference on large models over millions of variables is similarly implemented using the Bayes theorem but in a more complex manner. This is because Bayes theorem is an exact inference technique that is intractable over large datasets. In the past decade,the increase of processing power of computers has enabled research and development of fast and efficient inference algorithms that can scale to large data. In Section V of this paper, we describe two such algorithms based on local message passing along factor graphs.
+The first key idea enabling this different framework for machine learning is Bayesian inference/learning. In MBML, latent/hidden parameters are expressed as random variables with probability distributions. This allows for a coherent and principled manner of quantification of uncertainty in the model parameters. Once the observed variables in the model are fixed to their observed values, initially assumed probability distributions(i.e. priors)are updated using the Bayes theorem. 
+
+This is in contrast to the traditional/classical machine learning framework where model parameters are assigned average values that are determined by optimizing an objective function. Bayesian inference on large models over millions of variables is similarly implemented using the Bayes theorem but in a more complex manner. This is because Bayes theorem is an exact inference technique that is intractable over large datasets. In the past decade,the increase of processing power of computers has enabled research and development of fast and efficient inference algorithms that can scale to large data like Belief Propagation (BP), Expectation Propagation (EP), Variational Bayes (VB).
 
 ### Probabilistic Programming
-Probabilistic programming is a flexible software development environment for model-based machine learning. It takes existing programming languages and adds support for random variables, constraints on variables and inference packages. In this environment, models can be described in a compact form with a few lines of code, and then an inference engine is called to automatically generate inference routines (and even source code) to solve a wide variety of models. Some notable examples of probabilistic programming languages include Infer.Net [@minka2010], Stan [@stan2016], BUGS [@lunn2000], church [@goodman2008], and PyMC [@patil2010]. In this project, we access Stan algorithms through the R interface [@rstan2016] as described in section 5.
+Probabilistic programming is a flexible software development environment for model-based machine learning. It takes existing programming languages and adds support for random variables, constraints on variables and inference packages. In this environment, models can be described in a compact form with a few lines of code, and then an inference engine is called to automatically generate inference routines (and even source code) to solve a wide variety of models. Some notable examples of probabilistic programming languages include Infer.Net, Stan, BUGS, church, and PyMC. In this blog post, we shall access Stan algorithms through the R interface.
 
 ## Stages of MBML
 There are 3 steps to model based machine learning namely:  
 
-1. *Describe the Model*: Describe the process that generated the data using factor graphs.
+1. **Describe the Model**: Describe the process that generated the data using factor graphs.
 
-2. *Condition on Observed Data*: Condition the observed variables to their known quantities
+2. **Condition on Observed Data**: Condition the observed variables to their known quantities
 
-3. *Perform Inference*: Perform backward reasoning to update the prior distribution over the latent variables or parameters. In other words, calculate the posterior probability distributions of latent variables conditioned on observed variables.
+3. **Perform Inference**: Perform backward reasoning to update the prior distribution over the latent variables or parameters. In other words, calculate the posterior probability distributions of latent variables conditioned on observed variables.
 
 ## Case Study
 
 ### A Model for Traffic Prediction
-Suppose you wish to track the changing skill of a player in an online gaming service (this is the problem we will explore in detail in Chapter 3). A machine learning textbook might tell you that there is an algorithm called a Kalman filter [Kalman, 1960] which can be used for these kinds of problems. Suppose you decide to try and make use of some Kalman filter software to predict how a player’s skill evolves over time. First you will have to work out how to convert the skill prediction task into the form of a standard Kalman filter. Having done that, if you are lucky, the software might give a sufficiently good solution. However, the results from using an off-the-shelf algorithm often fail to reach the accuracy level required by real applications. How will you modify the algorithm, and the corresponding software, to achieve better results? It seems you will have to become an expert on the Kalman filter algorithm, and to delve into the software implementation, in order to make progress.
+Suppose you wish to track the propagation of traffic congestion on a road segment. A machine learning textbook might tell you that there is an algorithm called a Kalman filter [Kalman, 1960] which can be used for these kinds of problems. Suppose you decide to try and make use of some Kalman filter software to predict how a traffic congestion evolves over time. First you will have to work out how to convert the traffic congestion prediction task into the form of a standard Kalman filter. Having done that, if you are lucky, the software might give a sufficiently good solution. However, the results from using an off-the-shelf algorithm often fail to reach the accuracy level required by real applications. How will you modify the algorithm, and the corresponding software, to achieve better results? It seems you will have to become an expert on the Kalman filter algorithm, and to delve into the software implementation, in order to make progress.
 
 Contrast this with the model-based approach. You begin by listing the assumptions which your solution must satisfy. This defines your model. You then use this model to create the corresponding machine-learning algorithm, which is a mechanical process that can be automated. If your assumptions happen to correspond to those which are implicit in the Kalman filter, then your algorithm will correspond precisely to the Kalman filtering algorithm (and this will happen even if you have never heard of a Kalman filter). Perhaps, however, the model for your particular application has somewhat different assumptions. In this case you will obtain a variant of the Kalman filter, appropriate to your application. Whether this variant already exists, or whether it is a novel algorithm, is irrelevant if your goal is to find the best solution to your problem. Suppose you try your model-based algorithm, and the results again fall short of your requirements. Now you have a framework for improving the results by examining and modifying the assumptions to produce a better model, along with the corresponding improved algorithm. As a domain expert it is far easier and more intuitive to understand and change the assumptions than it is to modify a machine learning algorithm directly. Even if your goal is simply to understand the Kalman filter, then starting with the model assumptions is by far the clearest and simplest way to derive the filtering algorithm, and to understand what Kalman filters are all about.
 
-![Traffic](figures/traffic.jpg)
+![A Model for Traffic Congestion](figures/kalman.png)
 
 ### Learning the Model Parameters using a Probabilisitic Programming Language
 For this case study, we shall use Stan to learn the model parameters. RStan is the R (http://www.r-project.org/) interface for Stan. Before installing rstan, follow this [link to get the prerequisites for installing RStan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#prerequisites).
@@ -79,7 +98,7 @@ install.packages("rstan", type = "source")
 ```
 
 You are recommended to restart R after the installation before loading the rstan package. Then load the rstan library like this:
-```{r load-library}
+```{r load-library, message = FALSE}
 library(rstan)
 ```
 
@@ -128,7 +147,8 @@ print(traffic_model_fit, digits = 1)
 ```
 
 ## Conclusion
-There several potential advantages of using model-based machine learning including;
+There several potential advantages of using model-based machine learning including;  
+
 * This approach provides a systematic process of developing bespoke models tailored to our specific problem.  
 
 * It also provides transparency in our model because we explicitly defined our modelassumptions by leveraging prior knowledge about human travel.  
